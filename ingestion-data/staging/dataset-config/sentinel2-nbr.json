@@ -1,0 +1,97 @@
+{
+    "collection": "sentinel2-nbr",
+    "dashboard:is_periodic": false,
+    "dashboard:time_interval": "P1D",
+    "description": "The Normalized Burn Ratio (NBR) is a spectral index derived from Sentinel-2 near-infrared (NIR) and shortwave infrared (SWIR) bands, calculated as (NIR - SWIR) / (NIR + SWIR). NBR is used to identify and assess burn severity in fire-affected areas, with lower values indicating more severe burn damage. This collection provides NBR imagery for disaster monitoring and post-fire damage assessment.",
+    "title": "Sentinel-2 Normalized Burn Ratio",
+    "data_type": "cog",
+    "spatial_extent": {
+        "xmin": -180,
+        "ymin": -90,
+        "xmax": 180,
+        "ymax": 90
+    },
+    "temporal_extent": {
+        "startdate": "2024-01-12T00:00:00Z",
+        "enddate": null
+    },
+    "item_assets": {
+        "nbr": {
+            "description": "Normalized Burn Ratio (NBR) index highlighting burned areas by comparing near-infrared and shortwave infrared bands for fire damage assessment.",
+            "roles": [
+                "data",
+                "layer"
+            ],
+            "title": "Burn Ratio",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+        }
+    },
+    "license": "CC0-1.0",
+    "links": [],
+    "providers": [
+        {
+        "name": "NASA VEDA",
+        "roles": [
+          "host"
+        ],
+        "url": "https://www.earthdata.nasa.gov/dashboard/"
+        }
+    ],
+    
+    "renders": {
+        "dashboard": {
+            "assets": [
+                "nbr"
+            ],
+            "rescale": [
+                [
+                    -1,
+                    1
+                ]
+            ],
+            "nodata": -9999
+        },
+        "nbr": {
+            "assets": [
+                "nbr"
+            ],
+            "rescale": [
+                [
+                    -1,
+                    1
+                ]
+            ],
+            "nodata": -9999
+        }
+    },
+    "stac_extensions": [
+        "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0",
+    "discovery_items": [
+        {
+            "collection": "sentinel2-nbr",
+            "disasters:extract_event_name": true,
+            "disasters:monty": true,
+            "disasters:add_product": true,
+            "disasters:add_providers": true,
+            "bucket": "nasa-disasters-staging",
+            "prefix": "ProgramData/Sentinel-2/NBR",
+            "cogify": false,
+            "discovery": "s3",
+            "dry_run": false,
+            "filename_regex": ".*day.tif$",
+            "datetime_range": "day",
+            "assets": {
+                "nbr": {
+                    "description": "Normalized Burn Ratio (NBR) index highlighting burned areas by comparing near-infrared and shortwave infrared bands for fire damage assessment.",
+                    "regex": ".*(NBR).*\\.tif$",
+                    "title": "Burn Ratio"
+                }
+            },
+            "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day.tif$",
+            "id_template": "sentinel2-nbr-{}"
+    }
+    ]
+}

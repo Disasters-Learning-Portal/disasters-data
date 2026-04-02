@@ -1,5 +1,5 @@
 {
-    "collection": "sentinel-2-ColorIR",
+    "collection": "sentinel2-colorir",
     "dashboard:is_periodic": false,
     "dashboard:time_interval": "P1D",
     "description": "Sentinel-2 is a multispectral optical imaging mission providing high-resolution imagery for disaster monitoring and environmental assessment. This collection includes multiple spectral band products and derived indices: true color and false color composites for visual analysis, NDVI for vegetation health monitoring, burn ratio for fire damage assessment, MNDWI for water detection, and cloud masks for data quality filtering.",
@@ -71,7 +71,7 @@
     "stac_version": "1.0.0",
     "discovery_items": [
         {
-            "collection": "sentinel-2-ColorIR",
+            "collection": "sentinel2-colorir",
             "disasters:extract_event_name": true,
             "disasters:monty": true,
             "disasters:add_product": true,
@@ -91,7 +91,7 @@
                 }
             },
             "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
-            "id_template": "sentinel-2-ColorIR-{}"
+            "id_template": "sentinel2-colorir-{}"
         }
     ]
 }

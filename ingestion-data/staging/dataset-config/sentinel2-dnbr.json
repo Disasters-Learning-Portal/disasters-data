@@ -1,9 +1,9 @@
 {
-    "collection": "sentinel-2-burnratio",
+    "collection": "sentinel2-dnbr",
     "dashboard:is_periodic": false,
     "dashboard:time_interval": "P1D",
-    "description": "Sentinel-2 is a multispectral optical imaging mission providing high-resolution imagery for disaster monitoring and environmental assessment. This collection includes multiple spectral band products and derived indices: true color and false color composites for visual analysis, NDVI for vegetation health monitoring, burn ratio for fire damage assessment, MNDWI for water detection, and cloud masks for data quality filtering.",
-    "title": "Sentinel-2 Burn Ratio",
+    "description": "The Differenced Normalized Burn Ratio (dnbr) is derived by subtracting post-fire NBR from pre-fire NBR using Sentinel-2 near-infrared (NIR) and shortwave infrared (SWIR) bands. dnbr quantifies burn severity by measuring the change in vegetation and soil conditions before and after a fire event, with higher values indicating more severe burn damage. This collection provides dnbr imagery for disaster monitoring and post-fire damage assessment.",
+    "title": "Sentinel-2 dnbr",
     "data_type": "cog",
     "spatial_extent": {
         "xmin": -180,
@@ -16,13 +16,13 @@
         "enddate": null
     },
     "item_assets": {
-        "BurnRatio": {
-            "description": "Normalized Burn Ratio (NBR) index highlighting burned areas by comparing near-infrared and shortwave infrared bands for fire damage assessment.",
+        "dnbr": {
+            "description": "Differenced Normalized Burn Ratio (dnbr) index quantifying burn severity by comparing pre-fire and post-fire NBR values for fire damage assessment.",
             "roles": [
                 "data",
                 "layer"
             ],
-            "title": "Burn Ratio",
+            "title": "dnbr",
             "type": "image/tiff; application=geotiff; profile=cloud-optimized"
         }
     },
@@ -41,7 +41,7 @@
     "renders": {
         "dashboard": {
             "assets": [
-                "BurnRatio"
+                "dnbr"
             ],
             "rescale": [
                 [
@@ -51,9 +51,9 @@
             ],
             "nodata": -9999
         },
-        "BurnRatio": {
+        "dnbr": {
             "assets": [
-                "BurnRatio"
+                "dnbr"
             ],
             "rescale": [
                 [
@@ -71,27 +71,27 @@
     "stac_version": "1.0.0",
     "discovery_items": [
         {
-            "collection": "sentinel-2-burnratio",
+            "collection": "sentinel2-dnbr",
             "disasters:extract_event_name": true,
             "disasters:monty": true,
             "disasters:add_product": true,
             "disasters:add_providers": true,
             "bucket": "nasa-disasters-staging",
-            "prefix": "ProgramData/Sentinel-2/BurnRatio",
+            "prefix": "ProgramData/Sentinel-2/dNBR",
             "cogify": false,
             "discovery": "s3",
             "dry_run": false,
             "filename_regex": ".*day.tif$",
             "datetime_range": "day",
             "assets": {
-                "BurnRatio": {
-                    "description": "Normalized Burn Ratio (NBR) index highlighting burned areas by comparing near-infrared and shortwave infrared bands for fire damage assessment.",
-                    "regex": "^(?!.*_T[0-9A-Z]{5}_).*(dnbr|NBR).*\\.tif$",
-                    "title": "Burn Ratio"
+                "dnbr": {
+                    "description": "Differenced Normalized Burn Ratio (dnbr) index quantifying burn severity by comparing pre-fire and post-fire NBR values for fire damage assessment.",
+                    "regex": ".*(dNBR|dnbr).*\\.tif$",
+                    "title": "Differenced Normalized Burn Ratio"
                 }
             },
             "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day.tif$",
-            "id_template": "sentinel-2-burnratio-{}"
+            "id_template": "sentinel2-dnbr-{}"
     }
     ]
 }
