@@ -1,0 +1,96 @@
+{
+    "collection": "sentinel2-colorir-subdaily",
+    "dashboard:is_periodic": false,
+    "dashboard:time_interval": "PT1S",
+    "description": "False color infrared composite from Sentinel-2 combining near-infrared, red, and green bands for vegetation and land cover analysis. This collection contains subdaily per-tile imagery with full acquisition timestamps.",
+    "title": "Sentinel-2 Color Infrared (Subdaily)",
+    "data_type": "cog",
+    "spatial_extent": {
+        "xmin": -180,
+        "ymin": -90,
+        "xmax": 180,
+        "ymax": 90
+    },
+    "temporal_extent": {
+        "startdate": "2024-01-12T00:00:00Z",
+        "enddate": null
+    },
+    "item_assets": {
+        "ColorIR": {
+            "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis.",
+            "roles": [
+                "data",
+                "layer"
+            ],
+            "title": "Color Infrared",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+        }
+    },
+    "license": "CC0-1.0",
+    "links": [],
+    "providers": [
+        {
+        "name": "NASA VEDA",
+        "roles": [
+          "host"
+        ],
+        "url": "https://www.earthdata.nasa.gov/dashboard/"
+        }
+    ],
+
+    "renders": {
+        "dashboard": {
+            "assets": [
+                "ColorIR"
+            ],
+            "bidx":
+            [
+                1,
+                2,
+                3
+            ],
+            "nodata": 0
+        },
+        "ColorIR": {
+            "assets": [
+                "ColorIR"
+            ],
+            "bidx":
+            [
+                1,
+                2,
+                3
+            ],
+            "nodata": 0
+        }
+    },
+    "stac_extensions": [
+        "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0",
+    "discovery_items": [
+        {
+            "collection": "sentinel2-colorir-subdaily",
+            "disasters:extract_event_name": true,
+            "disasters:monty": true,
+            "disasters:add_product": true,
+            "disasters:add_providers": true,
+            "bucket": "nasa-disasters-staging",
+            "prefix": "ProgramData/Sentinel-2/ColorIR",
+            "cogify": false,
+            "discovery": "s3",
+            "dry_run": false,
+            "filename_regex": ".*Z\\.tif$",
+            "assets": {
+                "ColorIR": {
+                    "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis.",
+                    "regex": ".*colorI(nfrared|R).*Z\\.tif$",
+                    "title": "Color Infrared"
+                }
+            },
+            "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+            "id_template": "sentinel2-colorir-subdaily-{}"
+        }
+    ]
+}

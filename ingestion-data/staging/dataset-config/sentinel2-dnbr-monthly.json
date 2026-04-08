@@ -1,0 +1,101 @@
+{
+    "collection": "sentinel2-dnbr-monthly",
+    "dashboard:is_periodic": false,
+    "dashboard:time_interval": "P1M",
+    "description": "The Differenced Normalized Burn Ratio (dnbr) is derived by subtracting post-fire NBR from pre-fire NBR using Sentinel-2 near-infrared (NIR) and shortwave infrared (SWIR) bands. dnbr quantifies burn severity by measuring the change in vegetation and soil conditions before and after a fire event, with higher values indicating more severe burn damage. This collection provides dnbr imagery for disaster monitoring and post-fire damage assessment.",
+    "title": "Sentinel-2 dnbr (Monthly)",
+    "data_type": "cog",
+    "spatial_extent": {
+        "xmin": -180,
+        "ymin": -90,
+        "xmax": 180,
+        "ymax": 90
+    },
+    "temporal_extent": {
+        "startdate": "2024-01-12T00:00:00Z",
+        "enddate": null
+    },
+    "item_assets": {
+        "dnbr": {
+            "description": "Differenced Normalized Burn Ratio (dnbr) index quantifying burn severity by comparing pre-fire and post-fire NBR values for fire damage assessment.",
+            "roles": [
+                "data",
+                "layer"
+            ],
+            "title": "dnbr",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+        }
+    },
+    "license": "CC0-1.0",
+    "links": [],
+    "providers": [
+        {
+        "name": "NASA VEDA",
+        "roles": [
+          "host"
+        ],
+        "url": "https://www.earthdata.nasa.gov/dashboard/"
+        }
+    ],
+
+    "renders": {
+        "dashboard": {
+            "assets": [
+                "dnbr"
+            ],
+            "resampling": "bilinear",
+            "colormap_name": "turbo",
+            "rescale": [
+                [
+                    -1,
+                    1
+                ]
+            ],
+            "nodata": -9999
+        },
+        "dnbr": {
+            "assets": [
+                "dnbr"
+            ],
+            "resampling": "bilinear",
+            "colormap_name": "turbo",
+            "rescale": [
+                [
+                    -1,
+                    1
+                ]
+            ],
+            "nodata": -9999
+        }
+    },
+    "stac_extensions": [
+        "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+    ],
+    "stac_version": "1.0.0",
+    "discovery_items": [
+        {
+            "collection": "sentinel2-dnbr-monthly",
+            "disasters:extract_event_name": true,
+            "disasters:monty": true,
+            "disasters:add_product": true,
+            "disasters:add_providers": true,
+            "bucket": "nasa-disasters-staging",
+            "prefix": "ProgramData/Sentinel-2/dNBR",
+            "cogify": false,
+            "discovery": "s3",
+            "dry_run": false,
+            "filename_regex": ".*monthly.tif$",
+            "datetime_range": "month",
+            "assets": {
+                "dnbr": {
+                    "description": "Differenced Normalized Burn Ratio (dnbr) index quantifying burn severity by comparing pre-fire and post-fire NBR values for fire damage assessment.",
+                    "regex": ".*(dNBR|dnbr).*\\.tif$",
+                    "title": "Differenced Normalized Burn Ratio"
+                }
+            },
+            "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_monthly.tif$",
+            "id_template": "sentinel2-dnbr-monthly-{}"
+    }
+    ]
+}

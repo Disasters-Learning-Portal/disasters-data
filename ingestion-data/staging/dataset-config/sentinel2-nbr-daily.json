@@ -1,9 +1,9 @@
 {
-    "collection": "sentinel2-nbr",
+    "collection": "sentinel2-nbr-daily",
     "dashboard:is_periodic": false,
     "dashboard:time_interval": "P1D",
     "description": "The Normalized Burn Ratio (NBR) is a spectral index derived from Sentinel-2 near-infrared (NIR) and shortwave infrared (SWIR) bands, calculated as (NIR - SWIR) / (NIR + SWIR). NBR is used to identify and assess burn severity in fire-affected areas, with lower values indicating more severe burn damage. This collection provides NBR imagery for disaster monitoring and post-fire damage assessment.",
-    "title": "Sentinel-2 Normalized Burn Ratio",
+    "title": "Sentinel-2 Normalized Burn Ratio (Daily)",
     "data_type": "cog",
     "spatial_extent": {
         "xmin": -180,
@@ -43,6 +43,8 @@
             "assets": [
                 "nbr"
             ],
+            "resampling": "bilinear",
+            "colormap_name": "turbo",
             "rescale": [
                 [
                     -1,
@@ -55,6 +57,8 @@
             "assets": [
                 "nbr"
             ],
+            "resampling": "bilinear",
+            "colormap_name": "turbo",
             "rescale": [
                 [
                     -1,
@@ -71,7 +75,7 @@
     "stac_version": "1.0.0",
     "discovery_items": [
         {
-            "collection": "sentinel2-nbr",
+            "collection": "sentinel2-nbr-daily",
             "disasters:extract_event_name": true,
             "disasters:monty": true,
             "disasters:add_product": true,
@@ -91,7 +95,7 @@
                 }
             },
             "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day.tif$",
-            "id_template": "sentinel2-nbr-{}"
+            "id_template": "sentinel2-nbr-daily-{}"
     }
     ]
 }

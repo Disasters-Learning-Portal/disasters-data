@@ -1,9 +1,9 @@
 {
-    "collection": "sentinel2-colorir",
+    "collection": "sentinel2-colorir-daily",
     "dashboard:is_periodic": false,
     "dashboard:time_interval": "P1D",
-    "description": "Sentinel-2 is a multispectral optical imaging mission providing high-resolution imagery for disaster monitoring and environmental assessment. This collection includes multiple spectral band products and derived indices: true color and false color composites for visual analysis, NDVI for vegetation health monitoring, burn ratio for fire damage assessment, MNDWI for water detection, and cloud masks for data quality filtering.",
-    "title": "Sentinel-2 Color Infrared",
+    "description": "False color infrared composite from Sentinel-2 combining near-infrared, red, and green bands for vegetation and land cover analysis. This collection contains daily composites aggregated to a single image per day.",
+    "title": "Sentinel-2 Color Infrared (Daily)",
     "data_type": "cog",
     "spatial_extent": {
         "xmin": -180,
@@ -37,17 +37,17 @@
         "url": "https://www.earthdata.nasa.gov/dashboard/"
         }
     ],
-    
+
     "renders": {
         "dashboard": {
             "assets": [
                 "ColorIR"
             ],
-            "rescale": [
-                [
-                    0,
-                    255
-                ]
+            "bidx":
+            [
+                1,
+                2,
+                3
             ],
             "nodata": 0
         },
@@ -55,11 +55,11 @@
             "assets": [
                 "ColorIR"
             ],
-            "rescale": [
-                [
-                    0,
-                    255
-                ]
+            "bidx":
+            [
+                1,
+                2,
+                3
             ],
             "nodata": 0
         }
@@ -71,7 +71,7 @@
     "stac_version": "1.0.0",
     "discovery_items": [
         {
-            "collection": "sentinel2-colorir",
+            "collection": "sentinel2-colorir-daily",
             "disasters:extract_event_name": true,
             "disasters:monty": true,
             "disasters:add_product": true,
@@ -81,17 +81,17 @@
             "cogify": false,
             "discovery": "s3",
             "dry_run": false,
-            "filename_regex": ".*day.tif$",
+            "filename_regex": ".*_day\\.tif$",
             "datetime_range": "day",
             "assets": {
                 "ColorIR": {
                     "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis.",
-                    "regex": ".*colorI(nfrared|R).*\\.tif$",
+                    "regex": ".*colorI(nfrared|R).*_day\\.tif$",
                     "title": "Color Infrared"
                 }
             },
             "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
-            "id_template": "sentinel2-colorir-{}"
+            "id_template": "sentinel2-colorir-daily-{}"
         }
     ]
 }
