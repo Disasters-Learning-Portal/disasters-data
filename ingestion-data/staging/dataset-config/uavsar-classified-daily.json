@@ -20,8 +20,8 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "drcs_activations_new/UAVSAR/Classified",
-      "bucket": "nasa-disasters",
+      "prefix": "ProgramData/UAVSAR/Classified",
+      "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_day\\.tif$",
       "datetime_range": "day",
       "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
@@ -42,9 +42,6 @@
       },
       "collection": "uavsar-classified-daily"
     }
-  ],
-  "sample_files": [
-    "s3://nasa-disasters-staging/ProgramData/UAVSAR/Classified/uavsar_colora_11802_25023_006_L090_UNet_class_2025-07-09_day.tif"
   ],
   "data_type": "cog",
   "stac_extensions": [
