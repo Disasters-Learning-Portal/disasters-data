@@ -37,7 +37,7 @@
         "classified": {
           "title": "UAVSAR Classified Imagery",
           "description": "Classification output from U-Net model applied to SAR data, identifying distinct surface features and land cover types.",
-          "regex": ".*UNet_class(?!.*grayscale).*_monthly\\.tif$"
+          "regex": "^(?!.*grayscale).*UNet_class.*_monthly\\.tif$"
         }
       },
       "collection": "uavsar-classified-composite"
