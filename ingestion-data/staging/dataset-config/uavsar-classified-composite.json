@@ -1,0 +1,124 @@
+{
+  "collection": "uavsar-classified-composite",
+  "title": "UAVSAR Classified Imagery",
+  "description": "These maps show the results of a machine learning classification applied to UAVSAR data to identify open water flooding and inundation under tree canopy.  Colored areas in the image show detected flooding, where the color shows the type of landcover which was flooded (see legend below).  Non-flooded areas are transparent.  The classification uses a U-Net machine learning algorithm which was trained using UAVSAR data from previous flood events.  UAVSAR provides polarimetric synthetic aperture radar data from which different types of scattering mechanisms can be observed, which provides information on the type of flooding.  For example, flooding underneath vegetation produces strong double-bounce scattering from the water surface and tree trunks.  However, strong double-bounce scattering from urban areas aligned with the radar viewing direction can produce erroneous classifications.  Non-flooded vegetation is generally dominated by volume scattering from the forest canopy.  In comparison, open water flooding exhibits weak radar returns in all polarizations.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1M",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/UAVSAR/Classified",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_monthly\\.tif$",
+      "datetime_range": "month",
+      "id_regex": ".*(\\d{4}-\\d{2})_monthly\\.tif$",
+      "id_template": "uavsar-classified-composite-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "classified": {
+          "title": "UAVSAR Classified Imagery",
+          "description": "Classification output from U-Net model applied to SAR data, identifying distinct surface features and land cover types.",
+          "regex": ".*UNet_class.*_monthly\\.tif$"
+        }
+      },
+      "collection": "uavsar-classified-composite"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "classified": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "UAVSAR Classified Imagery",
+      "description": "Classification output from U-Net model applied to SAR data, identifying distinct surface features and land cover types."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "classified"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ],
+      "nodata": 0
+    },
+    "classified": {
+      "assets": [
+        "classified"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://uavsar.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
