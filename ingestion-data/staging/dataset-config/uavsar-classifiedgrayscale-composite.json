@@ -74,10 +74,9 @@
         "classifiedgrayscale"
       ],
       "bidx": [
-        1,
-        2,
-        3
+        1
       ],
+      "colormap_name": "gray",
       "rescale": [
         [
           0,
@@ -91,10 +90,9 @@
         "classifiedgrayscale"
       ],
       "bidx": [
-        1,
-        2,
-        3
+        1
       ],
+      "colormap_name": "gray",
       "rescale": [
         [
           0,
