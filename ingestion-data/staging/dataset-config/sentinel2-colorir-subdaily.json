@@ -33,7 +33,7 @@
       "dry_run": false,
       "use_multithreading": false,
       "assets": {
-        "ColorIR": {
+        "colorir": {
           "title": "Color Infrared",
           "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis.",
           "regex": ".*colorI(nfrared|R).*Z\\.tif$"
@@ -59,12 +59,21 @@
       ],
       "title": "Color Infrared",
       "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "colorir": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
     }
   },
   "renders": {
     "dashboard": {
       "assets": [
-        "ColorIR"
+        "colorir"
       ],
       "bidx": [
         1,
@@ -73,9 +82,9 @@
       ],
       "nodata": 0
     },
-    "ColorIR": {
+    "colorir": {
       "assets": [
-        "ColorIR"
+        "colorir"
       ],
       "bidx": [
         1,
