@@ -1,0 +1,95 @@
+{
+  "collection": "aktest-sentinel2-colorir-daily",
+  "title": "AK Test Sentinel-2 Color Infrared",
+  "description": "The Color Infrared composite is created using the near-infrared, red, and green channels, allowing for the ability to see areas impacted by floods, fires, or other hazards in conditions with light clouds or smoke. The near infrared gives the ability to see through thin clouds. Healthy vegetation is shown as red; water is blue; burned areas are black.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2024-01-12T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/ColorIR",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel2-colorir-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "ColorIR": {
+          "title": "Color Infrared",
+          "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis.",
+          "regex": ".*colorI(nfrared|R).*_day\\.tif$"
+        }
+      },
+      "collection": "sentinel2-colorir-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "ColorIR"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "ColorIR": {
+      "assets": [
+        "ColorIR"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA VEDA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
