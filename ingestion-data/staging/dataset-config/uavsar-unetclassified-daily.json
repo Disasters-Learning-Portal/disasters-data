@@ -22,7 +22,7 @@
       "discovery": "s3",
       "prefix": "ProgramData/UAVSAR/UNetClassified",
       "bucket": "nasa-disasters-staging",
-      "filename_regex": ".*_UNet_class.*\\.tif$",
+      "filename_regex": ".*_UNet_class.*day\\.tif$",
       "datetime_range": "day",
       "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
       "id_template": "uavsar-unetclassified-daily-{}",
