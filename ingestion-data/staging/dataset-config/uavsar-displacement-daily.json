@@ -43,9 +43,6 @@
       "collection": "uavsar-displacement-daily"
     }
   ],
-  "sample_files": [
-    "s3://nasa-disasters-staging/ProgramData/UAVSAR/Displacement/PV_DISP_UAVSAR_T09517_d2024-09-18_2024-09-30_day.tif"
-  ],
   "data_type": "cog",
   "stac_extensions": [
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
@@ -73,24 +70,27 @@
   },
   "renders": {
     "dashboard": {
+      "assets": [
+        "displacement"
+      ],
       "bidx": [
         1
       ],
+      "colormap_name": "rdbu",
       "rescale": [
         [
           -0.1,
           0.2
         ]
       ],
-      "colormap_name": "rdbu",
-      "nodata": "-9999",
-      "assets": [
-        "cog_default"
-      ]
+      "nodata": -9999
     },
     "displacement": {
       "assets": [
         "displacement"
+      ],
+      "bidx": [
+        1
       ],
       "colormap_name": "rdbu",
       "rescale": [
