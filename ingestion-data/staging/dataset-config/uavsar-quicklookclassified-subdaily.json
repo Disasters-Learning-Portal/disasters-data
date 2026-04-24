@@ -33,7 +33,7 @@
       "dry_run": false,
       "use_multithreading": false,
       "assets": {
-        "classified": {
+        "quicklookclassified": {
           "title": "UAVSAR Classified Imagery",
           "description": "Classification output from U-Net model applied to SAR data, identifying distinct surface features and land cover types.",
           "regex": ".*quicklook_class.*Z\\.tif$"
