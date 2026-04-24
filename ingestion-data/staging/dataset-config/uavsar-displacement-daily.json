@@ -1,0 +1,122 @@
+{
+  "collection": "uavsar-displacement-daily",
+  "title": "UAVSAR Surface Displacement",
+  "description": "Researchers working with the Advanced Rapid Imaging and Analysis (ARIA) and Uninhabited Aerial Vehicle Synthetic Aperture Radar (UAVSAR) teams at NASA's Jet Propulsion Laboratory, Pasadena, California, created Surface Displacement products. The from interferometric synthetic aperture radar (InSAR) data for interferogram pairs. The InSAR data were acquired by UAVSAR and processed by the UAVSAR team to geocoded unwrapped interferograms. InSAR measures the component of 3D surface displacement in the radar line-of-sight (LOS) direction between the ground and the sensor.\nMotion away from the radar (LOS ) is negative (both horizontal movement and/or vertical subsidence) and motion towards the radar LOS is positive (both horizontal movement and/or vertical uplift). Negative displacement is shown in the red colors, while positive displacement is shown in the blue colors. The white areas have approximately zero displacement. The displacement measurements are all relative to a selected stable reference pixel, and the dataset has not been calibrated to any ground location so there might be a bias of the reference level, which is unknown.\nThese data have not yet been validated. This displacement map should be used as guidance to identify areas of significant ground displacement. We note that InSAR measurements are less reliable over heavily vegetated areas, steep slopes, faster-moving areas (defined as motion >13 cm/week at 8 day temporal sampling), and does not measure motion in the East-West direction (perpendicular to the radar LOS).\nProcessing Details\nWe process UAVSAR data using the operational UAVSAR stack processor to produce a stack of radar images collected on each date. We form interferograms for each successive pair of images in the stack, using a Goldstein filter to smooth the interferometric phase. Each interferogram is masked to exclude water and areas where we expect poor interferometric performance due to layover and shadow effects (when the radar LOS is close to parallel with the terrain surface normal, or when the radar does not have a clear LOS to the surface, respectively). Interferograms are unwrapped using the PHASS phase unwrapping algorithm, with an additional interpolation step to smooth over low coherence regions of the interferogram. The unwrapped interferograms are converted to distance change from radar to target and are provided in meters.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/UAVSAR/Displacement",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "uavsar-displacement-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "displacement": {
+          "title": "UAVSAR Surface Displacement",
+          "description": "Surface displacement measurements derived from interferometric SAR processing, showing ground movement in meters.",
+          "regex": ".*DISP.*_day\\.tif$"
+        }
+      },
+      "collection": "uavsar-displacement-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "displacement": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "UAVSAR Surface Displacement",
+      "description": "Surface displacement measurements derived from interferometric SAR processing, showing ground movement in meters."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "displacement"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap_name": "rdbu",
+      "rescale": [
+        [
+          -0.1,
+          0.2
+        ]
+      ],
+      "nodata": -9999
+    },
+    "displacement": {
+      "assets": [
+        "displacement"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap_name": "rdbu",
+      "rescale": [
+        [
+          -0.1,
+          0.2
+        ]
+      ],
+      "nodata": -9999
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://uavsar.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
