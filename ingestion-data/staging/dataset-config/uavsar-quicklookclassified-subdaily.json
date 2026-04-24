@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/UAVSAR/Classified",
+      "prefix": "ProgramData/UAVSAR/QuicklookClassified",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*quicklook_class.*Z\\.tif$",
       "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
