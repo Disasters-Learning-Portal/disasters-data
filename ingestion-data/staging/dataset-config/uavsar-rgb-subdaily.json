@@ -1,0 +1,111 @@
+{
+  "collection": "uavsar-rgb-subdaily",
+  "title": "UAVSAR Imagery",
+  "description": "These UAVSAR false color RGB images provide a unique look at the Earth's surface that can be used for identifying flooding and inundation under tree canopy. The overlay of the intensities of these three polarization channels allows user to visually classify a scene by its backscattering mechanism, such as surface scattering (strong HH and VV return), volume scattering (strong HV return) and double-bounce scattering (strong HH return). Areas dominated by green (HV) intensity are typically vegetated areas. Areas dominated by shades of pink (HH+HV) intensity are typically inundated forests or vegetated fields. Black and dark grey areas are usually smooth surface (roads, open water, smooth bare ground) where there is very little radar backscatter.\nThe polarimetric color composite is well suited for identifying inundation under tree canopies. This product is especially useful in mapping inundation extent in regions covered with vegetation where the ground is not visible in optical imagery.\nOpen water can be seen as dark blue/black, areas with inundation under tree canopy can be seen in pink-like colors.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/UAVSAR/RGB",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "uavsar-rgb-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "rgb": {
+          "title": "RGB Composite",
+          "description": "RGB composite visualization combining multiple polarization channels for enhanced interpretation of radar backscatter.",
+          "regex": ".*(rgb|RGB).*Z\\.tif$"
+        }
+      },
+      "collection": "uavsar-rgb-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "rgb": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "RGB Composite",
+      "description": "RGB composite visualization combining multiple polarization channels for enhanced interpretation of radar backscatter."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "rgb"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "rgb": {
+      "assets": [
+        "rgb"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://uavsar.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
