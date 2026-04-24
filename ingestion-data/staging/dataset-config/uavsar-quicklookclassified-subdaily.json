@@ -1,0 +1,111 @@
+{
+  "collection": "uavsar-quicklookclassified-subdaily",
+  "title": "UAVSAR Classified Imagery",
+  "description": "These UAVSAR false color RGB images provide a unique look at the Earth's surface that can be used for identifying flooding and inundation under tree canopy. The overlay of the intensities of these three polarization channels allows user to visually classify a scene by its backscattering mechanism, such as surface scattering (strong HH and VV return), volume scattering (strong HV return) and double-bounce scattering (strong HH return). Areas dominated by green (HV) intensity are typically vegetated areas. These RGB imagery are then classified further into the following classes:\nBlue areas are open water (some roads may also be misclassified as blue); Light Blue/Cyan areas with flooding beneath vegetation and the tree canopy; Pink areas are potentially flooded areas with low confidence due to being more developed locations",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/UAVSAR/QuicklookClassified",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*quicklook_class.*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "uavsar-quicklookclassified-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "quicklookclassified": {
+          "title": "UAVSAR Classified Imagery",
+          "description": "Classification output from U-Net model applied to SAR data, identifying distinct surface features and land cover types.",
+          "regex": ".*quicklook_class.*Z\\.tif$"
+        }
+      },
+      "collection": "uavsar-quicklookclassified-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "quicklookclassified": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "UAVSAR Classified Imagery",
+      "description": "Classification output from U-Net model applied to SAR data, identifying distinct surface features and land cover types."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "quicklookclassified"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "quicklookclassified": {
+      "assets": [
+        "quicklookclassified"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://uavsar.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
