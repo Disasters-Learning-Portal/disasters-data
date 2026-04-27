@@ -82,7 +82,7 @@
           1
         ]
       ],
-      "colormap": "brbg",
+      "colormap_name": "brbg",
       "nodata": -9999
     },
     "mndwi": {
@@ -98,7 +98,7 @@
           1
         ]
       ],
-      "colormap": "brbg",
+      "colormap_name": "brbg",
       "nodata": -9999
     }
   },
