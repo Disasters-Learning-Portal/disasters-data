@@ -1,0 +1,104 @@
+{
+  "collection": "landsat-truecolor-daily",
+  "title": "Landsat True Color",
+  "description": "True Color: The True Color RGB composite provides a product of how the surface would look to the naked eye from space. The RGB is created using the red, green, and blue channels of the respective instrument.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Landsat/TrueColor",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "landsat-truecolor-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "truecolor": {
+          "title": "Landsat True Color",
+          "description": "Standard RGB composite using visible bands (red, green, blue) without color balancing adjustments.",
+          "regex": ".*(trueColor|TrueColor|true_color|truecolor).*_day\\.tif$"
+        }
+      },
+      "collection": "landsat-truecolor-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "truecolor": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "True Color",
+      "description": "Standard RGB composite using visible bands (red, green, blue) without color balancing adjustments."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "truecolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "truecolor": {
+      "assets": [
+        "truecolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
