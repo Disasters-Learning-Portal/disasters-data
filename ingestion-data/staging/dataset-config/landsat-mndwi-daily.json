@@ -83,7 +83,7 @@
         ]
       ],
       "colormap_name": "brbg",
-      "nodata": -9999
+      "nodata": 999
     },
     "mndwi": {
       "assets": [
@@ -99,7 +99,7 @@
         ]
       ],
       "colormap_name": "brbg",
-      "nodata": -9999
+      "nodata": 999
     }
   },
   "providers": [
