@@ -37,7 +37,7 @@
         "ndvi": {
           "title": "Normalized Difference Vegetation Index",
           "description": "Vegetation health index comparing red and near-infrared reflectance. Higher values indicate healthier, denser vegetation.",
-          "regex": ".*(ndvi|NDVI).*_day\\.tif$"
+          "regex": ".*NDVI(?!change|Change).*_day\\.tif$"
         }
       },
       "collection": "planet-ndvi-daily"
@@ -82,6 +82,7 @@
           1
         ]
       ],
+      "colormap_name": "rdylgn",
       "nodata": -9999
     },
     "ndvi": {
@@ -97,6 +98,7 @@
           1
         ]
       ],
+      "colormap_name": "rdylgn",
       "nodata": -9999
     }
   },
