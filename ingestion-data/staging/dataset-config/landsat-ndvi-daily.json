@@ -82,7 +82,7 @@
           1
         ]
       ],
-      "colormap": "rdylgn",
+      "colormap_name": "rdylgn",
       "nodata": -9999
     },
     "ndvi": {
@@ -98,7 +98,7 @@
           1
         ]
       ],
-      "colormap": "rdylgn",
+      "colormap_name": "rdylgn",
       "nodata": -9999
     }
   },
