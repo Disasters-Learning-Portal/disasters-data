@@ -83,7 +83,7 @@
         ]
       ],
       "colormap_name": "rdylgn",
-      "nodata": -9999
+      "nodata": 999
     },
     "ndvi": {
       "assets": [
@@ -99,7 +99,7 @@
         ]
       ],
       "colormap_name": "rdylgn",
-      "nodata": -9999
+      "nodata": 999
     }
   },
   "providers": [
