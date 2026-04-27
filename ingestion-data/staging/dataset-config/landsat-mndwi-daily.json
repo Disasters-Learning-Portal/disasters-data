@@ -1,0 +1,114 @@
+{
+  "collection": "landsat-mndwi-daily",
+  "title": "Landsat Modified Normalized Difference Water Index (MNDWI)",
+  "description": "Modified Normalized Difference Water Index (MNDWI) provides a different view of the Earth's surface combining different bands to make water bodies more obvious. This index can be used to identify flooded areas as well as heavily saturated areas. For MNDWI, areas of existing water, such as a rivers or lakes appear in the darkest green with high values near 1, while dry land appears in the darkest brown with low values near -1. This product can be used to identify potentially flooded areas that can be seen in varying shades of green and light brown depending on the amount of moisture picked up by the satellite. Note: Areas of cloud cover will show up in varying shades of green/blue similar to water.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Landsat/mNDWI",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "landsat-mndwi-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "mndwi": {
+          "title": "Modified Normalized Difference Water Index",
+          "description": "Water detection index using green and shortwave infrared bands. Enhances open water features and suppresses built-up areas.",
+          "regex": ".*(mndwi|MNDWI).*_day\\.tif$"
+        }
+      },
+      "collection": "landsat-mndwi-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "mndwi": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Modified Normalized Difference Water Index",
+      "description": "Water detection index using green and shortwave infrared bands. Enhances open water features and suppresses built-up areas."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "mndwi"
+      ],
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "brbg",
+      "nodata": 999
+    },
+    "mndwi": {
+      "assets": [
+        "mndwi"
+      ],
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "brbg",
+      "nodata": 999
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
