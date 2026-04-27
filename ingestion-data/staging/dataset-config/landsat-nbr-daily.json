@@ -1,0 +1,115 @@
+{
+  "collection": "landsat-nbr-daily",
+  "title": "Landsat Normalized Burn Ratio (NBR)",
+  "description": "Normalized Burn Ratio (NBR) is defined mathematically as (NIR – SWIR)/(NIR + SWIR) where NIR is near-infrared and SWIR is short-wave infrared. NBR is commonly used as a proxy to indicate areas which have charred vegetation. Darker areas (more negative values) in the NBR image more strongly represent the presence of burned vegetation.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Landsat/NBR",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "landsat-nbr-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "nbr": {
+          "title": "Normalized Burn Ratio",
+          "description": "The Normalized Burn Ratio (NBR) is a satellite-based index that identifies burned areas and quantifies the severity of a fire.",
+          "regex": ".*(nbr|NBR).*_day\\.tif$"
+        }
+      },
+      "collection": "landsat-nbr-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Landsat/NBR/LC09_NBR_182831_041036_2025-01-14_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "nbr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Normalized Burn Ratio",
+      "description": "The Normalized Burn Ratio (NBR) is a satellite-based index, primarily using Landsat imagery, that identifies burned areas and quantifies the severity of a fire. It is calculated using a ratio of near-infrared (NIR) and shortwave infrared (SWIR) bands, which are affected differently by fire, with higher NBR values indicating less damage and lower values indicating more severe burns. The difference between the pre-fire and post-fire NBR, known as the differenced NBR (dNBR), is used to map burn severity."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "nbr"
+      ],
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "nodata": -9999
+    },
+    "nbr": {
+      "assets": [
+        "nbr"
+      ],
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "nodata": -9999
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
