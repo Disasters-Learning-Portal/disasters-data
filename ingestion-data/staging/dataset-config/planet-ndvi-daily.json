@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/Planet/NDVI",
+      "prefix": "ProgramData/Planet/NDVI/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_day\\.tif$",
       "datetime_range": "day",
