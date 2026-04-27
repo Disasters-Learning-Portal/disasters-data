@@ -73,6 +73,9 @@
       "assets": [
         "mndwi"
       ],
+      "bidx": [
+        1
+      ],
       "rescale": [
         [
           -1,
@@ -85,6 +88,9 @@
     "mndwi": {
       "assets": [
         "mndwi"
+      ],
+      "bidx": [
+        1
       ],
       "rescale": [
         [
