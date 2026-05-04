@@ -1,0 +1,196 @@
+{
+  "collection": "opera-distalert-daily",
+  "title": "OPERA DIST-ALERT Daily",
+  "description": "OPERA disturbance alert products including vegetation and generic disturbance status and anomaly layers.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DistAlert/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-distalert-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "veg-anom-max": {
+          "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
+          "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value.",
+          "regex": ".*VEG-ANOM-MAX.*\\.tif$"
+        },
+        "veg-dist-status": {
+          "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG DIST STATUS)",
+          "description": "S2 ARIA OPERA vegetation disturbance status.",
+          "regex": ".*VEG-DIST-STATUS.*\\.tif$"
+        },
+        "gen-anom-max": {
+          "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN ANOM MAX)",
+          "description": "Generic disturbance maximum anomaly value.",
+          "regex": ".*GEN-ANOM-MAX.*\\.tif$"
+        },
+        "gen-dist-status": {
+          "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN DIST STATUS)",
+          "description": "Generic disturbance status.",
+          "regex": ".*GEN-DIST-STATUS.*\\.tif$"
+        }
+      },
+      "collection": "opera-distalert-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "veg-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "ylorrd",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "veg-anom-max": {
+      "assets": [
+        "veg-anom-max"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "ylorrd",
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "veg-dist-status": {
+      "assets": [
+        "veg-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "ylorrd",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "gen-anom-max": {
+      "assets": [
+        "gen-anom-max"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "ylorrd",
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "gen-dist-status": {
+      "assets": [
+        "gen-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "ylorrd",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "veg-anom-max": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
+      "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value."
+    },
+    "veg-dist-status": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG DIST STATUS)",
+      "description": "S2 ARIA OPERA vegetation disturbance status."
+    },
+    "gen-anom-max": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN ANOM MAX)",
+      "description": "Generic disturbance maximum anomaly value."
+    },
+    "gen-dist-status": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN DIST STATUS)",
+      "description": "Generic disturbance status."
+    }
+  }
+}
