@@ -1,7 +1,7 @@
 {
   "collection": "opera-dswx-daily",
   "title": "OPERA DSWx Daily",
-  "description": "OPERA Dynamic Surface Water Extent (DSWx) products derived from HLS, including water extent, flood extent, binary water, and change map layers.",
+  "description": "OPERA Dynamic Surface Water Extent (DSWx) products from Sentinel-1 (S1) and Harmonized Landsat Sentinel (HLS), including water extent, flood extent, binary water, and change map layers.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
@@ -34,40 +34,45 @@
       "dry_run": false,
       "use_multithreading": false,
       "assets": {
-        "dwsx": {
-          "title": "HLS Dynamic Surface Water Extent",
-          "description": "HLS Dynamic Surface Water Extent product showing water presence and classification.",
-          "regex": "^(?!.*FloodMap)(?!.*NoSnowIce)(?!.*WTR).*DSWx.*HLS.*\\.tif$"
+        "s1bwtr": {
+          "title": "S1 Binary Water",
+          "description": "Sentinel-1 binary water classification.",
+          "regex": ".*S1.*BWTR.*\\.tif$"
         },
-        "floodmap": {
+        "s1wtr": {
+          "title": "S1 Water",
+          "description": "Sentinel-1 water classification layer.",
+          "regex": "^(?!.*BWTR).*S1.*WTR.*\\.tif$"
+        },
+        "s1bwtrchngmap": {
+          "title": "S1 Binary Water Change Map",
+          "description": "Sentinel-1 binary water change map.",
+          "regex": ".*S1.*BWTR.*ChngMap.*\\.tif$"
+        },
+        "hlsfloodmap": {
           "title": "HLS Flood Map",
           "description": "HLS-derived flood extent map identifying inundated areas.",
-          "regex": ".*FloodMap.*\\.tif$"
+          "regex": ".*HLS.*FloodMap.*\\.tif$"
         },
-        "nosnowice": {
+        "hlsnosnowice": {
           "title": "HLS Water No Snow/Ice",
           "description": "HLS water extent excluding snow and ice coverage.",
-          "regex": ".*NoSnowIce.*\\.tif$"
+          "regex": ".*HLS.*NoSnowIce.*\\.tif$"
         },
-        "wtr": {
+        "hlswtr": {
           "title": "HLS Water",
           "description": "HLS water classification layer.",
-          "regex": "^(?!.*BWTR)(?!.*ChngMap).*DSWx.*WTR.*\\.tif$"
+          "regex": "^(?!.*BWTR)(?!.*ChngMap).*HLS.*WTR.*\\.tif$"
         },
-        "bwtr": {
+        "hlsbwtr": {
           "title": "HLS Binary Water",
           "description": "HLS binary water classification.",
-          "regex": "^(?!.*ChngMap).*DSWx.*BWTR.*\\.tif$"
+          "regex": ".*HLS.*BWTR.*\\.tif$"
         },
-        "changemap-date1": {
-          "title": "HLS Change Map Date 1",
-          "description": "HLS surface water change detection map showing changes in water extent between time periods.",
-          "regex": ".*ChngMap.*date1.*\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
-        },
-        "changemap-date2": {
-          "title": "HLS Change Map Date 2",
-          "description": "HLS surface water change detection map showing changes in water extent between time periods.",
-          "regex": ".*ChngMap.*date2.*\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        "hlsmosaic": {
+          "title": "HLS Mosaic",
+          "description": "HLS mosaic product.",
+          "regex": ".*HLS.*Mosaic.*\\.tif$"
         }
       },
       "collection": "opera-dswx-daily"
@@ -81,7 +86,7 @@
   "renders": {
     "dashboard": {
       "assets": [
-        "dwsx"
+        "hlswtr"
       ],
       "bidx": [
         1
@@ -94,9 +99,9 @@
         ]
       ]
     },
-    "dwsx": {
+    "s1bwtr": {
       "assets": [
-        "dwsx"
+        "s1bwtr"
       ],
       "bidx": [
         1
@@ -109,9 +114,24 @@
         ]
       ]
     },
-    "floodmap": {
+    "s1wtr": {
       "assets": [
-        "floodmap"
+        "s1wtr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "s1bwtrchngmap": {
+      "assets": [
+        "s1bwtrchngmap"
       ],
       "bidx": [
         1
@@ -124,54 +144,9 @@
         ]
       ]
     },
-    "nosnowice": {
+    "hlsfloodmap": {
       "assets": [
-        "nosnowice"
-      ],
-      "bidx": [
-        1
-      ],
-      "nodata": 0,
-      "rescale": [
-        [
-          0,
-          255
-        ]
-      ]
-    },
-    "wtr": {
-      "assets": [
-        "wtr"
-      ],
-      "bidx": [
-        1
-      ],
-      "nodata": 0,
-      "rescale": [
-        [
-          0,
-          255
-        ]
-      ]
-    },
-    "bwtr": {
-      "assets": [
-        "bwtr"
-      ],
-      "bidx": [
-        1
-      ],
-      "nodata": 0,
-      "rescale": [
-        [
-          0,
-          255
-        ]
-      ]
-    },
-    "changemap-date1": {
-      "assets": [
-        "changemap-date1"
+        "hlsfloodmap"
       ],
       "bidx": [
         1
@@ -184,9 +159,9 @@
         ]
       ]
     },
-    "changemap-date2": {
+    "hlsnosnowice": {
       "assets": [
-        "changemap-date2"
+        "hlsnosnowice"
       ],
       "bidx": [
         1
@@ -195,7 +170,52 @@
       "rescale": [
         [
           0,
-          1
+          255
+        ]
+      ]
+    },
+    "hlswtr": {
+      "assets": [
+        "hlswtr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "hlsbwtr": {
+      "assets": [
+        "hlsbwtr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "hlsmosaic": {
+      "assets": [
+        "hlsmosaic"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
         ]
       ]
     }
@@ -210,16 +230,34 @@
     }
   ],
   "item_assets": {
-    "dwsx": {
+    "s1bwtr": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
         "data",
         "layer"
       ],
-      "title": "HLS Dynamic Surface Water Extent",
-      "description": "HLS Dynamic Surface Water Extent product showing water presence and classification."
+      "title": "S1 Binary Water",
+      "description": "Sentinel-1 binary water classification."
     },
-    "floodmap": {
+    "s1wtr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "S1 Water",
+      "description": "Sentinel-1 water classification layer."
+    },
+    "s1bwtrchngmap": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "S1 Binary Water Change Map",
+      "description": "Sentinel-1 binary water change map."
+    },
+    "hlsfloodmap": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
         "data",
@@ -228,7 +266,7 @@
       "title": "HLS Flood Map",
       "description": "HLS-derived flood extent map identifying inundated areas."
     },
-    "nosnowice": {
+    "hlsnosnowice": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
         "data",
@@ -237,7 +275,7 @@
       "title": "HLS Water No Snow/Ice",
       "description": "HLS water extent excluding snow and ice coverage."
     },
-    "wtr": {
+    "hlswtr": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
         "data",
@@ -246,7 +284,7 @@
       "title": "HLS Water",
       "description": "HLS water classification layer."
     },
-    "bwtr": {
+    "hlsbwtr": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
         "data",
@@ -255,23 +293,14 @@
       "title": "HLS Binary Water",
       "description": "HLS binary water classification."
     },
-    "changemap-date1": {
+    "hlsmosaic": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
         "data",
         "layer"
       ],
-      "title": "HLS Change Map Date 1",
-      "description": "HLS surface water change detection map showing changes in water extent between time periods."
-    },
-    "changemap-date2": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "HLS Change Map Date 2",
-      "description": "HLS surface water change detection map showing changes in water extent between time periods."
+      "title": "HLS Mosaic",
+      "description": "HLS mosaic product."
     }
   }
 }
