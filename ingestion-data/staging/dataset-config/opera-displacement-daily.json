@@ -1,0 +1,113 @@
+{
+  "collection": "opera-displacement-daily",
+  "title": "OPERA Displacement Daily",
+  "description": "OPERA displacement products including azimuth offset, range offset, unwrapped phase, and wrapped phase measurements from InSAR processing.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "Program_Data/OPERA/Displacement/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-displacement-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "az": {
+          "title": "Azimuth Offset",
+          "description": "Azimuth offset measurements detecting horizontal ground displacement perpendicular to satellite flight direction from InSAR processing.",
+          "regex": ".*_AZ_.*\\.tif$"
+        },
+        "rng": {
+          "title": "Range Offset",
+          "description": "Range offset measurements detecting ground displacement parallel to satellite line-of-sight from InSAR processing.",
+          "regex": ".*_RNG_.*\\.tif$"
+        },
+        "unw": {
+          "title": "Unwrapped Phase",
+          "description": "Unwrapped interferometric phase representing ground displacement measurements after phase ambiguity resolution.",
+          "regex": ".*_UNW_.*\\.tif$"
+        },
+        "wrp": {
+          "title": "Wrapped Phase",
+          "description": "Wrapped interferometric phase showing ground displacement within 2π phase cycles before unwrapping.",
+          "regex": ".*_WRP_.*\\.tif$"
+        }
+      },
+      "collection": "opera-displacement-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "az": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Azimuth Offset",
+      "description": "Azimuth offset measurements detecting horizontal ground displacement perpendicular to satellite flight direction from InSAR processing."
+    },
+    "rng": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Range Offset",
+      "description": "Range offset measurements detecting ground displacement parallel to satellite line-of-sight from InSAR processing."
+    },
+    "unw": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Unwrapped Phase",
+      "description": "Unwrapped interferometric phase representing ground displacement measurements after phase ambiguity resolution."
+    },
+    "wrp": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Wrapped Phase",
+      "description": "Wrapped interferometric phase showing ground displacement within 2π phase cycles before unwrapping."
+    }
+  }
+}
