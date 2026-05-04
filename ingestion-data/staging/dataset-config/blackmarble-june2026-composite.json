@@ -63,7 +63,7 @@
   "renders": {
     "dashboard": {
       "assets": [
-        "blackmarble_monthly_composite"
+        "blackmarble_hd"
       ],
       "bidx": [
         1,
@@ -72,9 +72,9 @@
       ],
       "nodata": 0
     },
-    "blackmarble_monthly_composite": {
+    "blackmarble_hd": {
       "assets": [
-        "blackmarble_monthly_composite"
+        "blackmarble_hd"
       ],
       "bidx": [
         1,
