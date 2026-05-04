@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "Program_Data/OPERA/Displacement/",
+      "prefix": "ProgramData/OPERA/Displacement/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_day\\.tif$",
       "datetime_range": "day",
@@ -63,6 +63,83 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "az"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -10,
+          72
+        ]
+      ]
+    },
+    "az": {
+      "assets": [
+        "az"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -10,
+          72
+        ]
+      ]
+    },
+    "rng": {
+      "assets": [
+        "rng"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -15,
+          15
+        ]
+      ]
+    },
+    "unw": {
+      "assets": [
+        "unw"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ]
+    },
+    "wrp": {
+      "assets": [
+        "wrp"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -3.14,
+          3.14
+        ]
+      ]
+    }
+  },
   "providers": [
     {
       "name": "NASA Disasters Program",
