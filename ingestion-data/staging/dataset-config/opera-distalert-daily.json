@@ -33,7 +33,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "veg-anom-max": {
           "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
@@ -56,6 +55,7 @@
           "regex": ".*GEN-DIST-STATUS.*\\.tif$"
         }
       },
+      "use_multithreading": false,
       "collection": "opera-distalert-daily"
     }
   ],
@@ -64,10 +64,48 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "veg-anom-max": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
+      "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value."
+    },
+    "veg-dist-status": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG DIST STATUS)",
+      "description": "S2 ARIA OPERA vegetation disturbance status."
+    },
+    "gen-anom-max": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN ANOM MAX)",
+      "description": "Generic disturbance maximum anomaly value."
+    },
+    "gen-dist-status": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN DIST STATUS)",
+      "description": "Generic disturbance status."
+    }
+  },
   "renders": {
     "dashboard": {
       "assets": [
-        "veg-dist-status"
+        "gen-anom-max"
       ],
       "bidx": [
         1
@@ -77,7 +115,7 @@
       "rescale": [
         [
           0,
-          255
+          100
         ]
       ]
     },
@@ -154,43 +192,5 @@
       ],
       "url": "https://disasters.openveda.cloud"
     }
-  ],
-  "item_assets": {
-    "veg-anom-max": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
-      "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value."
-    },
-    "veg-dist-status": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG DIST STATUS)",
-      "description": "S2 ARIA OPERA vegetation disturbance status."
-    },
-    "gen-anom-max": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN ANOM MAX)",
-      "description": "Generic disturbance maximum anomaly value."
-    },
-    "gen-dist-status": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Sentinel-2 ARIA OPERA Disturbance Alert (GEN DIST STATUS)",
-      "description": "Generic disturbance status."
-    }
-  }
+  ]
 }
