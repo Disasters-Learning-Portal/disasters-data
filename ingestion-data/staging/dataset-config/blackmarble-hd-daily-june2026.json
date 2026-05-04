@@ -33,7 +33,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "blackmarble_hd": {
           "title": "Black Marble HD",
@@ -41,6 +40,7 @@
           "regex": ".*Blackmarble.*_day\\.tif$|.*BMHD.*_day\\.tif$"
         }
       },
+      "use_multithreading": false,
       "collection": "blackmarble-hd-daily-june2026"
     }
   ],
@@ -49,6 +49,17 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "blackmarble_hd": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Black Marble HD",
+      "description": "Black Marble HD daily BRDF-corrected nighttime lights imagery."
+    }
+  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -88,16 +99,5 @@
       ],
       "url": "https://disasters.openveda.cloud"
     }
-  ],
-  "item_assets": {
-    "blackmarble_hd": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Black Marble HD",
-      "description": "Black Marble HD daily BRDF-corrected nighttime lights imagery"
-    }
-  }
+  ]
 }
