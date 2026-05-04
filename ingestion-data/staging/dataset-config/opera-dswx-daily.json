@@ -1,0 +1,277 @@
+{
+  "collection": "opera-dswx-daily",
+  "title": "OPERA DSWx Daily",
+  "description": "OPERA Dynamic Surface Water Extent (DSWx) products derived from HLS, including water extent, flood extent, binary water, and change map layers.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DSWx/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-dswx-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "dwsx": {
+          "title": "HLS Dynamic Surface Water Extent",
+          "description": "HLS Dynamic Surface Water Extent product showing water presence and classification.",
+          "regex": "^(?!.*FloodMap)(?!.*NoSnowIce)(?!.*WTR).*DSWx.*HLS.*\\.tif$"
+        },
+        "floodmap": {
+          "title": "HLS Flood Map",
+          "description": "HLS-derived flood extent map identifying inundated areas.",
+          "regex": ".*FloodMap.*\\.tif$"
+        },
+        "nosnowice": {
+          "title": "HLS Water No Snow/Ice",
+          "description": "HLS water extent excluding snow and ice coverage.",
+          "regex": ".*NoSnowIce.*\\.tif$"
+        },
+        "wtr": {
+          "title": "HLS Water",
+          "description": "HLS water classification layer.",
+          "regex": "^(?!.*BWTR)(?!.*ChngMap).*DSWx.*WTR.*\\.tif$"
+        },
+        "bwtr": {
+          "title": "HLS Binary Water",
+          "description": "HLS binary water classification.",
+          "regex": "^(?!.*ChngMap).*DSWx.*BWTR.*\\.tif$"
+        },
+        "changemap-date1": {
+          "title": "HLS Change Map Date 1",
+          "description": "HLS surface water change detection map showing changes in water extent between time periods.",
+          "regex": ".*ChngMap.*date1.*\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        },
+        "changemap-date2": {
+          "title": "HLS Change Map Date 2",
+          "description": "HLS surface water change detection map showing changes in water extent between time periods.",
+          "regex": ".*ChngMap.*date2.*\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "collection": "opera-dswx-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "dwsx"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "dwsx": {
+      "assets": [
+        "dwsx"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "floodmap": {
+      "assets": [
+        "floodmap"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "nosnowice": {
+      "assets": [
+        "nosnowice"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "wtr": {
+      "assets": [
+        "wtr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "bwtr": {
+      "assets": [
+        "bwtr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "changemap-date1": {
+      "assets": [
+        "changemap-date1"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "changemap-date2": {
+      "assets": [
+        "changemap-date2"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "dwsx": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Dynamic Surface Water Extent",
+      "description": "HLS Dynamic Surface Water Extent product showing water presence and classification."
+    },
+    "floodmap": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Flood Map",
+      "description": "HLS-derived flood extent map identifying inundated areas."
+    },
+    "nosnowice": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Water No Snow/Ice",
+      "description": "HLS water extent excluding snow and ice coverage."
+    },
+    "wtr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Water",
+      "description": "HLS water classification layer."
+    },
+    "bwtr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Binary Water",
+      "description": "HLS binary water classification."
+    },
+    "changemap-date1": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Change Map Date 1",
+      "description": "HLS surface water change detection map showing changes in water extent between time periods."
+    },
+    "changemap-date2": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HLS Change Map Date 2",
+      "description": "HLS surface water change detection map showing changes in water extent between time periods."
+    }
+  }
+}
