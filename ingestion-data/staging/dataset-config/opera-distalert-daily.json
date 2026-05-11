@@ -1,7 +1,7 @@
 {
   "collection": "opera-distalert-daily",
-  "title": "OPERA DIST-ALERT Daily",
-  "description": "OPERA disturbance alert products including vegetation and generic disturbance status and anomaly layers.",
+  "title": "OPERA DIST-ALERT",
+  "description": "Researchers working with the Global Land Analysis & Discovery (GLAD) at University of Maryland, College Park, Maryland and Advanced Rapid Imaging and Analysis (ARIA) and Observational Products for End-Users from Remote Sensing Analysis (OPERA) teams at NASA's Jet Propulsion Laboratory, Pasadena, California, created maps of surface disturbance using the OPERA Disturbance Alert from Harmonized Landsat Sentinel-2 (DIST-ALERT-HLS) products.\nThe results posted here are preliminary results, primarily intended to aid the field response and people who wanted to have a rough first look at the impacted areas. All information is provisional for use under emergency response guidelines. These data are provided with absolutely no warranty of any kind. Use at your own risk.\nOPERA DIST-ALERT-HLS\nThe Disturbance product (DIST) maps per pixel vegetation disturbance (specifically, vegetation cover loss) from the Harmonized Landsat Sentinel-2 (HLS) scenes. We provide the (1) maximum vegetation anomaly value (VEG-ANOM-MAX) layer and (2) vegetation disturbance status (VEG-DIST-STATUS). \nVEG-ANOM-MAX:\nDifference between historical and current year observed vegetation cover at the date of maximum decrease (vegetation loss of 0-100%). This layer can be used to threshold vegetation disturbance per a given sensitivity (e.g. disturbance of ≥20% vegetation cover loss). The sum of the historical percent vegetation and the anomaly value will be the vegetation cover estimate for the current year.\nVEG-DIST-STATUS:\nIndication of vegetation cover loss (vegetation disturbance). The status label is based on the maximum anomaly value, confidence level, and whether it is ongoing or finished. \"First\" means the pixel has had an anomaly detection but no subsequent observations whether anomalous or not. \"Provisional\" means there have been two consecutive disturbance detections but not yet with high confidence. \"Confirmed\" means that vegetation disturbance is detected with high confidence. The label \"finished\" is applied to confirmed disturbances that have had two consecutive no-anomaly observations or one 15 days or more after the last anomaly detection. If a new disturbance is detected, it will overwrite those in a \"finished\" state. These labels are reported for both above and below the 50% disturbance threshold based on the maximum anomaly value.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
@@ -36,12 +36,12 @@
       "assets": {
         "veg-anom-max": {
           "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
-          "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value.",
+          "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value. VEG-ANOM-MAX: Difference between historical and current year observed vegetation cover at the date of maximum decrease (vegetation loss of 0-100%). This layer can be used to threshold vegetation disturbance per a given sensitivity (e.g. disturbance of ≥20% vegetation cover loss). The sum of the historical percent vegetation and the anomaly value will be the vegetation cover estimate for the current year.",
           "regex": ".*VEG-ANOM-MAX.*\\.tif$"
         },
         "veg-dist-status": {
           "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG DIST STATUS)",
-          "description": "S2 ARIA OPERA vegetation disturbance status.",
+          "description": "S2 ARIA OPERA vegetation disturbance status. VEG-DIST-STATUS: Indication of vegetation cover loss (vegetation disturbance). The status label is based on the maximum anomaly value, confidence level, and whether it is ongoing or finished. \"First\" means the pixel has had an anomaly detection but no subsequent observations whether anomalous or not. \"Provisional\" means there have been two consecutive disturbance detections but not yet with high confidence. \"Confirmed\" means that vegetation disturbance is detected with high confidence. The label \"finished\" is applied to confirmed disturbances that have had two consecutive no-anomaly observations or one 15 days or more after the last anomaly detection. If a new disturbance is detected, it will overwrite those in a \"finished\" state. These labels are reported for both above and below the 50% disturbance threshold based on the maximum anomaly value.",
           "regex": ".*VEG-DIST-STATUS.*\\.tif$"
         },
         "gen-anom-max": {
@@ -72,7 +72,7 @@
         "layer"
       ],
       "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG ANOM MAX)",
-      "description": "S2 ARIA OPERA disturbance alert maximum vegetation anomaly value."
+      "description": "Maximum vegetation anomaly value representing the difference between historical and current year observed vegetation cover at the date of maximum decrease (vegetation loss of 0-100%)."
     },
     "veg-dist-status": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
@@ -81,7 +81,7 @@
         "layer"
       ],
       "title": "Sentinel-2 ARIA OPERA Disturbance Alert (VEG DIST STATUS)",
-      "description": "S2 ARIA OPERA vegetation disturbance status."
+      "description": "Vegetation disturbance status indicating vegetation cover loss based on maximum anomaly value, confidence level, and whether disturbance is ongoing or finished."
     },
     "gen-anom-max": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
@@ -110,8 +110,8 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
-      "colormap_name": "ylorrd",
+      "nodata": 255,
+      "colormap_name": "reds",
       "rescale": [
         [
           0,
@@ -126,8 +126,8 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
-      "colormap_name": "ylorrd",
+      "nodata": 255,
+      "colormap_name": "reds",
       "rescale": [
         [
           0,
@@ -142,14 +142,69 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
-      "colormap_name": "ylorrd",
+      "nodata": 255,
       "rescale": [
         [
           0,
+          8
+        ]
+      ],
+      "colormap": {
+        "0": [
+          18,
+          18,
+          18,
+          255
+        ],
+        "1": [
+          0,
+          85,
+          85,
+          255
+        ],
+        "2": [
+          137,
+          127,
+          78,
+          255
+        ],
+        "3": [
+          222,
+          224,
+          67,
+          255
+        ],
+        "4": [
+          0,
+          136,
+          136,
+          255
+        ],
+        "5": [
+          228,
+          135,
+          39,
+          255
+        ],
+        "6": [
+          224,
+          27,
+          7,
+          255
+        ],
+        "7": [
+          119,
+          119,
+          119,
+          255
+        ],
+        "8": [
+          221,
+          221,
+          221,
           255
         ]
-      ]
+      }
     },
     "gen-anom-max": {
       "assets": [
@@ -158,8 +213,8 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
-      "colormap_name": "ylorrd",
+      "nodata": 255,
+      "colormap_name": "reds",
       "rescale": [
         [
           0,
@@ -174,14 +229,69 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
-      "colormap_name": "ylorrd",
+      "nodata": 255,
       "rescale": [
         [
           0,
+          8
+        ]
+      ],
+      "colormap": {
+        "0": [
+          18,
+          18,
+          18,
+          255
+        ],
+        "1": [
+          0,
+          85,
+          85,
+          255
+        ],
+        "2": [
+          137,
+          127,
+          78,
+          255
+        ],
+        "3": [
+          222,
+          224,
+          67,
+          255
+        ],
+        "4": [
+          0,
+          136,
+          136,
+          255
+        ],
+        "5": [
+          228,
+          135,
+          39,
+          255
+        ],
+        "6": [
+          224,
+          27,
+          7,
+          255
+        ],
+        "7": [
+          119,
+          119,
+          119,
+          255
+        ],
+        "8": [
+          221,
+          221,
+          221,
           255
         ]
-      ]
+      }
     }
   },
   "providers": [
