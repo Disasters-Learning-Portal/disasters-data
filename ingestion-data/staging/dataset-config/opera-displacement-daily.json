@@ -115,7 +115,8 @@
           -10,
           72
         ]
-      ]
+      ],
+      "colormap_name": "rdbu"
     },
     "az": {
       "assets": [
@@ -130,7 +131,8 @@
           -10,
           72
         ]
-      ]
+      ],
+      "colormap_name": "rdbu"
     },
     "rng": {
       "assets": [
@@ -145,7 +147,8 @@
           -15,
           15
         ]
-      ]
+      ],
+      "colormap_name": "rdbu"
     },
     "unw": {
       "assets": [
@@ -160,7 +163,8 @@
           -1,
           1
         ]
-      ]
+      ],
+      "colormap_name": "rdbu"
     },
     "wrp": {
       "assets": [
@@ -175,7 +179,8 @@
           -3.14,
           3.14
         ]
-      ]
+      ],
+      "colormap_name": "rdbu"
     }
   },
   "providers": [
