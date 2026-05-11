@@ -110,7 +110,7 @@
       "bidx": [
         1
       ],
-      "nodata": 255,
+      "nodata": 0,
       "colormap_name": "reds",
       "rescale": [
         [
@@ -126,7 +126,7 @@
       "bidx": [
         1
       ],
-      "nodata": 255,
+      "nodata": 0,
       "colormap_name": "reds",
       "rescale": [
         [
@@ -142,7 +142,7 @@
       "bidx": [
         1
       ],
-      "nodata": 255,
+      "nodata": 0,
       "rescale": [
         [
           0,
@@ -213,7 +213,7 @@
       "bidx": [
         1
       ],
-      "nodata": 255,
+      "nodata": 0,
       "colormap_name": "reds",
       "rescale": [
         [
@@ -229,7 +229,7 @@
       "bidx": [
         1
       ],
-      "nodata": 255,
+      "nodata": 0,
       "rescale": [
         [
           0,
