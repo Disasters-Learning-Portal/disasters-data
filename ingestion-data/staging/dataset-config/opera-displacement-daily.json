@@ -1,0 +1,195 @@
+{
+  "collection": "opera-displacement-daily",
+  "title": "OPERA Displacement Daily",
+  "description": "Scientists working with Advanced Rapid Imaging and Analysis (ARIA) team at NASA's Jet Propulsion Laboratory and California Institute of Technology, both in Pasadena, California, created this displacement map with measurements of the surface displacements, in the radar line-of-sight. NOTE: The line-of-sight displacement (LOS) measurement is relative, and the dataset has not been calibrated to any ground location so there is a bias of the reference level, which is unknown. This data has not yet been validated. This displacement map should be used as guidance to identify areas of significant ground displacement and may be less reliable over snow-covered and vegetated areas. The map was derived from synthetic aperture radar (SAR) images from the Copernicus Sentinel-1 satellites, operated by the European Space Agency (ESA). The team computed the interferometric difference (interferogram or interferometric SAR) between the post-event and pre-event images. The interferometric SAR (InSAR) measures the component of surface displacement in the line-of-sight (LOS) between the ground and the satellite, which is at an angle of about 40 degrees from the vertical and slightly south of due west. Unwrapped Interferogram (UNW): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite. Across Track Displacement (RNG): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite. Along Track Displacement (AZI): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/Displacement/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-displacement-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "az": {
+          "title": "Azimuth Offset",
+          "description": "Azimuth offset measurements detecting horizontal ground displacement perpendicular to satellite flight direction from InSAR processing. Along Track Displacement (AZI): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite.",
+          "regex": ".*_AZ_.*\\.tif$"
+        },
+        "rng": {
+          "title": "Range Offset",
+          "description": "Range offset measurements detecting ground displacement parallel to satellite line-of-sight from InSAR processing. Across Track Displacement (RNG): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite.",
+          "regex": ".*_RNG_.*\\.tif$"
+        },
+        "unw": {
+          "title": "Unwrapped Phase",
+          "description": "Unwrapped interferometric phase representing ground displacement measurements after phase ambiguity resolution. Unwrapped Interferogram (UNW): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite.",
+          "regex": ".*_UNW_.*\\.tif$"
+        },
+        "wrp": {
+          "title": "Wrapped Phase",
+          "description": "Wrapped interferometric phase showing ground displacement within 2π phase cycles before unwrapping.",
+          "regex": ".*_WRP_.*\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "opera-displacement-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "az": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Azimuth Offset",
+      "description": "Azimuth offset measurements detecting horizontal ground displacement perpendicular to satellite flight direction from InSAR processing. Along Track Displacement (AZI): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite."
+    },
+    "rng": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Range Offset",
+      "description": "Range offset measurements detecting ground displacement parallel to satellite line-of-sight from InSAR processing. Across Track Displacement (RNG): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite."
+    },
+    "unw": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Unwrapped Phase",
+      "description": "Unwrapped interferometric phase representing ground displacement measurements after phase ambiguity resolution. Unwrapped Interferogram (UNW): Red colors (positive values) indicate increasing displacement towards the satellite, while the Blue areas indicate increasing displacement away from the satellite."
+    },
+    "wrp": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Wrapped Phase",
+      "description": "Wrapped interferometric phase showing ground displacement within 2π phase cycles before unwrapping."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "az"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -10,
+          72
+        ]
+      ],
+      "colormap_name": "rdbu"
+    },
+    "az": {
+      "assets": [
+        "az"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -10,
+          72
+        ]
+      ],
+      "colormap_name": "rdbu"
+    },
+    "rng": {
+      "assets": [
+        "rng"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -15,
+          15
+        ]
+      ],
+      "colormap_name": "rdbu"
+    },
+    "unw": {
+      "assets": [
+        "unw"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "rdbu"
+    },
+    "wrp": {
+      "assets": [
+        "wrp"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          -3.14,
+          3.14
+        ]
+      ],
+      "colormap_name": "rdbu"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
