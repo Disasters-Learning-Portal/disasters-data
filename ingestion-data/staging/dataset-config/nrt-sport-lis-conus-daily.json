@@ -1,0 +1,249 @@
+{
+  "collection": "nrt-sport-lis-conus-daily",
+  "title": "SPoRT LIS Soil Moisture - All Variables [CONUS]",
+  "description": "The NASA SPoRT (Short-term Prediction Research and Transition Center) Land Information System (LIS) provides comprehensive soil moisture data products that support disaster monitoring and response efforts across the contiguous United States. These high-resolution datasets, available at approximately 3-kilometer spatial resolution, offer daily updates on both relative and volumetric soil moisture conditions at multiple depths using advanced land surface modeling techniques. Relative soil moisture products represent current soil water content as a percentile compared to historical records, while volumetric soil moisture percentiles are calculated against a 33-year climatology (1981-2013). The collection includes surface layers (0-10cm) that respond rapidly to short-term weather events, intermediate layers (0-40cm, 0-100cm) that balance short-term and subsurface responses, and deep layers (0-2m, 0-200cm) that capture long-term trends. These products enable disaster coordinators to quickly identify areas experiencing abnormally dry or wet conditions, supporting assessments of drought severity, flood risk potential, wildfire danger, agricultural stress, and post-disaster recovery monitoring. Distributed in Cloud Optimized GeoTIFF (COG) format, the data integrates seamlessly with GIS platforms and web-based mapping applications, providing emergency managers, agricultural specialists, and water resource managers with near real-time intelligence for informed decision-making during critical disaster preparedness and response operations.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2025-02-17T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "nrt/sport-lis-cog/conus/",
+      "bucket": "nasa-disasters",
+      "filename_regex": ".*.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*_(.*).tif$",
+      "id_template": "sport-lis-sm-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "rsm0-10cm": {
+          "title": "Relative Soil Moisture (0-10cm)",
+          "description": "Relative soil moisture for the 0-10cm surface layer, representing current soil water content as a percentile compared to historical records, useful for short-term drought and flood risk assessment.",
+          "regex": ".*sport_lis_rsm0-10cm_conus.*"
+        },
+        "rsm0-2m": {
+          "title": "Relative Soil Moisture (0-2m)",
+          "description": "Relative soil moisture for the full 0-2m soil column, providing deep soil moisture percentiles for long-term drought monitoring and groundwater assessment.",
+          "regex": ".*sport_lis_rsm0-2m_conus.*"
+        },
+        "vsm0-10cm": {
+          "title": "Volumetric Soil Moisture (0-10cm)",
+          "description": "Volumetric soil moisture percentile for the 0-10cm surface layer. This layer responds rapidly to precipitation and drying, making it especially useful for short-term monitoring of drought, flooding potential, and fire risk.",
+          "regex": ".*sport_lis_vsm0-10cm_percentile_conus.*"
+        },
+        "vsm0-40cm": {
+          "title": "Volumetric Soil Moisture (0-40cm)",
+          "description": "Volumetric soil moisture percentile for the 0-40cm cumulative layer. This layer responds more gradually than surface layers, balancing short-term rainfall response with intermediate soil storage, useful for agricultural and fire risk applications.",
+          "regex": ".*sport_lis_vsm0-40cm_percentile_conus.*"
+        },
+        "vsm0-100cm": {
+          "title": "Volumetric Soil Moisture (0-100cm)",
+          "description": "Volumetric soil moisture percentile for the 0-100cm cumulative layer. This layer integrates surface and subsurface moisture, responding over weeks to months, valuable for drought monitoring, hydrology, and agriculture.",
+          "regex": ".*sport_lis_vsm0-100cm_percentile_conus.*"
+        },
+        "vsm0-200cm": {
+          "title": "Volumetric Soil Moisture (0-200cm)",
+          "description": "Volumetric soil moisture percentile for the full 0-200cm soil column. This layer responds slowly, capturing deep soil changes on seasonal to multi-year timescales, essential for long-term drought and groundwater assessments.",
+          "regex": ".*sport_lis_vsm0-200cm_percentile_conus.*"
+        }
+      },
+      "collection": "nrt-sport-lis-conus-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "rsm0-10cm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "rsm0-10cm": {
+      "assets": [
+        "rsm0-10cm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "rsm0-2m": {
+      "assets": [
+        "rsm0-2m"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "vsm0-10cm": {
+      "assets": [
+        "vsm0-10cm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "vsm0-40cm": {
+      "assets": [
+        "vsm0-40cm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "vsm0-100cm": {
+      "assets": [
+        "vsm0-100cm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "vsm0-200cm": {
+      "assets": [
+        "vsm0-200cm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "rsm0-10cm": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Relative Soil Moisture (0-10cm)",
+      "description": "Relative soil moisture for the 0-10cm surface layer, representing current soil water content as a percentile compared to historical records, useful for short-term drought and flood risk assessment."
+    },
+    "rsm0-2m": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Relative Soil Moisture (0-2m)",
+      "description": "Relative soil moisture for the full 0-2m soil column, providing deep soil moisture percentiles for long-term drought monitoring and groundwater assessment."
+    },
+    "vsm0-10cm": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Volumetric Soil Moisture (0-10cm)",
+      "description": "Volumetric soil moisture percentile for the 0-10cm surface layer. This layer responds rapidly to precipitation and drying, making it especially useful for short-term monitoring of drought, flooding potential, and fire risk."
+    },
+    "vsm0-40cm": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Volumetric Soil Moisture (0-40cm)",
+      "description": "Volumetric soil moisture percentile for the 0-40cm cumulative layer. This layer responds more gradually than surface layers, balancing short-term rainfall response with intermediate soil storage, useful for agricultural and fire risk applications."
+    },
+    "vsm0-100cm": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Volumetric Soil Moisture (0-100cm)",
+      "description": "Volumetric soil moisture percentile for the 0-100cm cumulative layer. This layer integrates surface and subsurface moisture, responding over weeks to months, valuable for drought monitoring, hydrology, and agriculture."
+    },
+    "vsm0-200cm": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Volumetric Soil Moisture (0-200cm)",
+      "description": "Volumetric soil moisture percentile for the full 0-200cm soil column. This layer responds slowly, capturing deep soil changes on seasonal to multi-year timescales, essential for long-term drought and groundwater assessments."
+    }
+  }
+}
