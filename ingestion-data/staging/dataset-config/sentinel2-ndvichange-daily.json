@@ -64,7 +64,7 @@
           1
         ]
       ],
-      "colormap_name": "yellows"
+      "colormap_name": "ylgn_r"
     },
     "ndvichange": {
       "assets": [
@@ -80,7 +80,7 @@
           1
         ]
       ],
-      "colormap_name": "yellows"
+      "colormap_name": "ylgn_r"
     }
   },
   "providers": [
