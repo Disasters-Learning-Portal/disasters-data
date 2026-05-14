@@ -35,7 +35,7 @@
       "dry_run": false,
       "use_multithreading": false,
       "assets": {
-        "ColorIR": {
+        "truecolor": {
           "title": "TrueColor",
           "description": "Three-band TrueColor composite from Sentinel-2 combining red, green, and blue bands.",
           "regex": ".*trueColor.*_day\\.tif$"
