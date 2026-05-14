@@ -21,7 +21,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/Sentinel-2/trueColor",
+      "prefix": "ProgramData/Sentinel-2/TrueColor",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_day\\.tif$",
       "datetime_range": "day",
