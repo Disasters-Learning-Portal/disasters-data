@@ -1,6 +1,6 @@
 {
   "collection": "sentinel2-ndvichange-daily",
-  "title": "Sentinel-2 NDVI Change (Daily)",
+  "title": "Sentinel-2 NDVI Change",
   "description": "Binary NDVI change mask derived from Sentinel-2 imagery highlighting areas of significant vegetation change between observation periods. This collection contains daily change masks aggregated to a single image per day.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
@@ -63,15 +63,7 @@
           0,
           1
         ]
-      ],
-      "colormap": {
-        "1": [
-          255,
-          255,
-          0,
-          255
-        ]
-      }
+      ]
     },
     "ndvichange": {
       "assets": [
@@ -86,15 +78,7 @@
           0,
           1
         ]
-      ],
-      "colormap": {
-        "1": [
-          255,
-          255,
-          0,
-          255
-        ]
-      }
+      ]
     }
   },
   "providers": [
