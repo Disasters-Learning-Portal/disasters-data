@@ -1,0 +1,96 @@
+{
+  "collection": "sentinel2-swir-daily",
+  "title": "Sentinel-2 SWIR (Daily)",
+  "description": "Three-band shortwave infrared (SWIR) composite from Sentinel-2 combining SWIR-2, Narrow near-infrared, and red bands. This collection contains daily composites aggregated to a single image per day.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/ShortwaveIR",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel2-swir-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "swir": {
+          "title": "SWIR",
+          "description": "Three-band shortwave infrared (SWIR) composite from Sentinel-2 combining SWIR-2, Narrow near-infrared, and red bands.",
+          "regex": ".*shortwaveInfrared.*_day\\.tif$"
+        }
+      },
+      "collection": "sentinel2-swir-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "swir"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "swir": {
+      "assets": [
+        "swir"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA VEDA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ],
+  "item_assets": {
+    "swir": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "Three-band shortwave infrared (SWIR) composite from Sentinel-2 combining SWIR-2, Narrow near-infrared, and red bands."
+    }
+  }
+}
