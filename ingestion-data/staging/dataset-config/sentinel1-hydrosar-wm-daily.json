@@ -1,0 +1,156 @@
+{
+  "collection": "sentinel1-hydrosar-wm-daily",
+  "title": "Sentinel-1 HydroSAR Water Mask",
+  "description": "Post-incident water extents derived from Sentinel 1 SAR by the Alaskan Satellite Facility. This collection contains daily change masks aggregated to a single image per day.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-1/HydroSAR_WM",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel1-hydrosar-wm-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "wm": {
+          "title": "HydroSAR WM",
+          "description": "Post-incident water extents derived from Sentinel 1 SAR by the Alaskan Satellite Facility.",
+          "regex": ".*WM.*_day\\.tif$"
+        }
+      },
+      "collection": "sentinel1-hydrosar-wm-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "wm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "rescale": [
+        [
+          0,
+          3
+        ]
+      ],
+      "colormap": {
+        "0": [
+          0,
+          102,
+          255,
+          255
+        ],
+        "1": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "2": [
+          51,
+          179,
+          0,
+          255
+        ],
+        "3": [
+          230,
+          155,
+          0,
+          255
+        ]
+      }
+    },
+    "wm": {
+      "assets": [
+        "wm"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "rescale": [
+        [
+          0,
+          3
+        ]
+      ],
+      "colormap": {
+        "0": [
+          0,
+          102,
+          255,
+          255
+        ],
+        "1": [
+          255,
+          0,
+          0,
+          255
+        ],
+        "2": [
+          51,
+          179,
+          0,
+          255
+        ],
+        "3": [
+          230,
+          155,
+          0,
+          255
+        ]
+      }
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA VEDA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ],
+  "item_assets": {
+    "wm": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "HydroSAR Water Mask",
+      "description": "Post-incident water extents derived from Sentinel 1 SAR by the Alaskan Satellite Facility."
+    }
+  }
+}
