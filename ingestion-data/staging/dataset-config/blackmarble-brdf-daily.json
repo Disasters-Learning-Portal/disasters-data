@@ -66,22 +66,32 @@
         "blackmarble_brdf"
       ],
       "bidx": [
-        1,
-        2,
-        3
+        1
       ],
-      "nodata": 0
+      "nodata": 0,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
     },
     "blackmarble_brdf": {
       "assets": [
         "blackmarble_brdf"
       ],
       "bidx": [
-        1,
-        2,
-        3
+        1
       ],
-      "nodata": 0
+      "nodata": 0,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
     }
   },
   "providers": [
