@@ -57,14 +57,21 @@
       "bidx": [
         1
       ],
-      "nodata": -9999,
+      "nodata": 0,
       "rescale": [
         [
-          -1,
+          0,
           1
         ]
       ],
-      "colormap_name": "rdylgn"
+      "colormap": {
+        "1": [
+          255,
+          255,
+          0,
+          255
+        ]
+      }
     },
     "ndvichange": {
       "assets": [
@@ -73,14 +80,21 @@
       "bidx": [
         1
       ],
-      "nodata": -9999,
+      "nodata": 0,
       "rescale": [
         [
-          -1,
+          0,
           1
         ]
       ],
-      "colormap_name": "rdylgn"
+      "colormap": {
+        "1": [
+          255,
+          255,
+          0,
+          255
+        ]
+      }
     }
   },
   "providers": [
