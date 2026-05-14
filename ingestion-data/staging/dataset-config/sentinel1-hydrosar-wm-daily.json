@@ -38,7 +38,7 @@
         "wm": {
           "title": "HydroSAR WM",
           "description": "Post-incident water extents derived from Sentinel 1 SAR by the Alaskan Satellite Facility.",
-          "regex": ".*WM.*_day\\.tif$"
+          "regex": ".*S1_WM.*_day\\.tif$"
         }
       },
       "collection": "sentinel1-hydrosar-wm-daily"
@@ -52,7 +52,7 @@
   "renders": {
     "dashboard": {
       "assets": [
-        "hydrosar-wm"
+        "wm"
       ],
       "bidx": [
         1
@@ -63,28 +63,32 @@
         "1": [
           1,
           92,
-          230
+          230,
+          255
         ],
         "2": [
           255,
           0,
-          0
+          0,
+          255
         ],
         "3": [
           56,
           168,
-          1
+          1,
+          255
         ],
         "4": [
           230,
           151,
-          2
+          2,
+          255
         ]
       }
     },
-    "hydrosar-wm": {
+    "wm": {
       "assets": [
-        "hydrosar-wm"
+        "wm"
       ],
       "bidx": [
         1
@@ -95,22 +99,26 @@
         "1": [
           1,
           92,
-          230
+          230,
+          255
         ],
         "2": [
           255,
           0,
-          0
+          0,
+          255
         ],
         "3": [
           56,
           168,
-          1
+          1,
+          255
         ],
         "4": [
           230,
           151,
-          2
+          2,
+          255
         ]
       }
     }
