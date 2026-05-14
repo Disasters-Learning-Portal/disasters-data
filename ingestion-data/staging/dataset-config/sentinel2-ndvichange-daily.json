@@ -1,0 +1,106 @@
+{
+  "collection": "sentinel2-ndvichange-daily",
+  "title": "Sentinel-2 NDVI Change (Daily)",
+  "description": "Binary NDVI change mask derived from Sentinel-2 imagery highlighting areas of significant vegetation change between observation periods. This collection contains daily change masks aggregated to a single image per day.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/NDVI",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel2-ndvichange-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "ndvichange": {
+          "title": "NDVI Change",
+          "description": "Binary NDVI change mask derived from Sentinel-2 imagery highlighting areas of significant vegetation change between observation periods.",
+          "regex": ".*NDVIchange.*_day\\.tif$"
+        }
+      },
+      "collection": "sentinel2-ndvichange-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "ndvichange"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "rdylgn"
+    },
+    "ndvichange": {
+      "assets": [
+        "ndvichange"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "rdylgn"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA VEDA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ],
+  "item_assets": {
+    "ndvichange": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "NDVI Change",
+      "description": "Binary NDVI change mask derived from Sentinel-2 imagery highlighting areas of significant vegetation change between observation periods."
+    }
+  }
+}
