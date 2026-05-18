@@ -25,7 +25,7 @@
       "bucket": "nasa-disasters",
       "filename_regex": "gaia.*_monthly\\.tif$",
       "datetime_range": "month",
-      "id_regex": ".*(\\d{4}-\\d{2}_month\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2})_month\\.tif$",
       "id_template": "gaia-january2025-composite-{}",
       "disasters:extract_event_name": true,
       "disasters:monty": true,
