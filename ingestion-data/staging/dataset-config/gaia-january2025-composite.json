@@ -23,7 +23,7 @@
       "discovery": "s3",
       "prefix": "ProgramData/test",
       "bucket": "nasa-disasters",
-      "filename_regex": "gaia.*_monthly\\.tif$",
+      "filename_regex": ".*gaia.*_monthly\\.tif$",
       "datetime_range": "month",
       "id_regex": ".*(\\d{4}-\\d{2})_monthly\\.tif$",
       "id_template": "gaia-january2025-composite-{}",
