@@ -70,7 +70,14 @@
         2,
         3
       ],
-      "nodata": 0
+      "nodata": 0,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          30
+        ]
+      ]
     },
     "blackmarble_hd": {
       "assets": [
@@ -81,7 +88,14 @@
         2,
         3
       ],
-      "nodata": 0
+      "nodata": 0,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          30
+        ]
+      ]
     }
   },
   "providers": [
