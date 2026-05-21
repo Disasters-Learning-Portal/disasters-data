@@ -25,7 +25,7 @@
       "bucket": "nasa-disasters",
       "filename_regex": ".*_monthly\\.tif$",
       "datetime_range": "month",
-      "id_regex": ".*_(\\d{4}-\\d{2})_monthly\\.tif$",
+      "id_regex": ".*_(\\d{4}\\d{2})_monthly\\.tif$",
       "id_template": "blackmarble-june2026-composite-{}",
       "disasters:extract_event_name": true,
       "disasters:monty": true,
