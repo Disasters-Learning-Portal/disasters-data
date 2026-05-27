@@ -1,0 +1,106 @@
+{
+  "collection": "gaia-january2025-total-composite-tmp",
+  "title": "GAIA Gridded Building Exposure [Total]",
+  "description": "The Global Atlas of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis. The dataset provides a gridded representation of built-up areas worldwide in square meters. At each pixel, the value is a modeled value that represents total built-up area for the grid cell. It does not represent actual buildings in the grid cell.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "month",
+  "dashboard:time_interval": "P1M",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2025-01-01T00:00:00Z",
+    "enddate": "2026-12-31T00:00:00Z"
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/test",
+      "bucket": "nasa-disasters",
+      "filename_regex": ".*gaia_total_day_\\d{4}-\\d{2}_monthly\\.tif$",
+      "datetime_range": "month",
+      "id_regex": ".*gaia_total_day_(\\d{4}-\\d{2})_monthly\\.tif$",
+      "id_template": "gaia-january2025-total-composite-tmp-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "total": {
+          "title": "GAIA Gridded Building Exposure [Total]",
+          "description": "The Global Atlas of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis",
+          "regex": ".*gaia_total_day_\\d{4}-\\d{2}_monthly\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "gaia-january2025-total-composite-tmp"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "total": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "GAIA Gridded Building Exposure [Total]",
+      "description": "The Global Atlas of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis"
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "total"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap_name": "rdylgn_r",
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          50000
+        ]
+      ]
+    },
+    "total": {
+      "assets": [
+        "total"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap_name": "rdylgn_r",
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          50000
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA VEDA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
