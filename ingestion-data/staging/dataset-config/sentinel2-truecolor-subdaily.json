@@ -5,7 +5,7 @@
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
-  "dashboard:time_interval": "P1D",
+  "dashboard:time_interval": "PT1S",
   "links": [],
   "spatial_extent": {
     "xmin": -180,
@@ -31,7 +31,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "truecolor": {
           "title": "TrueColor",
@@ -39,6 +38,7 @@
           "regex": ".*trueColor.*\\.tif$"
         }
       },
+      "use_multithreading": false,
       "collection": "sentinel2-truecolor-subdaily"
     }
   ],
@@ -47,6 +47,17 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "truecolor": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "Three-band TrueColor composite from Sentinel-2 combining red, green, and blue bands."
+    }
+  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -79,16 +90,5 @@
       ],
       "url": "https://www.earthdata.nasa.gov/dashboard/"
     }
-  ],
-  "item_assets": {
-    "truecolor": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Color Infrared",
-      "description": "Three-band TrueColor composite from Sentinel-2 combining red, green, and blue bands."
-    }
-  }
+  ]
 }
