@@ -1,7 +1,7 @@
 {
   "collection": "blackmarble-june2026-composite",
   "title": "Black Marble HD Composite",
-  "description": "Black Marble Day-Night Band (BRDF-Corrected) images were created by the NASA Black Marble Science team. The images are corrected for atmospheric, terrain, lunar BRDF, and straylight effects, and directly measures light intensity on the ground in units of nanowatts/(steradian centimeter squared). The images are scaled from 0 - 30. The baseline image is a monthly composite from before the event, generated from all daily atmospheric and lunar-corrected data from that month. There is a layer to display where clouds are present. This comparison between the images is meant as a visual assessment of outage impacts to aid various partners who are working to deliver emergency aids to local communities. Power outage maps like these help disaster response efforts in the short-term as well as long-term monitoring during the crucial stages of disaster recovery. NASA's Black Marble Nighttime Light product suite is a state-of-the-art daily global collection of standard products for monitoring nighttime lights (NTL). Utilizing the Visible Imaging Radiometer Suite (VIIRS) Day/Night Band (DNB) aboard the Suomi-NPP, NOAA-20, and NOAA-21 satellites. The image is in inferno color scale. Yellow represents presence of more light; dark blue less lights. Observations may be obscured by total or partial cloud cover. Other factors such as snow reflectance, moon phase, wildfires, and wildfire smoke may distort light radiance and require further analysis when assessing power outages.",
+  "description": "Black Marble Day-Night Band (BRDF-Corrected).",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
@@ -33,6 +33,7 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
+      "use_multithreading": false,
       "assets": {
         "blackmarble_hd": {
           "title": "Black Marble Composite",
@@ -40,7 +41,6 @@
           "regex": ".*Blackmarble.*_monthly\\.tif$|.*_monthly\\.tif$"
         }
       },
-      "use_multithreading": false,
       "collection": "blackmarble-june2026-composite"
     }
   ],
@@ -49,17 +49,6 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
-  "item_assets": {
-    "blackmarble_hd": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Black Marble Composite",
-      "description": "Black Marble monthly composite nighttime lights imagery."
-    }
-  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -113,5 +102,16 @@
       ],
       "url": "https://disasters.openveda.cloud"
     }
-  ]
+  ],
+  "item_assets": {
+    "blackmarble_hd": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Black Marble Composite",
+      "description": "Black Marble monthly composite nighttime lights imagery."
+    }
+  }
 }
