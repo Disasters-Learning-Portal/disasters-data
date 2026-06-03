@@ -33,7 +33,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "blackmarble_hd": {
           "title": "Black Marble Composite",
@@ -41,6 +40,7 @@
           "regex": ".*Blackmarble.*_monthly\\.tif$|.*_monthly\\.tif$"
         }
       },
+      "use_multithreading": false,
       "collection": "blackmarble-june2026-composite"
     }
   ],
@@ -49,6 +49,17 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "blackmarble_hd": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Black Marble Composite",
+      "description": "Black Marble monthly composite nighttime lights imagery."
+    }
+  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -60,7 +71,6 @@
         3
       ],
       "nodata": 0,
-      "colormap_name": "inferno",
       "rescale": [
         [
           0,
@@ -78,7 +88,6 @@
         3
       ],
       "nodata": 0,
-      "colormap_name": "inferno",
       "rescale": [
         [
           0,
@@ -102,16 +111,5 @@
       ],
       "url": "https://disasters.openveda.cloud"
     }
-  ],
-  "item_assets": {
-    "blackmarble_hd": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Black Marble Composite",
-      "description": "Black Marble monthly composite nighttime lights imagery."
-    }
-  }
+  ]
 }
