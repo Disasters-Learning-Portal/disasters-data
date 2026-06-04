@@ -31,6 +31,7 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
+      "use_multithreading": false,
       "assets": {
         "mndwi": {
           "title": "mNDWI",
@@ -38,7 +39,6 @@
           "regex": ".*mNDWI.*\\.tif$"
         }
       },
-      "use_multithreading": false,
       "collection": "sentinel2-mndwi-subdaily"
     }
   ],
@@ -47,17 +47,6 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
-  "item_assets": {
-    "mndwi": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Color Infrared",
-      "description": "Modified Normalized Difference Water Index (mNWDI) from Sentinel-2."
-    }
-  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -94,11 +83,22 @@
   },
   "providers": [
     {
-      "name": "NASA VEDA",
+      "name": "ESA",
       "roles": [
         "host"
       ],
-      "url": "https://www.earthdata.nasa.gov/dashboard/"
+      "url": "https://www.esa.int"
     }
-  ]
+  ],
+  "item_assets": {
+    "mndwi": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "Modified Normalized Difference Water Index (mNWDI) from Sentinel-2."
+    }
+  }
 }
