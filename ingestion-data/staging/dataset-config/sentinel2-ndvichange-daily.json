@@ -85,11 +85,11 @@
   },
   "providers": [
     {
-      "name": "NASA VEDA",
+      "name": "ESA",
       "roles": [
         "host"
       ],
-      "url": "https://www.earthdata.nasa.gov/dashboard/"
+      "url": "https://www.esa.int"
     }
   ],
   "item_assets": {
