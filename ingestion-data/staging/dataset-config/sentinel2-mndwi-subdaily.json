@@ -61,7 +61,7 @@
   "renders": {
     "dashboard": {
       "assets": [
-        "brbg"
+        "mndwi"
       ],
       "bidx": [
         1
@@ -73,11 +73,11 @@
           1
         ]
       ],
-      "colormap_name": "bwr_r"
+      "colormap_name": "brbg"
     },
     "mndwi": {
       "assets": [
-        "brbg"
+        "mndwi"
       ],
       "bidx": [
         1
@@ -89,7 +89,7 @@
           1
         ]
       ],
-      "colormap_name": "bwr_r"
+      "colormap_name": "brbg"
     }
   },
   "providers": [
