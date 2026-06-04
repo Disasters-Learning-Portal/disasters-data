@@ -1,0 +1,104 @@
+{
+  "collection": "sentinel2-mndwi-subdaily",
+  "title": "Sentinel-2 mNDWI (Subdaily)",
+  "description": "Modified Normalized Difference Water Index (mNWDI) from Sentinel-2, using the green and shortwave IR bands ([B3-B11]/[B3+B11]).",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/mNDWI",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "sentinel2-mndwi-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "mndwi": {
+          "title": "mNDWI",
+          "description": "Modified Normalized Difference Water Index (mNWDI) from Sentinel-2.",
+          "regex": ".*mNDWI.*\\.tif$"
+        }
+      },
+      "collection": "sentinel2-mndwi-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "mndwi"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "brbg"
+    },
+    "mndwi": {
+      "assets": [
+        "mndwi"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "brbg"
+    }
+  },
+  "providers": [
+    {
+      "name": "ESA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.esa.int"
+    }
+  ],
+  "item_assets": {
+    "mndwi": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "Modified Normalized Difference Water Index (mNWDI) from Sentinel-2."
+    }
+  }
+}
