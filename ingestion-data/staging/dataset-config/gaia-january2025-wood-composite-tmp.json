@@ -75,7 +75,7 @@
   },
   "providers": [
     {
-      "name": "https://www.earthdata.nasa.gov/dashboard/",
+      "name": "NASA Disasters Program, ImageCat, Inc.",
       "roles": [
         "host"
       ],
