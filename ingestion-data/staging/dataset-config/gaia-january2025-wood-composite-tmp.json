@@ -92,45 +92,5 @@
       ],
       "url": "https://www.earthdata.nasa.gov/dashboard/"
     }
-  ],
-  "dashboard:legend": {
-    "unit": {
-      "label": "Building Exposure (Total)"
-    },
-    "type": "categorical",
-    "stops": [
-      {
-        "color": "#3F2A6B",
-        "label": "< 25,000 m²"
-      },
-      {
-        "color": "#3E869E",
-        "label": "25,000 - 50,000 m²"
-      },
-      {
-        "color": "#73C0C3",
-        "label": "50,000 - 75,000 m²"
-      },
-      {
-        "color": "#C3E09C",
-        "label": "75,000 - 100,000 m²"
-      },
-      {
-        "color": "#F7E99C",
-        "label": "100,000 - 150,000 m²"
-      },
-      {
-        "color": "#F3C556",
-        "label": "150,000 - 300,000 m²"
-      },
-      {
-        "color": "#E78E41",
-        "label": "300,000 - 450,000 m²"
-      },
-      {
-        "color": "#CF4931",
-        "label": "> 450,000 m²"
-      }
-    ]
-  }
+  ]
 }
