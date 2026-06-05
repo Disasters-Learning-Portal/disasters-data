@@ -1,7 +1,7 @@
 {
   "collection": "gaia-january2025-wood-composite-tmp",
   "title": "GAIA Gridded Building Exposure [Wood]",
-  "description": "The Global Atlas of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis. The dataset provides a gridded representation of built-up areas worldwide in square meters. At each pixel, the value is a modeled value that represents total built-up area for the grid cell. It does not represent actual buildings in the grid cell.",
+  "description": "The Global Assessment of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis. The dataset provides a gridded representation of built-up areas worldwide in square meters. At each pixel, the value is a modeled value that represents total built-up area for the grid cell. It does not represent actual buildings in the grid cell.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
@@ -90,7 +90,7 @@
         "layer"
       ],
       "title": "GAIA Gridded Building Exposure [Wood]",
-      "description": "The Global Atlas of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis"
+      "description": "The Global Assessment of Infrastructure Assets (GAIA) is a worldwide gridded building exposure dataset suitable for natural hazard risk analysis"
     }
   }
 }
