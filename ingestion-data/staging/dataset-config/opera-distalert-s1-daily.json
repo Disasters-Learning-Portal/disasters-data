@@ -1,0 +1,140 @@
+{
+  "collection": "opera-distalert-s1-daily",
+  "title": "OPERA Surface Disturbance from Sentinel-1 (DIST-S1)",
+  "description": "Researchers working with the Advanced Rapid Imaging and Analysis (ARIA) and Observational Products for End-Users from Remote Sensing Analysis (OPERA) teams at NASA's Jet Propulsion Laboratory, Pasadena, California, created the OPERA Surface Disturbance Alert from Sentinel-1 (DIST-S1-ALERT) prototype product suite to create maps of surface disturbance due to wildfires.\nThe OPERA DIST-S1 prototype results posted here are preliminary results, primarily intended to aid the field response and people who wanted to have a rough first look area impacted by wildfire. All information is provisional for use under emergency response guidelines. These data are provided with absolutely no warranty of any kind. Use at your own risk.\nThe DIST-S1 product shows disturbance of each pixel with a corresponding level of confidence:\n0: No disturbance\n1: Moderate Confidence Disturbance (more than 2.5 standard deviations from mean estimated from imagery prior to event)\n2: High Confidence Disturbance (more than 4.5 standard deviations from mean estimated from imagery prior to event)",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DistAlertS1/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*disturbance_track\\d+_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*disturbance_track\\d+_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-distalert-s1-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "dist-s1": {
+          "title": "OPERA Surface Disturbance from Sentinel-1 (DIST-S1)",
+          "description": "Per-pixel surface disturbance confidence from the OPERA DIST-S1-ALERT prototype. 0 = no disturbance; 1 = moderate confidence (>2.5 standard deviations from the pre-event mean); 2 = high confidence (>4.5 standard deviations from the pre-event mean).",
+          "regex": ".*disturbance_track\\d+_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "opera-distalert-s1-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "dist-s1": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "OPERA Surface Disturbance from Sentinel-1 (DIST-S1)",
+      "description": "Per-pixel surface disturbance confidence from the OPERA DIST-S1-ALERT prototype. 0 = no disturbance; 1 = moderate confidence (>2.5 standard deviations from the pre-event mean); 2 = high confidence (>4.5 standard deviations from the pre-event mean)."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "dist-s1"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "colormap": {
+        "0": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "1": [
+          255,
+          153,
+          153,
+          255
+        ],
+        "2": [
+          227,
+          26,
+          28,
+          255
+        ]
+      }
+    },
+    "dist-s1": {
+      "assets": [
+        "dist-s1"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "colormap": {
+        "0": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "1": [
+          255,
+          153,
+          153,
+          255
+        ],
+        "2": [
+          227,
+          26,
+          28,
+          255
+        ]
+      }
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
