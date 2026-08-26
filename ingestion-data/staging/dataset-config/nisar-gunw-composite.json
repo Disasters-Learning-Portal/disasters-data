@@ -1,0 +1,121 @@
+{
+  "collection": "nisar-gunw-composite",
+  "title": "NISAR Geocoded Unwrapped Interferogram",
+  "description": "Scientists working on the NISAR Operations Science Team at NASA's Jet Propulsion Laboratory and California Institute of Technology, both in Pasadena, California, created this displacement map where red colors indicate increasing displacement towards the satellite, while the blue areas indicate increasing displacement away from the satellite. Yellow tones indicate near-zero displacement. This product is derived from the NISAR Geocoded Unwrapped Interferogram product (GUNW) processed by the NISAR Urgent Response system. The GUNW product is an L2 product derived from the RIFG and RUNW products by geocoding the unwrapped phase and associated data layers (i.e., coherence magnitude, ionospheric phase screen) on a geographical grid at 80 m posting.\n\nThe displacement maps were derived from synthetic aperture radar (SAR) images from the NASA-ISRO Synthetic Aperture Radar (NISAR) satellite. The interferometric SAR (InSAR) measures the component of surface displacement in the line-of-sight (LOS) between the ground and the satellite, which is at an angle of about 40 degrees from the vertical and slightly south of due west on the ascending tracks and at a similar angle from the vertical but slightly south of due east on the descending track.\n\nNOTE: The line-of-sight (LOS) displacement measurement is relative, and the dataset has not been calibrated to any ground location so there is a bias of the reference level, which is unknown. This data has not yet been validated. This displacement map should be used as guidance to identify areas of significant ground displacement and may be less reliable over snow-covered and vegetated areas.\n\nPositive displacement is towards the satellite for each track: east and up on the ascending tracks, west and up on the descending track. Red colors indicate increasing displacement towards the satellite (east on the ascending tracks and west on the descending track), while the blue areas indicate increasing displacement away from the satellite (west on the ascending tracks and east on the descending track). Yellow tones indicate near-zero displacement.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2026-06-13T00:00:00Z",
+    "enddate": "2026-06-30T23:59:59Z"
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/NISAR/GUNW",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*NISAR.*_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "nisar-gunw-composite-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "gunw": {
+          "title": "NISAR Geocoded Unwrapped Interferogram",
+          "description": "Line-of-sight (LOS) surface displacement in centimeters derived from the NISAR Geocoded Unwrapped Interferogram (GUNW) product. Positive values indicate displacement towards the satellite; negative values indicate displacement away from the satellite.",
+          "regex": ".*NISAR.*_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "nisar-gunw-composite"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/NISAR/GUNW/NISAR_D54_GUNW_unw_deIon_deRamp_maskWater_cm_2026-06-17_2026-06-29_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/NISAR/GUNW/NISAR_GUNW_A61_unw_deIon_deRamp_maskWater_cm_clipped_2026-06-18_2026-06-30_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/NISAR/GUNW/NISAR_GUNW_unw_deIon_deRamp_maskWater_cm_2026-06-13_2026-06-25_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "gunw": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "NISAR Geocoded Unwrapped Interferogram",
+      "description": "Line-of-sight (LOS) surface displacement in centimeters derived from the NISAR Geocoded Unwrapped Interferogram (GUNW) product. Positive values indicate displacement towards the satellite; negative values indicate displacement away from the satellite."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "gunw"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "resampling": "bilinear",
+      "colormap_name": "rdylbu_r",
+      "rescale": [
+        [
+          -40,
+          40
+        ]
+      ]
+    },
+    "gunw": {
+      "assets": [
+        "gunw"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "resampling": "bilinear",
+      "colormap_name": "rdylbu_r",
+      "rescale": [
+        [
+          -40,
+          40
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
