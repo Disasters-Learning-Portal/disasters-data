@@ -1,0 +1,122 @@
+{
+  "collection": "sentinel1-dmgassessment-daily",
+  "title": "Sentinel-1 Likely Damaged Areas",
+  "description": "The map is the result of a coherent change detection analysis of interferometric Sentinel-1 radar (InSAR) images comparing post-disaster images with pre-disaster reference images from 2022-2026. Coherent change detection analysis is used to show change across the entire domain, which includes vegetation and forested areas. This analysis is constrained to a snapshot of the FIRIS perimeter domain to highlight the damage to built up areas only.\n\nEach date in this collection is a separate Sentinel-1 pass: January 9, 2025 covers the Altadena/Eaton area; January 13, 2025 covers the Palisades area; January 21, 2025 covers likely damaged structures.\n\nThe map is meant for landscape-level geospatial overlay and visualization purposes of fire damage in urban/built-up regions. For example, the map is useful for tabulating estimates of the number of likely damaged or destroyed structures. Pixel values of 1 represent a region likely damaged or destroyed; pixel values of 0 represent all other regions.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2025-01-09T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-1/DmgAssessment/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*s1_dmgassessment_.*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*s1_dmgassessment_.*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel1-dmgassessment-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "damage": {
+          "title": "Sentinel-1 Likely Damaged Areas",
+          "description": "Likely damaged or destroyed areas derived from coherent change detection of Sentinel-1 InSAR image pairs. 1 = region likely damaged or destroyed; 0 = all other regions.",
+          "regex": ".*s1_dmgassessment_.*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "sentinel1-dmgassessment-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-1/DmgAssessment/s1_dmgassessment_Jan16_Delivery_LA_damage_v0_2025-01-09_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-1/DmgAssessment/s1_dmgassessment_Jan16_Delivery_LA_damage_v0_2025-01-13_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-1/DmgAssessment/s1_dmgassessment_Jan16_Delivery_LA_damage_v0_2025-01-21_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "damage": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-1 Likely Damaged Areas",
+      "description": "Likely damaged or destroyed areas derived from coherent change detection of Sentinel-1 InSAR image pairs. 1 = region likely damaged or destroyed; 0 = all other regions."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "damage"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "resampling": "nearest",
+      "colormap": {
+        "1": [
+          255,
+          0,
+          0,
+          255
+        ]
+      }
+    },
+    "damage": {
+      "assets": [
+        "damage"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "resampling": "nearest",
+      "colormap": {
+        "1": [
+          255,
+          0,
+          0,
+          255
+        ]
+      }
+    }
+  },
+  "providers": [
+    {
+      "name": "ESA",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.esa.int"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
