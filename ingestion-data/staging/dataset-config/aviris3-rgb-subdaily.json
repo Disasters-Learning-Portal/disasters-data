@@ -20,9 +20,9 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/AVIRIS-3/EarlyLook",
+      "prefix": "ProgramData/AVIRIS-3/EarlyLook/",
       "bucket": "nasa-disasters-staging",
-      "filename_regex": ".*\\.tif$",
+      "filename_regex": ".*Z\\.tif$",
       "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
       "id_template": "aviris3-rgb-subdaily-{}",
       "disasters:extract_event_name": true,
@@ -31,7 +31,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "rgb": {
           "title": "AVIRIS Early Look RGB",
@@ -39,7 +38,8 @@
           "regex": ".*earlylook.*\\.tif$"
         }
       },
-      "collection": "aviris3-rgb-daily"
+      "use_multithreading": false,
+      "collection": "aviris3-rgb-subdaily"
     }
   ],
   "data_type": "cog",
@@ -47,6 +47,17 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "rgb": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "AVIRIS Early Look RGB",
+      "description": "The AVIRIS-3 False color RGB wavelengths are 1660nm, 850nm, and 560nm for (R, G, B) respectively."
+    }
+  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -79,16 +90,5 @@
       ],
       "url": "https://www.earthdata.nasa.gov/dashboard/"
     }
-  ],
-  "item_assets": {
-    "rgb": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "AVIRIS Early Look RGB",
-      "description": "The AVIRIS-3 False color RGB wavelengths are 1660nm, 850nm, and 560nm for (R, G, B) respectively."
-    }
-  }
+  ]
 }
