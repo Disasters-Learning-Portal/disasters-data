@@ -1,0 +1,94 @@
+{
+  "collection": "aviris3-rgb-subdaily",
+  "title": "AVIRIS-3 False Color Early Look RGB",
+  "description": "The AVIRIS-3 False color RGB wavelengths are 1660nm, 850nm, and 560nm for (R, G, B) respectively.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/AVIRIS-3/EarlyLook/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "aviris3-rgb-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "rgb": {
+          "title": "AVIRIS Early Look RGB",
+          "description": "The AVIRIS-3 False color RGB wavelengths are 1660nm, 850nm, and 560nm for (R, G, B) respectively.",
+          "regex": ".*earlylook.*\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "aviris3-rgb-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "rgb": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "AVIRIS Early Look RGB",
+      "description": "The AVIRIS-3 False color RGB wavelengths are 1660nm, 850nm, and 560nm for (R, G, B) respectively."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "rgb"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "rgb": {
+      "assets": [
+        "rgb"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA VEDA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
