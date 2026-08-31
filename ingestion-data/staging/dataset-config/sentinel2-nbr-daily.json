@@ -1,0 +1,113 @@
+{
+  "collection": "sentinel2-nbr-daily",
+  "title": "Sentinel-2 Normalized Burn Ratio (NBR)",
+  "description": "Normalized Burn Ratio (NBR) is defined mathematically as (NIR – SWIR)/(NIR + SWIR) where NIR is near-infrared and SWIR is short-wave infrared. NBR is commonly used as a proxy to indicate areas which have charred vegetation. Darker areas (more negative values) in the NBR image more strongly represent the presence of burned vegetation.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2024-12-18T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/NBR/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel2-nbr-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "nbr": {
+          "title": "Burn Ratio",
+          "description": "Normalized Burn Ratio (NBR) index highlighting burned areas by comparing near-infrared and shortwave infrared bands for fire damage assessment.",
+          "regex": ".*(NBR).*\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "sentinel2-nbr-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-2/NBR/s2_NBR_2024-12-18_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "nbr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Burn Ratio",
+      "description": "Normalized Burn Ratio (NBR) index highlighting burned areas by comparing near-infrared and shortwave infrared bands for fire damage assessment."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "nbr"
+      ],
+      "resampling": "bilinear",
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "nodata": -9999
+    },
+    "nbr": {
+      "assets": [
+        "nbr"
+      ],
+      "resampling": "bilinear",
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "nodata": -9999
+    }
+  },
+  "providers": [
+    {
+      "name": "NAS",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
