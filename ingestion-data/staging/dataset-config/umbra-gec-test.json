@@ -1,0 +1,99 @@
+{
+  "collection": "umbra-gec-test",
+  "title": "Umbra SAR GEC (TEST)",
+  "description": "TEST COLLECTION -- not for production use. Exercises the dps-output-discover Lambda end to end: routing, relocation into ProgramData/, and the veda_discover DAG trigger. Discovers from ProgramData/Umbra/GECTest/, a namespace no other config touches -- nothing else in the repo declares any ProgramData/Umbra prefix, so there is no collision in either direction. The trailing slash keeps a future sibling such as GECTest2/ from being absorbed. Renders greyscale with no rescale, because no Umbra raster has been inspected yet; set rescale from real pixel statistics before treating this as anything but a pipeline test. Safe to delete once the pipeline is verified.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Umbra/GECTest/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "umbra-gec-test-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "gec": {
+          "title": "Umbra SAR GEC amplitude",
+          "description": "Single-band SAR amplitude from an Umbra Geocoded Ellipsoid Corrected (GEC) collect.",
+          "regex": ".*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "umbra-gec-test"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "gec": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Umbra SAR GEC amplitude",
+      "description": "Single-band SAR amplitude from an Umbra Geocoded Ellipsoid Corrected (GEC) collect."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "gec"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "gray"
+    },
+    "gec": {
+      "assets": [
+        "gec"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "gray"
+    }
+  },
+  "providers": [
+    {
+      "name": "Umbra Lab, Inc.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://umbra.space"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
