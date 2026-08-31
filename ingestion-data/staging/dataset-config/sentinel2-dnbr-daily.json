@@ -1,0 +1,113 @@
+{
+  "collection": "sentinel2-dnbr-daily",
+  "title": "Sentinel-2 Differenced Normalized Burn Ratio (dNBR)",
+  "description": "Differenced Normalized Burn Ratio (dNBR) is computed by the difference between the pre-fire NBR and the post-fire NBR. More information on dNBR can be found here: https://un-spider.org/advisory-support/recommended-practices/recommended-practice-burn-severity/in-detail/normalized-burn-ratio. Since the dNBR considers the condition of the scene before the fire occurred, the resulting value has been used as a proxy for burn severity. Higher dNBR values represent a proxy for greater burn severity. Negative dNBR values may represent a re-greening of or growth of vegetation in between pre and post imagery.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2024-01-12T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/dNBR/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel2-dnbr-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "dnbr": {
+          "title": "Differenced Normalized Burn Ratio (dNBR)",
+          "description": "Differenced Normalized Burn Ratio (dNBR) computed from the difference between pre-fire and post-fire NBR. Higher values indicate greater burn severity.",
+          "regex": ".*(dNBR|dnbr).*\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "sentinel2-dnbr-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-2/dNBR/s2_dnbr_dNBR_2025-01-12_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "ColorIR": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
+    },
+    "dnbr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Differenced Normalized Burn Ratio (dNBR)",
+      "description": "Differenced Normalized Burn Ratio (dNBR) computed from the difference between pre-fire and post-fire NBR. Higher values indicate greater burn severity."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "dnbr"
+      ],
+      "resampling": "bilinear",
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "nodata": -9999
+    },
+    "dnbr": {
+      "assets": [
+        "dnbr"
+      ],
+      "resampling": "bilinear",
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "nodata": -9999
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA",
+      "roles": [
+        "host"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    }
+  ]
+}
