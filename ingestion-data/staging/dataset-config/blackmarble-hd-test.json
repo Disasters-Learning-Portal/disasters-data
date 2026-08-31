@@ -1,12 +1,12 @@
 {
   "collection": "blackmarble-hd-test",
-  "title": "Black Marble HD (TEST)",
-  "description": "TEST COLLECTION -- not for production use. Exercises the dps-output-discover Lambda end to end: routing, relocation into ProgramData/, and the veda_discover DAG trigger. Discovers from ProgramData/Blackmarble/HDTest/ on nasa-disasters-staging, deliberately unlike blackmarble-hd-daily-june2026, which still reads drcs_activations_new/june2026_STM_demo/blackmarble_hd on the nasa-disasters bucket -- landing in ProgramData/ is the relocation step under test. No other config declares a prefix that matches HDTest/, and the trailing slash keeps a future sibling such as HDTest2/ from being absorbed. Render settings are inherited from blackmarble-hd-daily-june2026 (3-band uint8, nodata 0, rescale 0-255) rather than guessed. Safe to delete once the pipeline is verified.",
+  "title": "Black Marble HD Monthly Composite (TEST)",
+  "description": "TEST COLLECTION -- not for production use. Exercises the dps-output-discover Lambda end to end: routing, relocation into ProgramData/, and the veda_discover DAG trigger. Discovers monthly composites only, from ProgramData/Blackmarble/TestHD/ on nasa-disasters-staging, seeded from ProgramData/Blackmarble/hd/. The prefix deliberately does NOT begin with 'hd': a future production config declaring the slash-less prefix ProgramData/Blackmarble/hd would otherwise claim every file in an hd* test folder as well as this one. The date group accepts both 202408 and 2024-08 because the real files use the unhyphenated form while every other monthly config in this repo captures the hyphenated one. Safe to delete once the pipeline is verified.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
-  "dashboard:time_density": "day",
-  "dashboard:time_interval": "P1D",
+  "dashboard:time_density": "month",
+  "dashboard:time_interval": "P1M",
   "links": [],
   "spatial_extent": {
     "xmin": -180,
@@ -21,11 +21,11 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/Blackmarble/HDTest/",
+      "prefix": "ProgramData/Blackmarble/TestHD/",
       "bucket": "nasa-disasters-staging",
-      "filename_regex": ".*_day\\.tif$",
-      "datetime_range": "day",
-      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "filename_regex": ".*_\\d{4}-?\\d{2}_monthly\\.tif$",
+      "datetime_range": "month",
+      "id_regex": ".*_(\\d{4}-?\\d{2})_monthly\\.tif$",
       "id_template": "blackmarble-hd-test-{}",
       "disasters:extract_event_name": true,
       "disasters:monty": true,
@@ -35,14 +35,17 @@
       "dry_run": false,
       "assets": {
         "blackmarble_hd": {
-          "title": "Black Marble HD",
-          "description": "Black Marble HD daily BRDF-corrected nighttime lights imagery.",
-          "regex": ".*_day\\.tif$"
+          "title": "Black Marble HD Monthly Composite",
+          "description": "Black Marble HD monthly composite of BRDF-corrected nighttime lights, derived from VNP46A3.",
+          "regex": ".*_monthly\\.tif$"
         }
       },
       "use_multithreading": false,
       "collection": "blackmarble-hd-test"
     }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Blackmarble/TestHD/finalBMHD_VNP46A3_MonthlyComposite_2024-08_monthly.tif"
   ],
   "data_type": "cog",
   "stac_extensions": [
@@ -56,8 +59,8 @@
         "data",
         "layer"
       ],
-      "title": "Black Marble HD",
-      "description": "Black Marble HD daily BRDF-corrected nighttime lights imagery."
+      "title": "Black Marble HD Monthly Composite",
+      "description": "Black Marble HD monthly composite of BRDF-corrected nighttime lights, derived from VNP46A3."
     }
   },
   "renders": {
