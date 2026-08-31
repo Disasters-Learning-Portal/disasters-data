@@ -1,0 +1,104 @@
+{
+  "collection": "opera-dnbr-subdaily",
+  "title": "OPERA dNBR Subdaily",
+  "description": "OPERA differenced Normalized Burn Ratio product for subdaily burn severity and fire impact mapping.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/dNBR/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "opera-dnbr-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "dnbr": {
+          "title": "dNBR",
+          "description": "Differenced Normalized Burn Ratio product for burn severity and fire impact mapping.",
+          "regex": ".*(dnbr).*\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "opera-dnbr-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "dnbr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "dNBR",
+      "description": "Differenced Normalized Burn Ratio product for burn severity and fire impact mapping."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "dnbr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "greys"
+    },
+    "dnbr": {
+      "assets": [
+        "dnbr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "greys"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
