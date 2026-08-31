@@ -1,0 +1,115 @@
+{
+  "collection": "blackmarble-hd-test",
+  "title": "Black Marble HD (TEST)",
+  "description": "TEST COLLECTION -- not for production use. Exercises the dps-output-discover Lambda end to end: routing, relocation into ProgramData/, and the veda_discover DAG trigger. Discovers from ProgramData/Blackmarble/HDTest/ on nasa-disasters-staging, deliberately unlike blackmarble-hd-daily-june2026, which still reads drcs_activations_new/june2026_STM_demo/blackmarble_hd on the nasa-disasters bucket -- landing in ProgramData/ is the relocation step under test. No other config declares a prefix that matches HDTest/, and the trailing slash keeps a future sibling such as HDTest2/ from being absorbed. Render settings are inherited from blackmarble-hd-daily-june2026 (3-band uint8, nodata 0, rescale 0-255) rather than guessed. Safe to delete once the pipeline is verified.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Blackmarble/HDTest/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "blackmarble-hd-test-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "blackmarble_hd": {
+          "title": "Black Marble HD",
+          "description": "Black Marble HD daily BRDF-corrected nighttime lights imagery.",
+          "regex": ".*_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "blackmarble-hd-test"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "blackmarble_hd": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Black Marble HD",
+      "description": "Black Marble HD daily BRDF-corrected nighttime lights imagery."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "blackmarble_hd"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "blackmarble_hd": {
+      "assets": [
+        "blackmarble_hd"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Black Marble",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://blackmarble.gsfc.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
