@@ -73,9 +73,9 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
+      "nodata": "nan",
       "resampling": "bilinear",
-      "colormap_name": "viridis",
+      "colormap_name": "turbo",
       "rescale": [
         [
           0,
@@ -90,7 +90,7 @@
       "bidx": [
         1
       ],
-      "nodata": 0,
+      "nodata": "nan",
       "resampling": "bilinear",
       "colormap_name": "turbo",
       "rescale": [
