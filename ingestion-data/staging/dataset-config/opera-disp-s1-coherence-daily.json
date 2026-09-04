@@ -23,7 +23,7 @@
       "discovery": "s3",
       "prefix": "ProgramData/OPERA/Displacement/",
       "bucket": "nasa-disasters-staging",
-      "filename_regex": "^OPERA_S1_[AD]\\d{3}_COH_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "filename_regex": ".*OPERA_S1_[AD]\\d{3}_COH_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
       "datetime_range": "day",
       "id_regex": "^OPERA_S1_([AD]\\d{3}_COH_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
       "id_template": "opera-disp-s1-coherence-daily-{}",
