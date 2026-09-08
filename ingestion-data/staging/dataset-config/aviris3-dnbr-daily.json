@@ -33,7 +33,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "dnbr": {
           "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
@@ -41,6 +40,7 @@
           "regex": "^(?:Palisades|Eaton)_AV3_provisional_dNBR_866nm_2198nm_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
         }
       },
+      "use_multithreading": false,
       "collection": "aviris3-dnbr-daily"
     }
   ],
@@ -53,6 +53,17 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "dnbr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
+      "description": "Single-band AVIRIS-3 differenced Normalized Burn Ratio. Values range from -1 to 1."
+    }
+  },
   "renders": {
     "dashboard": {
       "bidx": [
@@ -64,7 +75,7 @@
           1
         ]
       ],
-      "colormap_name": "gray",
+      "colormap_name": "greys_r",
       "resampling": "bilinear",
       "assets": [
         "cog_default"
@@ -79,7 +90,7 @@
       ],
       "nodata": null,
       "resampling": "bilinear",
-      "colormap_name": "gray",
+      "colormap_name": "greys_r",
       "rescale": [
         [
           -1,
@@ -103,16 +114,5 @@
       ],
       "url": "https://disasters.openveda.cloud"
     }
-  ],
-  "item_assets": {
-    "dnbr": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
-      "description": "Single-band AVIRIS-3 differenced Normalized Burn Ratio. Values range from -1 to 1."
-    }
-  }
+  ]
 }
