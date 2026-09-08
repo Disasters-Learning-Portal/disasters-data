@@ -1,0 +1,118 @@
+{
+  "collection": "aviris3-dnbr-daily",
+  "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
+  "description": "The normalized burn ratio difference (dNBR) are generated from the NASA AVIRIS-3 (Airborne Visible/Infrared Imaging Spectrometer -3). They are generated from differencing images from September 5, 2024 and January 16, 2025 over Palisades and Eaton. NBR is defined mathematically as (NIR – SWIR)/(NIR + SWIR) where NIR is near-infrared and SWIR is short-wave infrared. dNBR is computed by the difference between the pre-fire NBR and the post-fire NBR. More information on dNBR can be found here: https://un-spider.org/advisory-support/recommended-practices/recommended-practice-burn-severity/in-detail/normalized-burn-ratio.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2025-01-16T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/AVIRIS-3/dnbr/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*(?:Palisades|Eaton)_AV3_provisional_dNBR_866nm_2198nm_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": "^((?:Palisades|Eaton)_AV3_provisional_dNBR_866nm_2198nm_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "aviris3-dnbr-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "dnbr": {
+          "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
+          "description": "Single-band AVIRIS-3 differenced Normalized Burn Ratio derived from September 5, 2024 and January 16, 2025 observations. Values range from -1 to 1.",
+          "regex": "^(?:Palisades|Eaton)_AV3_provisional_dNBR_866nm_2198nm_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "collection": "aviris3-dnbr-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/dnbr/Palisades_AV3_provisional_dNBR_866nm_2198nm_2024-09-05_2025-01-16_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/dnbr/Eaton_AV3_provisional_dNBR_866nm_2198nm_2024-09-05_2025-01-16_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "gray",
+      "resampling": "bilinear",
+      "assets": [
+        "cog_default"
+      ]
+    },
+    "dnbr": {
+      "assets": [
+        "dnbr"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": null,
+      "resampling": "bilinear",
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA AVIRIS-3",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "dnbr": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "AVIRIS-3 Differenced Normalized Burn Ratio (dNBR)",
+      "description": "Single-band AVIRIS-3 differenced Normalized Burn Ratio. Values range from -1 to 1."
+    }
+  }
+}
