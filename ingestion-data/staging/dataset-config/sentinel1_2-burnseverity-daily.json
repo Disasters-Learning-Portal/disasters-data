@@ -1,0 +1,169 @@
+{
+  "collection": "sentinel1_2-burnseverity-daily",
+  "title": "Sentinel-1 and Sentinel-2 Combined Fire Severity",
+  "description": "Researchers at NASA Ames Research Center and the NASA Advanced Supercomputing Division created this combined fire severity product using observations from the Copernicus Sentinel-1 Synthetic Aperture Radar (SAR) and Sentinel-2 MultiSpectral Instrument (MSI). The multi-sensor approach combines Sentinel-1 sensitivity to structural changes in vegetation with Sentinel-2 sensitivity to spectral changes associated with burned vegetation to characterize fire-induced surface impacts.\n\nThe underlying analysis uses pre- and post-fire Sentinel-1 and Sentinel-2 observations to identify changes associated with fire severity. Sentinel-1 provides information about structural changes through variations in radar backscatter, while Sentinel-2 provides complementary information about vegetation condition from visible, near-infrared, and shortwave-infrared observations. The resulting classification represents a gradient of fire impact derived from the combined SAR and optical observations.\n\nThis product was developed for the January 2025 Southern California wildfires and should be treated as a rapid-response fire severity product. The classification is intended to support situational awareness and assessment of fire impacts to vegetation. Results are preliminary and should not be interpreted as a ground-validated assessment of structural damage.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2025-01-12T00:00:00Z",
+    "enddate": "2025-01-12T23:59:59Z"
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-1_2/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Combined_classification_Unburnt_to_Extreme_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*Combined_classification_Unburnt_to_Extreme_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel1-sentinel2-fire-severity-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "burnseverity": {
+          "title": "Sentinel-1 and Sentinel-2 Combined Fire Severity",
+          "description": "Categorical fire severity classification derived from combined Sentinel-1 SAR and Sentinel-2 optical observations.",
+          "regex": "^Combined_classification_Unburnt_to_Extreme_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "sentinel1-sentinel2-fire-severity-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-1_2/Combined_classification_Unburnt_to_Extreme_2025-01-12_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "burnseverity": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Sentinel-1 and Sentinel-2 Combined Fire Severity",
+      "description": "Categorical fire severity classification derived from combined Sentinel-1 SAR and Sentinel-2 optical observations."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "burnseverity"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "resampling": "nearest",
+      "colormap": {
+        "1": [
+          255,
+          255,
+          0,
+          255
+        ],
+        "2": [
+          255,
+          165,
+          0,
+          255
+        ],
+        "3": [
+          255,
+          165,
+          0,
+          255
+        ],
+        "4": [
+          255,
+          165,
+          0,
+          255
+        ],
+        "5": [
+          255,
+          0,
+          0,
+          255
+        ]
+      }
+    },
+    "burnseverity": {
+      "assets": [
+        "burnseverity"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "resampling": "nearest",
+      "colormap": {
+        "1": [
+          255,
+          255,
+          0,
+          255
+        ],
+        "2": [
+          255,
+          165,
+          0,
+          255
+        ],
+        "3": [
+          255,
+          165,
+          0,
+          255
+        ],
+        "4": [
+          255,
+          165,
+          0,
+          255
+        ],
+        "5": [
+          255,
+          0,
+          0,
+          255
+        ]
+      }
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Ames Research Center / NASA Advanced Supercomputing Division",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.nasa.gov/ames/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
