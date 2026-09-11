@@ -1,0 +1,118 @@
+{
+  "collection": "capella-backscatter-subdaily",
+  "title": "Capella Backscatter",
+  "description": "Capella Space backscatter is derived from scaling factors provided within the Capella Geocoded Terrain Corrected (GEO) product. The GEO product is geocoded and terrain height corrected using a high-resolution Digital Elevation Model (DEM). The SAR image is multi-looked, range compressed and focused. The units for this product are decibels (dB).",
+  "license": "proprietary",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Capella/Backscatter/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_sigma0_.*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "capella-backscatter-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "backscatter": {
+          "title": "Capella Backscatter",
+          "description": "Capella Space sigma0 backscatter in decibels (dB), derived from the Geocoded Terrain Corrected (GEO) product.",
+          "regex": ".*_sigma0_.*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "capella-backscatter-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "backscatter": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Capella Backscatter",
+      "description": "Capella Space sigma0 backscatter in decibels (dB), derived from the Geocoded Terrain Corrected (GEO) product."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "backscatter"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -25,
+          5
+        ]
+      ]
+    },
+    "backscatter": {
+      "assets": [
+        "backscatter"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -25,
+          5
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "Capella Space",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.capellaspace.com/"
+    },
+    {
+      "name": "NASA Commercial Satellite Data Acquisition (CSDA) Program",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://www.earthdata.nasa.gov/about/csda"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
