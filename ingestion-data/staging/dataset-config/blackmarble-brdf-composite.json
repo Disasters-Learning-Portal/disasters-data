@@ -1,0 +1,113 @@
+{
+  "collection": "blackmarble-brdf-composite",
+  "title": "Black Marble BRDF",
+  "description": "Black Marble Bidirectional Reflectance Distribution Function (BRDF) monthly nighttime lights composite. Each image is a cloud-free, pre-event composite built from the daily BRDF-corrected product and serves as the baseline against which post-event nighttime lights are compared. Pair it with the daily collection (blackmarble-brdf-daily), which holds the post-event imagery for the same events.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "month",
+  "dashboard:time_interval": "P1M",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Blackmarble/brdfCorrected/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_monthly\\.tif$",
+      "datetime_range": "month",
+      "id_regex": ".*(\\d{4}-\\d{2})_monthly\\.tif$",
+      "id_template": "blackmarble-brdf-composite-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "blackmarble_brdf": {
+          "title": "Black Marble BRDF",
+          "description": "Black Marble Bidirectional Reflectance Distribution Function (BRDF) monthly cloud-free pre-event nighttime lights composite.",
+          "regex": ".*_monthly\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "blackmarble-brdf-composite"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "blackmarble_brdf": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Black Marble BRDF",
+      "description": "Black Marble Bidirectional Reflectance Distribution Function (BRDF) monthly cloud-free pre-event nighttime lights composite."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "blackmarble_brdf"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    },
+    "blackmarble_brdf": {
+      "assets": [
+        "blackmarble_brdf"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          255
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Black Marble",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://blackmarble.gsfc.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
