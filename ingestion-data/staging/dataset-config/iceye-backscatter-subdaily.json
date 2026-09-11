@@ -1,0 +1,118 @@
+{
+  "collection": "iceye-backscatter-subdaily",
+  "title": "ICEYE Backscatter",
+  "description": "ICEYE sigma0 radar backscatter in decibels (dB), calibrated from the ICEYE Ground Range Detected (GRD) product using the calibration factor supplied in the scene metadata. ICEYE operates a constellation of X-band synthetic aperture radar (SAR) satellites that image day or night and through cloud, acquired for NASA through the Commercial Satellite Data Acquisition (CSDA) Program. Backscatter represents the strength of radar energy returned to the sensor and reveals differences in surface roughness, moisture, and structure; smooth open water returns little energy and appears dark, which makes the product useful for mapping flood extent.",
+  "license": "proprietary",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Iceye/Backscatter/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_sigma0-dB_.*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "iceye-backscatter-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "backscatter": {
+          "title": "ICEYE Backscatter",
+          "description": "ICEYE sigma0 backscatter in decibels (dB), calibrated from the Ground Range Detected (GRD) product.",
+          "regex": ".*_sigma0-dB_.*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "iceye-backscatter-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "backscatter": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "ICEYE Backscatter",
+      "description": "ICEYE sigma0 backscatter in decibels (dB), calibrated from the Ground Range Detected (GRD) product."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "backscatter"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -10,
+          5
+        ]
+      ]
+    },
+    "backscatter": {
+      "assets": [
+        "backscatter"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "colormap_name": "gray",
+      "rescale": [
+        [
+          -10,
+          5
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "ICEYE",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.iceye.com/"
+    },
+    {
+      "name": "NASA Commercial Satellite Data Acquisition (CSDA) Program",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://science.nasa.gov/earth-science/csda/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
