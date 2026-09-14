@@ -1,0 +1,106 @@
+{
+  "collection": "skysat-colorir-subdaily",
+  "title": "Planet SkySat Color Infrared",
+  "description": "Planet SkySat Color Infrared imagery is a three-band false-color composite of the near-infrared, red, and green bands from Planet Labs PBC's SkySat constellation. Healthy vegetation appears red, water dark blue to black, and burned or bare ground dark or brown, which makes flooding, vegetation damage, and burn scars easier to distinguish. SkySat satellites can revisit a location multiple times a day and collect imagery at approximately 50 cm per pixel (multispectral bands: blue 450-515 nm, green 515-595 nm, red 605-695 nm, NIR 740-900 nm). Each item is an individual scene stamped with its acquisition time. Access is provided through NASA's Commercial Satellite Data Acquisition (CSDA) Program; includes copyrighted material of Planet Labs PBC.",
+  "license": "proprietary",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2026-04-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Skysat/ColorIR/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "skysat-colorir-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "colorir": {
+          "title": "Color Infrared",
+          "description": "False color infrared composite combining the near-infrared, red, and green bands from Planet SkySat imagery.",
+          "regex": ".*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "skysat-colorir-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "colorir": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Color Infrared",
+      "description": "False color infrared composite combining the near-infrared, red, and green bands from Planet SkySat imagery."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "colorir"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ]
+    },
+    "colorir": {
+      "assets": [
+        "colorir"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "Planet Labs PBC",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.planet.com/"
+    },
+    {
+      "name": "NASA Commercial Satellite Data Acquisition (CSDA) Program",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://science.nasa.gov/earth-science/csda/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
