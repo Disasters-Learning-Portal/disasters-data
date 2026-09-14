@@ -1,0 +1,106 @@
+{
+  "collection": "satellogic-truecolor-subdaily",
+  "title": "Satellogic True Color",
+  "description": "Three-band true color (RGB) composite from Satellogic's high-resolution four-band multispectral satellites (sub-meter to approximately 1 m; the Typhoon Sinlaku deliveries are 0.5 m L1D super-resolution), combining the red, green, and blue bands to show the surface as it would appear to the naked eye from space. Uint8 RGB; pixels outside the scene footprint are 0 in every band and declared as nodata. Access to Satellogic commercial imagery is provided through NASA's Commercial Satellite Data Acquisition (CSDA) Program.",
+  "license": "proprietary",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Satellogic/TrueColor/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_truecolor_.*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "satellogic-truecolor-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "truecolor": {
+          "title": "Satellogic True Color",
+          "description": "Standard RGB composite using the visible red, green, and blue bands from Satellogic multispectral imagery.",
+          "regex": ".*_truecolor_.*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "satellogic-truecolor-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "truecolor": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Satellogic True Color",
+      "description": "Standard RGB composite using the visible red, green, and blue bands from Satellogic multispectral imagery."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "truecolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ]
+    },
+    "truecolor": {
+      "assets": [
+        "truecolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "Satellogic",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://satellogic.com/"
+    },
+    {
+      "name": "NASA Commercial Satellite Data Acquisition (CSDA) Program",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://science.nasa.gov/earth-science/csda/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
