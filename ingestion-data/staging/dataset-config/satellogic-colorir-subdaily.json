@@ -1,0 +1,106 @@
+{
+  "collection": "satellogic-colorir-subdaily",
+  "title": "Satellogic Color Infrared",
+  "description": "Three-band color infrared (false color) composite from Satellogic's high-resolution four-band multispectral satellites (sub-meter to approximately 1 m; the Typhoon Sinlaku deliveries are 0.5 m L1D super-resolution), combining the near-infrared, red, and green bands. Healthy vegetation appears red, water appears dark blue to black, and burned or bare areas appear brown to gray, making flooding, storm damage, and burn scars easier to distinguish than in true color. Uint8 RGB; pixels outside the scene footprint are 0 in every band and declared as nodata. Access to Satellogic commercial imagery is provided through NASA's Commercial Satellite Data Acquisition (CSDA) Program.",
+  "license": "proprietary",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Satellogic/ColorIR/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_colorir_.*Z\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "satellogic-colorir-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "colorir": {
+          "title": "Satellogic Color Infrared",
+          "description": "False color infrared composite combining the near-infrared, red, and green bands from Satellogic multispectral imagery for vegetation, water, and damage assessment.",
+          "regex": ".*_colorir_.*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "satellogic-colorir-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "colorir": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Satellogic Color Infrared",
+      "description": "False color infrared composite combining the near-infrared, red, and green bands from Satellogic multispectral imagery for vegetation, water, and damage assessment."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "colorir"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ]
+    },
+    "colorir": {
+      "assets": [
+        "colorir"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "Satellogic",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://satellogic.com/"
+    },
+    {
+      "name": "NASA Commercial Satellite Data Acquisition (CSDA) Program",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://science.nasa.gov/earth-science/csda/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
