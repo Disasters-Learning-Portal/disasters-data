@@ -22,7 +22,7 @@
       "discovery": "s3",
       "prefix": "ProgramData/Satellogic/TrueColor/",
       "bucket": "nasa-disasters-staging",
-      "filename_regex": "^Satellogic_.*_truecolor_.*Z\\.tif$",
+      "filename_regex": ".*_truecolor_.*Z\\.tif$",
       "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
       "id_template": "satellogic-truecolor-subdaily-{}",
       "disasters:extract_event_name": true,
@@ -35,7 +35,7 @@
         "truecolor": {
           "title": "Satellogic True Color",
           "description": "Standard RGB composite using the visible red, green, and blue bands from Satellogic multispectral imagery.",
-          "regex": "^Satellogic_.*_truecolor_.*Z\\.tif$"
+          "regex": ".*_truecolor_.*Z\\.tif$"
         }
       },
       "use_multithreading": false,
