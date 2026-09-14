@@ -22,7 +22,7 @@
       "discovery": "s3",
       "prefix": "ProgramData/Satellogic/ColorIR/",
       "bucket": "nasa-disasters-staging",
-      "filename_regex": "^Satellogic_.*_colorir_.*Z\\.tif$",
+      "filename_regex": ".*_colorir_.*Z\\.tif$",
       "id_regex": ".*(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
       "id_template": "satellogic-colorir-subdaily-{}",
       "disasters:extract_event_name": true,
@@ -35,7 +35,7 @@
         "colorir": {
           "title": "Satellogic Color Infrared",
           "description": "False color infrared composite combining the near-infrared, red, and green bands from Satellogic multispectral imagery for vegetation, water, and damage assessment.",
-          "regex": "^Satellogic_.*_colorir_.*Z\\.tif$"
+          "regex": ".*_colorir_.*Z\\.tif$"
         }
       },
       "use_multithreading": false,
