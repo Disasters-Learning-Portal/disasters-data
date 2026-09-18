@@ -85,11 +85,12 @@
   },
   "providers": [
     {
-      "name": "ESA",
+      "name": "Copernicus",
       "roles": [
-        "host"
+        "producer",
+        "licensor"
       ],
-      "url": "https://www.esa.int"
+      "url": "https://www.copernicus.eu/"
     }
   ],
   "item_assets": {
