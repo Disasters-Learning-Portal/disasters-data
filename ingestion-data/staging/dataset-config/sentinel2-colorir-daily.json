@@ -94,11 +94,12 @@
   },
   "providers": [
     {
-      "name": "NASA",
+      "name": "Copernicus",
       "roles": [
-        "host"
+        "producer",
+        "licensor"
       ],
-      "url": "https://www.earthdata.nasa.gov/dashboard/"
+      "url": "https://www.copernicus.eu/"
     }
   ]
 }
