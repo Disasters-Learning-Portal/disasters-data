@@ -1,0 +1,106 @@
+{
+  "collection": "aviris3-pca-daily",
+  "title": "AVIRIS-3 Principal Component Analysis (PCA)",
+  "description": "This product visualizes three dominant principal components derived from the surface reflectance estimates from airborne imaging spectroscopy measurements taken by NASA JPL’s AVIRIS-3. The image visualizes the relative strength of three dominant eigenvectors, estimated from data across the full scene. Eigenvectors from this high (284) dimensional dataset do not specifically identify physical features but are correlated to physical phenomena; similar to how ‘red’, ‘green’, or ‘blue’ in a traditional image are correlated to, but not directly indicative of, specific physical processes. Instead of just “red,” “green,” and “blue,” this analysis considers 284 unique “colors” in the visible to shortwave infrared spectrum, providing a much more robust depiction of spectral differences. Thus, contrast between different colored regions in this image can be used to infer strong differences in surface type. For example, the fire boundary at the time of image collection is readily apparent. Explained another way, within a given scene, burned structures will share a unique spectral reflectance signature in “284-color-space” compared to other surfaces and display as the same color in the PCA image.\n\nIn the absence of a supervised image classification, the PCA image can demonstrate areas with similar spectral reflectance properties. On visual inspection of the PCA image, we can intuitively differentiate burned areas from non-burned areas, even for different types of burned surfaces (e.g. burned vegetation vs. burned structures).",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/AVIRIS-3/PCA/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_pca_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "aviris3-pca-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "pca": {
+          "title": "Principal Component Analysis",
+          "description": "Three-band 8-bit RGB visualization of the three dominant principal components of AVIRIS-3 surface reflectance. Pixel value 0 across all three bands is fill.",
+          "regex": ".*_pca_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "aviris3-pca-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/PCA/Eaton_AV3_pca_2025-01-11_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/PCA/Palisades_AV3_pca_2025-01-11_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "pca": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Principal Component Analysis",
+      "description": "Three-band 8-bit RGB visualization of the three dominant principal components of AVIRIS-3 surface reflectance. Pixel value 0 across all three bands is fill."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "pca"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "pca": {
+      "assets": [
+        "pca"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA AVIRIS-3",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
