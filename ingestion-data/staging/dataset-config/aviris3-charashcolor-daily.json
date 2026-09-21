@@ -1,0 +1,106 @@
+{
+  "collection": "aviris3-charashcolor-daily",
+  "title": "AVIRIS-3 Relative Char and Ash Product (Color)",
+  "description": "Pre-rendered pseudo-color visualization of the AVIRIS-3 Relative Char and Ash Product. This product shows the char/ash fraction of each pixel based on airborne imaging spectroscopy measurements from NASA JPL AVIRIS-3. The surface reflectance was first estimated using ISOFIT, after which a Spectral Unmixing algorithm was used to determine the amount of char and ash within each pixel, based on the MESMA approach. See credits for citations and more information on ISOFIT, Spectral Unmixing, and the MESMA approach. The char/ash fractional cover value is displayed as a single band pseudo-color grayscale, with thresholds at minimum detectable bounds of 50% and 80% char/ash fractional cover.\n\nThe product describes the relative amount of char and ash (0-1) within each pixel. In order to deliver a product with low latency, the endmember library used was constrained to that common to a Southern California urban environment, and manual masking was also used. Locations that are heavily shaded may have errant solutions. The product also only indicates the char/ash fraction of the exposed surface - not what lies underneath. Areas covered by ash, for example, may express as having a fraction despite having only a thin coating of ash on top.\n\nThis is a research grade product with known false positives and false negatives. Improvements to product accuracy are ongoing and linear spectral mixture model was used to approximate char/ash fractional cover; however, due to multiple scattering effects of complex surfaces, actual the relationship between observed char/ash reflectance and actual char/ash abundance may be non-linear.\n\nThe color rendering is baked into the pixels as an 8-bit RGB image; the underlying 0-1 fractional values are served separately by the aviris3-charash-daily collection.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/AVIRIS-3/CharAsh/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*charash_fraction_color_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "aviris3-charashcolor-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "charashcolor": {
+          "title": "Relative Char and Ash Fraction (Color)",
+          "description": "Three-band 8-bit RGB rendering of relative char and ash fractional cover, with the color ramp applied by the producer. Pixel value 0 across all three bands is fill.",
+          "regex": ".*charash_fraction_color_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "aviris3-charashcolor-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/CharAsh/Eaton_1_AV3_charash_fraction_color_2025-01-11_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/CharAsh/Palisades_2_AV3_charash_fraction_color_2025-01-11_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "charashcolor": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Relative Char and Ash Fraction (Color)",
+      "description": "Three-band 8-bit RGB rendering of relative char and ash fractional cover, with the color ramp applied by the producer. Pixel value 0 across all three bands is fill."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "charashcolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "charashcolor": {
+      "assets": [
+        "charashcolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA AVIRIS-3",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
