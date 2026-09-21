@@ -1,0 +1,52 @@
+name: Collection dates
+
+# Type a collection id and get back the dates it actually holds, as a job summary.
+# Read-only: it queries the public STAC API and needs no credentials.
+
+on:
+  workflow_dispatch:
+    inputs:
+      collection:
+        description: "STAC collection id, e.g. landsat-truecolor-daily"
+        required: true
+        type: string
+      stac:
+        description: "Which STAC API to query"
+        required: true
+        default: dev
+        type: choice
+        options:
+          - dev
+          - production
+      max_pages:
+        description: "Page cap (500 items per page)"
+        required: false
+        default: "40"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  dates:
+    name: Report available dates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Setup Python
+        uses: actions/setup-python@b64ffcaf5b410884ad320a9cfac8866006a109aa # v4.8.0
+        with:
+          python-version: "3.11"
+      # Inputs go through the environment, never through ${{ }} inside the shell,
+      # so a collection id cannot break out into the runner's shell.
+      - name: Report available dates
+        env:
+          COLLECTION: ${{ inputs.collection }}
+          STAC: ${{ inputs.stac }}
+          MAX_PAGES: ${{ inputs.max_pages }}
+        run: |
+          python3 scripts/collection_dates.py "$COLLECTION" \
+            --env "$STAC" \
+            --max-pages "$MAX_PAGES" \
+            --format markdown | tee -a "$GITHUB_STEP_SUMMARY"
