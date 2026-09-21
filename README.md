@@ -87,7 +87,7 @@ These are the configs used to transfer assets from the dev bucket (`ghgc-data-st
 | `assets.<asset_name>.description` | A description for the asset                                   |
 | `assets.<asset_name>.regex`       | The regex pattern that matches a filename to its respective asset                                   |
 
-#### archive
+#### discovery-items archive
 
 These are the discovery-items config for collections that we no longer update.
 
