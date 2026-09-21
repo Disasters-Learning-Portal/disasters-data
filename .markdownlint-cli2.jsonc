@@ -1,6 +1,9 @@
 {
     "config": {
         "MD013": false, // disable line length checks
+        "MD024": {
+            "siblings_only": true // `archive` appears under several parent sections
+        },
         "MD033": {
             "allowed_elements": [ "a", "b", "details", "summary" ]
         }
