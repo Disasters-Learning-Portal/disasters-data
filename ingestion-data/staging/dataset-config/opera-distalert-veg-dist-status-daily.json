@@ -1,0 +1,214 @@
+{
+  "collection": "opera-distalert-veg-dist-status-daily",
+  "title": "OPERA Vegetation Disturbance Status (DIST-ALERT VEG-DIST-STATUS)",
+  "description": "Researchers working with the Advanced Rapid Imaging and Analysis (ARIA) and Observational Products for End-Users from Remote Sensing Analysis (OPERA) teams at NASA's Jet Propulsion Laboratory, Pasadena, California, produce the OPERA Land Surface Disturbance Alert (DIST-ALERT) products. Results posted here are preliminary, primarily intended to aid field response, and are provided with absolutely no warranty of any kind. Use at your own risk.\nEach image is the VEG-DIST-STATUS layer, which reports the detection status and confidence of vegetation cover loss for each pixel relative to a pre-event baseline. It is a categorical layer, rendered with a discrete colormap and no rescale.\nVEG-DIST-STATUS classes:\n0 = no disturbance; 1 = first detection, vegetation cover loss < 50%; 2 = provisional detection, < 50%; 3 = confirmed detection, < 50%; 4 = first detection, >= 50%; 5 = provisional detection, >= 50%; 6 = confirmed detection, >= 50%; 7 = confirmed, < 50%, finished; 8 = confirmed, >= 50%, finished; 255 = no data. 'First' is a single anomalous observation with no follow-up yet, 'provisional' is two consecutive detections, 'confirmed' is a high-confidence detection, and 'finished' means the disturbance is no longer being detected.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2024-10-02T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DistAlert/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*VEG-DIST-STATUS.*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*VEG-DIST-STATUS.*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-distalert-veg-dist-status-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "veg-dist-status": {
+          "title": "OPERA DIST-ALERT Vegetation Disturbance Status (VEG-DIST-STATUS)",
+          "description": "Per-pixel vegetation disturbance detection status from the OPERA DIST-ALERT VEG-DIST-STATUS layer. 0 = no disturbance; 1 = first detection, vegetation cover loss < 50%; 2 = provisional detection, < 50%; 3 = confirmed detection, < 50%; 4 = first detection, >= 50%; 5 = provisional detection, >= 50%; 6 = confirmed detection, >= 50%; 7 = confirmed, < 50%, finished; 8 = confirmed, >= 50%, finished; 255 = no data. 'First' is a single anomalous observation with no follow-up yet, 'provisional' is two consecutive detections, 'confirmed' is a high-confidence detection, and 'finished' means the disturbance is no longer being detected.",
+          "regex": ".*VEG-DIST-STATUS.*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "collection": "opera-distalert-veg-dist-status-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "veg-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "resampling": "nearest",
+      "colormap": {
+        "0": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "1": [
+          255,
+          255,
+          178,
+          255
+        ],
+        "2": [
+          254,
+          204,
+          92,
+          255
+        ],
+        "3": [
+          253,
+          141,
+          60,
+          255
+        ],
+        "4": [
+          252,
+          78,
+          42,
+          255
+        ],
+        "5": [
+          227,
+          26,
+          28,
+          255
+        ],
+        "6": [
+          177,
+          0,
+          38,
+          255
+        ],
+        "7": [
+          119,
+          119,
+          119,
+          255
+        ],
+        "8": [
+          221,
+          221,
+          221,
+          255
+        ]
+      }
+    },
+    "veg-dist-status": {
+      "assets": [
+        "veg-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "resampling": "nearest",
+      "colormap": {
+        "0": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "1": [
+          255,
+          255,
+          178,
+          255
+        ],
+        "2": [
+          254,
+          204,
+          92,
+          255
+        ],
+        "3": [
+          253,
+          141,
+          60,
+          255
+        ],
+        "4": [
+          252,
+          78,
+          42,
+          255
+        ],
+        "5": [
+          227,
+          26,
+          28,
+          255
+        ],
+        "6": [
+          177,
+          0,
+          38,
+          255
+        ],
+        "7": [
+          119,
+          119,
+          119,
+          255
+        ],
+        "8": [
+          221,
+          221,
+          221,
+          255
+        ]
+      }
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "veg-dist-status": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "OPERA DIST-ALERT Vegetation Disturbance Status (VEG-DIST-STATUS)",
+      "description": "Per-pixel vegetation disturbance detection status from the OPERA DIST-ALERT VEG-DIST-STATUS layer. 0 = no disturbance; 1 = first detection, vegetation cover loss < 50%; 2 = provisional detection, < 50%; 3 = confirmed detection, < 50%; 4 = first detection, >= 50%; 5 = provisional detection, >= 50%; 6 = confirmed detection, >= 50%; 7 = confirmed, < 50%, finished; 8 = confirmed, >= 50%, finished; 255 = no data. 'First' is a single anomalous observation with no follow-up yet, 'provisional' is two consecutive detections, 'confirmed' is a high-confidence detection, and 'finished' means the disturbance is no longer being detected."
+    }
+  }
+}
