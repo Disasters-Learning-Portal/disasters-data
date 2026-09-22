@@ -1,7 +1,7 @@
 {
   "collection": "landsat-mndwi-daily",
   "title": "Landsat Modified Normalized Difference Water Index (MNDWI)",
-  "description": "Modified Normalized Difference Water Index (MNDWI) provides a different view of the Earth's surface combining different bands to make water bodies more obvious. This index can be used to identify flooded areas as well as heavily saturated areas. For MNDWI, areas of existing water, such as a rivers or lakes appear in the darkest green with high values near 1, while dry land appears in the darkest brown with low values near -1. This product can be used to identify potentially flooded areas that can be seen in varying shades of green and light brown depending on the amount of moisture picked up by the satellite. Note: Areas of cloud cover will show up in varying shades of green/blue similar to water.",
+  "description": "Modified Normalized Difference Water Index (MNDWI) provides a different view of the Earth's surface combining different bands to make water bodies more obvious. This index can be used to identify flooded areas as well as heavily saturated areas.\nFor MNDWI, areas of existing water, such as a rivers or lakes appear in the darkest green with high values near 1, while dry land appears in the darkest brown with low values near -1. This product can be used to identify potentially flooded areas that can be seen in varying shades of green and light brown depending on the amount of moisture picked up by the satellite. Note: Areas of cloud cover will show up in varying shades of green/blue similar to water.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
