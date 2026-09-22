@@ -1,0 +1,104 @@
+{
+  "collection": "opera-disp-s1-unw-daily",
+  "title": "OPERA Surface Displacement from Sentinel-1 (DISP-S1) Unwrapped Phase",
+  "description": "Researchers working with the Observational Products for End-Users from Remote Sensing Analysis (OPERA) team at NASA's Jet Propulsion Laboratory, California Institute of Technology, created the OPERA Surface Displacement from Sentinel-1 (DISP-S1) product suite to characterize surface displacement using interferometric synthetic aperture radar (InSAR) observations from the Copernicus Sentinel-1 satellites.\n\nThis collection contains unwrapped interferometric phase imagery associated with Sentinel-1 reference and secondary acquisition pairs used for surface displacement analysis. Phase unwrapping removes the 2π ambiguity present in wrapped interferograms, allowing continuous phase differences associated with surface motion to be represented across the scene.\n\nEach image represents a reference and secondary Sentinel-1 acquisition pair. The two acquisition dates are retained in the filename, with the secondary acquisition date used as the observation date for visualization in the dashboard.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2026-06-18T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/Displacement/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*OPERA_S1_[AD]\\d{3}_UNW_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": "^OPERA_S1_([AD]\\d{3}_UNW_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-disp-s1-unw-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "unw": {
+          "title": "OPERA DISP-S1 Unwrapped Phase",
+          "description": "Unwrapped interferometric phase associated with a Sentinel-1 reference and secondary acquisition pair.",
+          "regex": "^OPERA_S1_[AD]\\d{3}_UNW_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "opera-disp-s1-unw-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "unw": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "OPERA DISP-S1 Unwrapped Phase",
+      "description": "Unwrapped interferometric phase associated with a Sentinel-1 reference and secondary acquisition pair."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "unw"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": "nan",
+      "resampling": "bilinear",
+      "colormap_name": "turbo"
+    },
+    "unw": {
+      "assets": [
+        "unw"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": "nan",
+      "resampling": "bilinear",
+      "colormap_name": "turbo"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
