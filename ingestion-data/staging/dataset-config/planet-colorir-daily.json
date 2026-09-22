@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/Planet/ColorIR",
+      "prefix": "ProgramData/Planet/ColorIR/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_day\\.tif$",
       "datetime_range": "day",
@@ -49,15 +49,6 @@
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
   "item_assets": {
-    "ColorIR": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Color Infrared",
-      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
-    },
     "colorir": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
