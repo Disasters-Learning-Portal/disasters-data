@@ -21,11 +21,11 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/UAVSAR/Grayscale",
+      "prefix": "ProgramData/UAVSAR/Grayscale/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*UAVSAR_Grayscale_.*_day\\.tif$",
       "datetime_range": "day",
-      "id_regex": ".*UAVSAR_Grayscale_(.*)_day\\.tif$",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
       "id_template": "uavsar-unetclassifiedgrayscale-daily-{}",
       "disasters:extract_event_name": true,
       "disasters:monty": true,
@@ -57,13 +57,32 @@
       "bidx": [
         1
       ],
-      "colormap_name": "gray",
-      "rescale": [
-        [
-          0,
+      "colormap": {
+        "29": [
+          29,
+          29,
+          29,
+          255
+        ],
+        "76": [
+          76,
+          76,
+          76,
+          255
+        ],
+        "150": [
+          150,
+          150,
+          150,
+          255
+        ],
+        "173": [
+          173,
+          173,
+          173,
           255
         ]
-      ],
+      },
       "nodata": 0
     },
     "unetclassifiedgrayscale": {
@@ -73,13 +92,32 @@
       "bidx": [
         1
       ],
-      "colormap_name": "gray",
-      "rescale": [
-        [
-          0,
+      "colormap": {
+        "29": [
+          29,
+          29,
+          29,
+          255
+        ],
+        "76": [
+          76,
+          76,
+          76,
+          255
+        ],
+        "150": [
+          150,
+          150,
+          150,
+          255
+        ],
+        "173": [
+          173,
+          173,
+          173,
           255
         ]
-      ],
+      },
       "nodata": 0
     }
   },
