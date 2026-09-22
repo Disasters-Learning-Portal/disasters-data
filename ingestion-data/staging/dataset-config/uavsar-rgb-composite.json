@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/UAVSAR/RGB",
+      "prefix": "ProgramData/UAVSAR/RGB/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_day\\.tif$",
       "datetime_range": "day",
