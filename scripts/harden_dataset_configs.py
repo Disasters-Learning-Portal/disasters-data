@@ -81,6 +81,16 @@ CATEGORICAL_UNCONFIGURED = {
     # A single config over that directory would apply one resampling to both. It must not.
 }
 
+# Verified continuous by histogram. Needed where the collection name matches no hint and
+# no discrete colormap is declared, so it would otherwise come back "unclassified".
+CONTINUOUS = {
+    "opera-distalert-veg-anom-max-daily": (
+        "67 distinct values: a smooth unimodal 10-74 spanning every integer, plus 0 and "
+        "255 (verified by histogram). Shares a directory with VEG-DIST-STATUS, which is "
+        "categorical - so resampling must be decided per file, never per directory"
+    ),
+}
+
 # Collections that are genuine measurements or imagery; averaging is correct for these.
 # Anything not in either table is reported as UNCLASSIFIED rather than assumed.
 CONTINUOUS_HINTS = (
@@ -96,6 +106,8 @@ def classify(collection: str, cfg: dict) -> tuple[str, str]:
     """Return (kind, reason). Curated table wins; then declared colormap; then name hint."""
     if collection in CATEGORICAL:
         return "categorical", CATEGORICAL[collection]
+    if collection in CONTINUOUS:
+        return "continuous", CONTINUOUS[collection]
     for render in (cfg.get("renders") or {}).values():
         if isinstance(render.get("colormap"), dict):
             return "categorical", "declares a discrete colormap"
