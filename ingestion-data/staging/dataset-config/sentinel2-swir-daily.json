@@ -1,7 +1,7 @@
 {
   "collection": "sentinel2-swir-daily",
   "title": "Sentinel-2 SWIR (Daily)",
-  "description": "Three-band shortwave infrared (SWIR) composite from Sentinel-2 combining SWIR-2, Narrow near-infrared, and red bands. This collection contains daily composites aggregated to a single image per day.",
+  "description": "Three-band shortwave infrared (SWIR) composite from Sentinel-2 combining SWIR-2, Narrow near-infrared, and red bands.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
