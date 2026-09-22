@@ -1,0 +1,111 @@
+{
+  "collection": "ecostress-lst-subdaily",
+  "title": "ECOSTRESS Land Surface Temperature",
+  "description": "Land surface temperature is the heat you would feel as you touch the ground, rooftop, or other surface. Certain materials retain more heat than others – for instance, beach sand is warmer than vegetated regions. Very recently burned areas will maintain some residual heat, and active fires will have very high heat signatures. Water holds onto heat for longer than land, so the ocean is warmer than the land at night and cooler than the land during the day.\n\nThe ECOsystem Spaceborne Thermal Radiometer Experiment on Space Station (ECOSTRESS) mission measures the temperature of plants to better understand how much water plants need and how they respond to stress. ECOSTRESS is attached to the International Space Station (ISS) and collects data globally as well as key biomes and agricultural zones around the world and selected FLUXNET validation sites. A map of the acquisition coverage can be found on the ECOSTRESS website.\n\nThe ECO2LSTE Version 2 data product provides atmospherically corrected land surface temperature and emissivity (LST&E) values derived from five thermal infrared (TIR) bands. The ECO2LSTE data product was derived using a physics-based Temperature and Emissivity Separation (TES) algorithm.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/ECOSTRESS/LandSurfaceTemperature/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*(_SDS_LST_aid0001_|ECOSTRESS_LST_).*Z\\.tif$",
+      "id_regex": ".*_(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "ecostress-lst-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "lst": {
+          "title": "Land Surface Temperature",
+          "description": "ECOSTRESS land surface temperature. Stored as raw UInt16 digital numbers; multiply by the ECOSTRESS scale factor of 0.02 to obtain Kelvin. Sourced from both ECO2LSTE.001 and ECO_L2_LSTE.002 deliveries, which share this scaling.",
+          "regex": ".*(_SDS_LST_aid0001_|ECOSTRESS_LST_).*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "ecostress-lst-subdaily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "lst": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Land Surface Temperature",
+      "description": "ECOSTRESS land surface temperature. Stored as raw UInt16 digital numbers; multiply by the ECOSTRESS scale factor of 0.02 to obtain Kelvin. Sourced from both ECO2LSTE.001 and ECO_L2_LSTE.002 deliveries, which share this scaling."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "lst"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          13000,
+          16000
+        ]
+      ],
+      "colormap_name": "inferno"
+    },
+    "lst": {
+      "assets": [
+        "lst"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          13000,
+          16000
+        ]
+      ],
+      "colormap_name": "inferno"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA JPL ECOSTRESS",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://ecostress.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
