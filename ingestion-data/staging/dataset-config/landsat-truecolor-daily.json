@@ -1,7 +1,7 @@
 {
   "collection": "landsat-truecolor-daily",
   "title": "Landsat True Color",
-  "description": "True Color: The True Color RGB composite provides a product of how the surface would look to the naked eye from space. The RGB is created using the red, green, and blue channels of the respective instrument.",
+  "description": "The True Color RGB composite provides a product of how the surface would look to the naked eye from space. The RGB is created using the red, green, and blue channels of the respective instrument.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
