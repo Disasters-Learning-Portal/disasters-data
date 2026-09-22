@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/UAVSAR/UNetClassified",
+      "prefix": "ProgramData/UAVSAR/UNetClassified/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": ".*_UNet_class.*day\\.tif$",
       "datetime_range": "day",
