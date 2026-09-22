@@ -1,0 +1,106 @@
+{
+  "collection": "sentinel2-naturalcolor-daily",
+  "title": "Sentinel-2 Natural Color",
+  "description": "Three-band natural colour composite from Sentinel-2, combining the red, green and blue MSI bands into a view approximating what the human eye would see. Produced for disaster activations from Sentinel-2A, 2B and 2C acquisitions and staged as 8-bit RGB COGs at 10 m resolution.\n\nCovers several activations: the February 2023 Turkiye earthquake, Hurricane Idalia (pre-event baseline, July 2023), Tropical Storm Debby (August 2024) and the February 2025 Ohio Valley flood. Scene naming varies across activations because the composites were produced by different runs; the discovery regex accepts every variant.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Sentinel-2/NaturalColor/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "sentinel2-naturalcolor-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "naturalcolor": {
+          "title": "Natural Color",
+          "description": "Three-band natural colour composite (red, green, blue) from Sentinel-2 MSI, delivered as an 8-bit RGB COG. Pixel value 0 is fill: the darkest valid value measured across sampled scenes is 29, so 0 occurs only outside the imaged footprint.",
+          "regex": ".*(naturalColor|NaturalColor|natural_color).*_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "sentinel2-naturalcolor-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Sentinel-2/NaturalColor/S2A_naturalColor_155901_T17SNV_2024-08-10_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "naturalcolor": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Natural Color",
+      "description": "Three-band natural colour composite (red, green, blue) from Sentinel-2 MSI, delivered as an 8-bit RGB COG."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "naturalcolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    },
+    "naturalcolor": {
+      "assets": [
+        "naturalcolor"
+      ],
+      "bidx": [
+        1,
+        2,
+        3
+      ],
+      "nodata": 0
+    }
+  },
+  "providers": [
+    {
+      "name": "ESA",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.esa.int"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
