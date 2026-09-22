@@ -51,6 +51,12 @@
   ],
   "renders": {
     "dashboard": {
+      "assets": [
+        "veg-anom-max"
+      ],
+      "bidx": [
+        1
+      ],
       "nodata": 255,
       "colormap_name": "inferno",
       "rescale": [
@@ -58,15 +64,15 @@
           0,
           100
         ]
-      ],
-      "assets": [
-        "veg-anom-max"
-      ],
-      "bidx": [
-        1
       ]
     },
     "veg-anom-max": {
+      "assets": [
+        "veg-anom-max"
+      ],
+      "bidx": [
+        1
+      ],
       "nodata": 255,
       "colormap_name": "inferno",
       "rescale": [
@@ -74,12 +80,6 @@
           0,
           100
         ]
-      ],
-      "assets": [
-        "veg-anom-max"
-      ],
-      "bidx": [
-        1
       ]
     }
   },
