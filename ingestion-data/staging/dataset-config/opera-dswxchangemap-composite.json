@@ -1,0 +1,105 @@
+{
+  "collection": "opera-dswxchangemap-composite",
+  "title": "OPERA DSWx Surface Water Change Map",
+  "description": "OPERA Dynamic Surface Water Extent (DSWx) change maps derived from Sentinel-1, comparing binary water extent between two acquisition dates. Each product is a three-class layer: water gain, no change, and water loss over the interval.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1M",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2024-09-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DSWx/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*ChngMap.*_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-dswxchangemap-composite-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "changemap": {
+          "title": "Surface Water Change Map",
+          "description": "Sentinel-1 binary water change between two dates: 1 = water gain, 0 = no change, -1 = water loss.",
+          "regex": ".*ChngMap.*_day\\.tif$"
+        }
+      },
+      "collection": "opera-dswxchangemap-composite"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "changemap"
+      ],
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "rdbu",
+      "nodata": -9999
+    },
+    "changemap": {
+      "assets": [
+        "changemap"
+      ],
+      "bidx": [
+        1
+      ],
+      "rescale": [
+        [
+          -1,
+          1
+        ]
+      ],
+      "colormap_name": "rdbu",
+      "nodata": -9999
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "changemap": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Surface Water Change Map",
+      "description": "Sentinel-1 binary water change between two dates: 1 = water gain, 0 = no change, -1 = water loss."
+    }
+  }
+}
