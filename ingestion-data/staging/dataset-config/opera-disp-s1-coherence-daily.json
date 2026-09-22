@@ -1,0 +1,121 @@
+{
+  "collection": "opera-disp-s1-coherence-daily",
+  "title": "OPERA Surface Displacement from Sentinel-1 (DISP-S1) Coherence",
+  "description": "Researchers working with the Observational Products for End-Users from Remote Sensing Analysis (OPERA) team at NASA's Jet Propulsion Laboratory, California Institute of Technology, created the OPERA Surface Displacement from Sentinel-1 (DISP-S1) product suite to characterize surface displacement using interferometric synthetic aperture radar (InSAR) observations from the Copernicus Sentinel-1 satellites.\n\nThis collection contains interferometric coherence imagery associated with Sentinel-1 acquisition pairs used for surface displacement analysis. Coherence measures the consistency of the radar phase between the reference and secondary acquisitions and provides an indication of the reliability of the corresponding interferometric measurement. Higher coherence indicates greater phase consistency, while lower coherence can occur over vegetation, water, snow-covered areas, areas of substantial surface change, or other locations where decorrelation reduces the reliability of the interferometric signal.\n\nEach coherence image represents a reference and secondary Sentinel-1 acquisition pair. The two acquisition dates are retained in the filename, with the secondary acquisition date used as the observation date for visualization in the dashboard. Coherence is unitless and ranges from 0 to 1, with values approaching 1 indicating greater interferometric coherence.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2026-06-18T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/Displacement/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*OPERA_S1_[AD]\\d{3}_COH_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": "^OPERA_S1_([AD]\\d{3}_COH_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-disp-s1-coherence-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "coherence": {
+          "title": "OPERA DISP-S1 Coherence",
+          "description": "Interferometric coherence associated with a Sentinel-1 reference and secondary acquisition pair. Values range from 0 to 1, with higher values indicating greater phase consistency between acquisitions.",
+          "regex": "^OPERA_S1_[AD]\\d{3}_COH_\\d{4}-\\d{2}-\\d{2}_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "opera-disp-s1-coherence-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/OPERA/Displacement/OPERA_S1_A033_COH_2026-06-18_2026-06-25_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/OPERA/Displacement/OPERA_S1_A106_COH_2026-06-23_2026-06-24_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/OPERA/Displacement/OPERA_S1_D025_COH_2026-06-18_2026-06-25_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "coherence": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "OPERA DISP-S1 Coherence",
+      "description": "Interferometric coherence associated with a Sentinel-1 reference and secondary acquisition pair. Values range from 0 to 1, with higher values indicating greater phase consistency between acquisitions."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "coherence"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": "nan",
+      "resampling": "bilinear",
+      "colormap_name": "turbo",
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    "coherence": {
+      "assets": [
+        "coherence"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": "nan",
+      "resampling": "bilinear",
+      "colormap_name": "turbo",
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
