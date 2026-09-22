@@ -1,7 +1,7 @@
 {
   "collection": "sentinel2-truecolor-daily",
   "title": "Sentinel-2 TrueColor (Daily)",
-  "description": "Three-band TrueColor composite from Sentinel-2 combining red, green, and blue bands. This collection contains daily composites aggregated to a single image per day.",
+  "description": "Three-band TrueColor composite from Sentinel-2 combining red, green, and blue bands.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
