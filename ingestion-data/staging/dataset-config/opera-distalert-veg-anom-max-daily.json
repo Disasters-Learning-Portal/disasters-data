@@ -1,0 +1,114 @@
+{
+  "collection": "opera-distalert-veg-anom-max-daily",
+  "title": "OPERA Maximum Vegetation Anomaly (DIST-ALERT VEG-ANOM-MAX)",
+  "description": "Researchers working with the Advanced Rapid Imaging and Analysis (ARIA) and Observational Products for End-Users from Remote Sensing Analysis (OPERA) teams at NASA's Jet Propulsion Laboratory, Pasadena, California, produce the OPERA Land Surface Disturbance Alert (DIST-ALERT) products. Results posted here are preliminary, primarily intended to aid field response, and are provided with absolutely no warranty of any kind. Use at your own risk.\nEach image is the VEG-ANOM-MAX layer, which reports the maximum vegetation anomaly observed for each pixel over the detection window, expressed as the percent of vegetation cover lost. This is a continuous magnitude, not a class layer, so it is rendered with a continuous colormap ramp and a rescale rather than a discrete colormap.\nPixel values are the maximum vegetation anomaly over the detection window, in percent of vegetation cover lost (0-100). 255 is the product's no-data flag and is declared `nodata` so it cannot clamp to the top of the rescale; 0 means no anomaly was observed and is kept as real data rather than masked.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2024-10-02T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DistAlert/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*VEG-ANOM-MAX.*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*VEG-ANOM-MAX.*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-distalert-veg-anom-max-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "use_multithreading": false,
+      "assets": {
+        "veg-anom-max": {
+          "title": "OPERA DIST-ALERT Maximum Vegetation Anomaly (VEG-ANOM-MAX)",
+          "description": "Maximum vegetation anomaly value from the OPERA DIST-ALERT VEG-ANOM-MAX layer. Pixel values are the maximum vegetation anomaly over the detection window, in percent of vegetation cover lost (0-100). 255 is the product's no-data flag and is declared `nodata` so it cannot clamp to the top of the rescale; 0 means no anomaly was observed and is kept as real data rather than masked.",
+          "regex": ".*VEG-ANOM-MAX.*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "collection": "opera-distalert-veg-anom-max-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "veg-anom-max"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    },
+    "veg-anom-max": {
+      "assets": [
+        "veg-anom-max"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "colormap_name": "inferno",
+      "rescale": [
+        [
+          0,
+          100
+        ]
+      ]
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "item_assets": {
+    "veg-anom-max": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "OPERA DIST-ALERT Maximum Vegetation Anomaly (VEG-ANOM-MAX)",
+      "description": "Maximum vegetation anomaly value from the OPERA DIST-ALERT VEG-ANOM-MAX layer. Pixel values are the maximum vegetation anomaly over the detection window, in percent of vegetation cover lost (0-100). 255 is the product's no-data flag and is declared `nodata` so it cannot clamp to the top of the rescale; 0 means no anomaly was observed and is kept as real data rather than masked."
+    }
+  }
+}
