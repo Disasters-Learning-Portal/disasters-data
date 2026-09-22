@@ -1,0 +1,116 @@
+{
+  "collection": "aviris3-charash-daily",
+  "title": "AVIRIS-3 Relative Char and Ash Product",
+  "description": "This product shows the char/ash fraction of each pixel based on airborne imaging spectroscopy measurements from NASA JPL AVIRIS-3. The surface reflectance was first estimated using ISOFIT, after which a Spectral Unmixing algorithm was used to determine the amount of char and ash within each pixel, based on the MESMA approach. See credits for citations and more information on ISOFIT, Spectral Unmixing, and the MESMA approach. The char/ash fractional cover value is displayed as a single band pseudo-color grayscale, with thresholds at minimum detectable bounds of 50% and 80% char/ash fractional cover.\n\nThe product describes the relative amount of char and ash (0-1) within each pixel. In order to deliver a product with low latency, the endmember library used was constrained to that common to a Southern California urban environment, and manual masking was also used. Locations that are heavily shaded may have errant solutions. The product also only indicates the char/ash fraction of the exposed surface - not what lies underneath. Areas covered by ash, for example, may express as having a fraction despite having only a thin coating of ash on top.\n\nThis is a research grade product with known false positives and false negatives. Improvements to product accuracy are ongoing and linear spectral mixture model was used to approximate char/ash fractional cover; however, due to multiple scattering effects of complex surfaces, actual the relationship between observed char/ash reflectance and actual char/ash abundance may be non-linear.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -125,
+    "ymin": 24,
+    "xmax": -66,
+    "ymax": 49
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/AVIRIS-3/CharAsh/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": "^(?!.*_color).*charash_fraction_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "aviris3-charash-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "charash": {
+          "title": "Relative Char and Ash Fraction",
+          "description": "Relative char and ash fractional cover (0-1) per pixel, derived from AVIRIS-3 surface reflectance via MESMA spectral unmixing.",
+          "regex": "^(?!.*_color).*charash_fraction_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "aviris3-charash-daily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/CharAsh/Eaton_1_AV3_charash_fraction_2025-01-11_day.tif",
+    "s3://nasa-disasters-staging/ProgramData/AVIRIS-3/CharAsh/Palisades_2_AV3_charash_fraction_2025-01-11_day.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "charash": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Relative Char and Ash Fraction",
+      "description": "Relative char and ash fractional cover (0-1) per pixel, derived from AVIRIS-3 surface reflectance via MESMA spectral unmixing."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "charash"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ],
+      "colormap_name": "gray"
+    },
+    "charash": {
+      "assets": [
+        "charash"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": -9999,
+      "rescale": [
+        [
+          0,
+          1
+        ]
+      ],
+      "colormap_name": "gray"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA AVIRIS-3",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.earthdata.nasa.gov/dashboard/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
