@@ -36,7 +36,7 @@
         "swir": {
           "title": "Shortwave Infrared",
           "description": "Three-band shortwave infrared composite from Sentinel-2. SWIR penetrates smoke and haze and separates burned ground, bare soil and vegetation, which makes it useful for mapping fire extent and for flood and landslide interpretation where cloud or smoke defeats a true colour view.",
-          "regex": ".*[sS]hortwave[iI]nfrared.*\\.tif$"
+          "regex": ".*(SWI|[sS]hortwave[iI]nfrared).*\\.tif$"
         }
       },
       "collection": "sentinel2-swir-subdaily"
