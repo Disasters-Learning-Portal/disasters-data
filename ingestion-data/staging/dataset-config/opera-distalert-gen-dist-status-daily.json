@@ -1,0 +1,212 @@
+{
+  "collection": "opera-distalert-gen-dist-status-daily",
+  "title": "OPERA Surface Disturbance Status (DIST-ALERT GEN-DIST-STATUS, Sentinel-1 and HLS)",
+  "description": "Researchers working with the Advanced Rapid Imaging and Analysis (ARIA) and Observational Products for End-Users from Remote Sensing Analysis (OPERA) teams at NASA's Jet Propulsion Laboratory, Pasadena, California, produce the OPERA Land Surface Disturbance Alert (DIST-ALERT) products. Each image is the GEN-DIST-STATUS layer from the Sentinel-1 (DIST-ALERT-S1) or Harmonized Landsat Sentinel-2 (DIST-ALERT-HLS) product, which reports the detection status and confidence of surface disturbance for each pixel relative to a pre-event baseline.\nResults posted here are preliminary, primarily intended to aid field response, and are provided with absolutely no warranty of any kind. Use at your own risk.\nGEN-DIST-STATUS classes:\n0: No disturbance\n1: First detection, low confidence\n2: Provisional, low confidence\n3: Confirmed, low confidence\n4: First detection, high confidence\n5: Provisional, high confidence\n6: Confirmed, high confidence\n7: Confirmed disturbance, low confidence, finished\n8: Confirmed disturbance, high confidence, finished\n'First' is a single anomalous observation with no follow-up yet; 'provisional' is two consecutive detections; 'confirmed' is a high-confidence detection; 'finished' means the disturbance is no longer being detected (HLS product only).",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -180,
+    "ymin": -90,
+    "xmax": 180,
+    "ymax": 90
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/OPERA/DistAlert/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*(GEN-DIST-STATUS|HLS-DIST-STATUS).*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$",
+      "datetime_range": "day",
+      "id_regex": ".*(?:GEN-DIST-STATUS|HLS-DIST-STATUS).*_(\\d{4}-\\d{2}-\\d{2})_day\\.tif$",
+      "id_template": "opera-distalert-gen-dist-status-daily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "gen-dist-status": {
+          "title": "OPERA DIST-ALERT Disturbance Status (GEN-DIST-STATUS)",
+          "description": "Per-pixel disturbance status from the OPERA DIST-ALERT-S1 V1 GEN-DIST-STATUS layer. 0 = no disturbance; 1 = first detection, low confidence; 2 = provisional, low confidence; 3 = confirmed, low confidence; 4 = first detection, high confidence; 5 = provisional, high confidence; 6 = confirmed, high confidence; 7 = confirmed, low confidence, finished; 8 = confirmed, high confidence, finished (HLS only). 'First' is a single anomalous observation, 'provisional' two consecutive detections, 'confirmed' a high-confidence detection.",
+          "regex": ".*(GEN-DIST-STATUS|HLS-DIST-STATUS).*_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "opera-distalert-gen-dist-status-daily"
+    }
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "gen-dist-status": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "OPERA DIST-ALERT Disturbance Status (GEN-DIST-STATUS)",
+      "description": "Per-pixel disturbance status from the OPERA DIST-ALERT-S1 V1 GEN-DIST-STATUS layer. 0 = no disturbance; 1 = first detection, low confidence; 2 = provisional, low confidence; 3 = confirmed, low confidence; 4 = first detection, high confidence; 5 = provisional, high confidence; 6 = confirmed, high confidence; 7 = confirmed, low confidence, finished; 8 = confirmed, high confidence, finished (HLS only). 'First' is a single anomalous observation, 'provisional' two consecutive detections, 'confirmed' a high-confidence detection."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "gen-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "colormap": {
+        "0": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "1": [
+          255,
+          255,
+          178,
+          255
+        ],
+        "2": [
+          254,
+          204,
+          92,
+          255
+        ],
+        "3": [
+          253,
+          141,
+          60,
+          255
+        ],
+        "4": [
+          252,
+          78,
+          42,
+          255
+        ],
+        "5": [
+          227,
+          26,
+          28,
+          255
+        ],
+        "6": [
+          177,
+          0,
+          38,
+          255
+        ],
+        "7": [
+          119,
+          119,
+          119,
+          255
+        ],
+        "8": [
+          221,
+          221,
+          221,
+          255
+        ]
+      }
+    },
+    "gen-dist-status": {
+      "assets": [
+        "gen-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 255,
+      "colormap": {
+        "0": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "1": [
+          255,
+          255,
+          178,
+          255
+        ],
+        "2": [
+          254,
+          204,
+          92,
+          255
+        ],
+        "3": [
+          253,
+          141,
+          60,
+          255
+        ],
+        "4": [
+          252,
+          78,
+          42,
+          255
+        ],
+        "5": [
+          227,
+          26,
+          28,
+          255
+        ],
+        "6": [
+          177,
+          0,
+          38,
+          255
+        ],
+        "7": [
+          119,
+          119,
+          119,
+          255
+        ],
+        "8": [
+          221,
+          221,
+          221,
+          255
+        ]
+      }
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Jet Propulsion Laboratory, California Institute of Technology",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.jpl.nasa.gov/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
