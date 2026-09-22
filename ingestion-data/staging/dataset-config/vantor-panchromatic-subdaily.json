@@ -1,0 +1,114 @@
+{
+  "collection": "vantor-panchromatic-subdaily",
+  "title": "Vantor Panchromatic",
+  "description": "Very high resolution panchromatic (black-and-white) imagery from Vantor (formerly Maxar) WorldView-3, at roughly 0.3 m ground sample distance. A single band that integrates all visible light, so it carries the finest spatial detail in the delivery but no colour; it is well suited to structural damage assessment. Colour composites are served separately from the multispectral delivery.\n\nCollected in response to the June 2026 Venezuela earthquake activation. Scenes acquired before the event provide the pre-event baseline.",
+  "license": "CC0-1.0",
+  "stac_version": "1.0.0",
+  "dashboard:is_periodic": false,
+  "dashboard:time_interval": "PT1S",
+  "links": [],
+  "spatial_extent": {
+    "xmin": -73.4,
+    "ymin": 0.6,
+    "xmax": -59.8,
+    "ymax": 12.5
+  },
+  "temporal_extent": {
+    "startdate": "2020-01-01T00:00:00Z",
+    "enddate": null
+  },
+  "discovery_items": [
+    {
+      "discovery": "s3",
+      "prefix": "ProgramData/Vantor/Panchromatic/",
+      "bucket": "nasa-disasters-staging",
+      "filename_regex": ".*_panchromatic_.*Z\\.tif$",
+      "id_regex": ".*_(\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z)\\.tif$",
+      "id_template": "vantor-panchromatic-subdaily-{}",
+      "disasters:extract_event_name": true,
+      "disasters:monty": true,
+      "disasters:add_product": true,
+      "disasters:add_providers": true,
+      "cogify": false,
+      "dry_run": false,
+      "assets": {
+        "panchromatic": {
+          "title": "Panchromatic",
+          "description": "Single-band panchromatic image as delivered by Vantor: all visible light collected into one value per pixel, giving ~0.3 m detail with no colour information. Pixel value 0 is fill. Not a composite -- colour products come from the separate multispectral (S-series) delivery.",
+          "regex": ".*_panchromatic_.*Z\\.tif$"
+        }
+      },
+      "use_multithreading": false,
+      "collection": "vantor-panchromatic-subdaily"
+    }
+  ],
+  "sample_files": [
+    "s3://nasa-disasters-staging/ProgramData/Vantor/Panchromatic/Vantor_panchromatic_P3DS_R2C1_2026-01-18T21:14:33Z.tif"
+  ],
+  "data_type": "cog",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "panchromatic": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Panchromatic",
+      "description": "Single-band panchromatic image as delivered by Vantor: all visible light collected into one value per pixel, giving ~0.3 m detail with no colour information. Pixel value 0 is fill. Not a composite -- colour products come from the separate multispectral (S-series) delivery."
+    }
+  },
+  "renders": {
+    "dashboard": {
+      "assets": [
+        "panchromatic"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          280,
+          3200
+        ]
+      ],
+      "colormap_name": "gray"
+    },
+    "panchromatic": {
+      "assets": [
+        "panchromatic"
+      ],
+      "bidx": [
+        1
+      ],
+      "nodata": 0,
+      "rescale": [
+        [
+          280,
+          3200
+        ]
+      ],
+      "colormap_name": "gray"
+    }
+  },
+  "providers": [
+    {
+      "name": "Vantor",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.vantor.com/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ]
+}
