@@ -1,7 +1,7 @@
 {
   "collection": "sentinel1-hydrosar-wm-iw-dvr-subdaily",
   "title": "Sentinel-1 HydroSAR Water Extents",
-  "description": "Post-incident water extents derived from Sentinel 1 SAR by the Alaskan Satellite Facility. This collection contains subdaily water extent identifications for open water, flooded developed, flooded vegetation, and flooded cropland.",
+  "description": "Post-incident water extents derived from Sentinel 1 SAR by the Alaskan Satellite Facility.  This collection contains subdaily water extent identifications for open water, flooded developed, flooded vegetation, and flooded cropland.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
