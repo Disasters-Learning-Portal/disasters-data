@@ -51,6 +51,12 @@
   ],
   "renders": {
     "dashboard": {
+      "assets": [
+        "veg-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
       "nodata": 255,
       "resampling": "nearest",
       "colormap": {
@@ -108,15 +114,15 @@
           221,
           255
         ]
-      },
-      "assets": [
-        "veg-dist-status"
-      ],
-      "bidx": [
-        1
-      ]
+      }
     },
     "veg-dist-status": {
+      "assets": [
+        "veg-dist-status"
+      ],
+      "bidx": [
+        1
+      ],
       "nodata": 255,
       "resampling": "nearest",
       "colormap": {
@@ -174,13 +180,7 @@
           221,
           255
         ]
-      },
-      "assets": [
-        "veg-dist-status"
-      ],
-      "bidx": [
-        1
-      ]
+      }
     }
   },
   "providers": [
