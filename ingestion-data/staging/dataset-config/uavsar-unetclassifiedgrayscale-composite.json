@@ -49,15 +49,6 @@
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
   "item_assets": {
-    "ColorIR": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "Color Infrared",
-      "description": "False color infrared composite combining near-infrared, red, and green bands for vegetation and land cover analysis."
-    },
     "unetclassifiedgrayscale": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "roles": [
@@ -76,13 +67,32 @@
       "bidx": [
         1
       ],
-      "colormap_name": "gray",
-      "rescale": [
-        [
-          0,
+      "colormap": {
+        "29": [
+          29,
+          29,
+          29,
+          255
+        ],
+        "76": [
+          76,
+          76,
+          76,
+          255
+        ],
+        "150": [
+          150,
+          150,
+          150,
+          255
+        ],
+        "173": [
+          173,
+          173,
+          173,
           255
         ]
-      ],
+      },
       "nodata": 0
     },
     "unetclassifiedgrayscale": {
@@ -92,13 +102,32 @@
       "bidx": [
         1
       ],
-      "colormap_name": "gray",
-      "rescale": [
-        [
-          0,
+      "colormap": {
+        "29": [
+          29,
+          29,
+          29,
+          255
+        ],
+        "76": [
+          76,
+          76,
+          76,
+          255
+        ],
+        "150": [
+          150,
+          150,
+          150,
+          255
+        ],
+        "173": [
+          173,
+          173,
+          173,
           255
         ]
-      ],
+      },
       "nodata": 0
     }
   },
