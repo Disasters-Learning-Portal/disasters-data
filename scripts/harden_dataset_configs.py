@@ -170,10 +170,26 @@ def check_categorical_rescale(name: str, cfg: dict) -> list[tuple[str, str]]:
         return []
     out = []
     for rn, rv in (cfg.get("renders") or {}).items():
-        if "rescale" in rv and not isinstance(rv.get("colormap"), dict):
+        if "rescale" not in rv or isinstance(rv.get("colormap"), dict):
+            continue
+        if rv.get("colormap_name"):
+            # A continuous ramp over class codes is only correct when the rescale bounds
+            # coincide with the actual value range - true for the DSWx change maps, whose
+            # three values -1/0/+1 land exactly on the ramp's ends and midpoint. That
+            # cannot be confirmed from the config alone, so this is advisory.
+            out.append(("warn", f"renders.{rn} applies the continuous ramp "
+                                f"{rv['colormap_name']!r} with rescale {rv['rescale']} to "
+                                f"categorical data. Correct only if those bounds match the "
+                                f"real class range - verify against the raster"))
+        else:
+            # No colormap at all: a bare linear stretch of class codes into greyscale.
+            # This is what opera-dswx-daily did - rescale [0,255] put open water (class 1)
+            # at near-black while fill (255) and cloud (253) rendered near-white, making
+            # the invalid classes the brightest thing on the map.
             out.append(("error", f"renders.{rn} linearly rescales categorical data "
-                                 f"({rv['rescale']}) - class codes are not a continuous "
-                                 f"range; use a discrete colormap and drop rescale"))
+                                 f"({rv['rescale']}) with no colormap - class codes are not "
+                                 f"a continuous range and will render as greyscale; use a "
+                                 f"discrete colormap and drop rescale"))
     return out
 
 
