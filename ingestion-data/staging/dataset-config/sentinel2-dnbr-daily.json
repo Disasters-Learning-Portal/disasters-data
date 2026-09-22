@@ -1,7 +1,7 @@
 {
   "collection": "sentinel2-dnbr-daily",
   "title": "Sentinel-2 Differenced Normalized Burn Ratio (dNBR)",
-  "description": "Differenced Normalized Burn Ratio (dNBR) is computed by the difference between the pre-fire NBR and the post-fire NBR. More information on dNBR can be found here: https://un-spider.org/advisory-support/recommended-practices/recommended-practice-burn-severity/in-detail/normalized-burn-ratio. Since the dNBR considers the condition of the scene before the fire occurred, the resulting value has been used as a proxy for burn severity. Higher dNBR values represent a proxy for greater burn severity. Negative dNBR values may represent a re-greening of or growth of vegetation in between pre and post imagery.",
+  "description": "Differenced Normalized Burn Ratio (dNBR) is computed by the difference between the pre-fire NBR and the post-fire NBR. More information on dNBR can be found here: https://un-spider.org/advisory-support/recommended-practices/recommended-practice-burn-severity/in-detail/normalized-burn-ratio. Since the dNBR considers the condition of the scene before the fire occurred, the resulting value has been used as a proxy for burn severity. Higher, positive dNBR values represent a proxy for greater burn severity. Negative dNBR values may represent a re-greening of or growth of vegetation in between pre and post imagery.",
   "license": "CC0-1.0",
   "stac_version": "1.0.0",
   "dashboard:is_periodic": false,
