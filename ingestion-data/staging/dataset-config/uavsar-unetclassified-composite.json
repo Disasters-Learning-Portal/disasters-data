@@ -20,7 +20,7 @@
   "discovery_items": [
     {
       "discovery": "s3",
-      "prefix": "ProgramData/UAVSAR/UNetClassified",
+      "prefix": "ProgramData/UAVSAR/UNetClassified/",
       "bucket": "nasa-disasters-staging",
       "filename_regex": "^(?!.*grayscale).*_monthly\\.tif$",
       "datetime_range": "month",
