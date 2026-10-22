@@ -33,8 +33,14 @@ def trigger_collection_dag(payload: Dict[str, Any], stage: str):
     password = os.getenv(password_env)
     api_version = os.getenv(api_version_env) or "2"
 
-    if not all([base_api_url, username, password]):
-        raise ValueError(f"Missing required environment variables for stage '{stage}' ")
+    # Airflow 3 authenticates with a JWT, so only require basic auth credentials for v2
+    required = [base_api_url] + ([username, password] if api_version == "2" else [])
+    if not all(required):
+        raise ValueError(
+            f"Missing required environment variables for stage '{stage}' "
+            f"({api_url_env}, {username_env}, {password_env}; "
+            "username and password are only required for Airflow API v2)"
+        )
 
     try:
         result = trigger_dag_run(
