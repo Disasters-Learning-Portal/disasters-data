@@ -28,10 +28,13 @@ def publish_to_staging(payload):
     password = os.getenv("STAGING_SM2A_ADMIN_PASSWORD")
     api_version_env = os.getenv("STAGING_AIRFLOW_API_VERSION") or "2"
 
-    if not all([base_api_url, username, password]):
+    # Airflow 3 authenticates with a JWT, so only require basic auth credentials for v2
+    required = [base_api_url] + ([username, password] if api_version_env == "2" else [])
+    if not all(required):
         raise ValueError(
             "Missing required env vars STAGING_SM2A_API_URL, "
-            "STAGING_SM2A_ADMIN_USERNAME, STAGING_SM2A_ADMIN_PASSWORD"
+            "STAGING_SM2A_ADMIN_USERNAME, STAGING_SM2A_ADMIN_PASSWORD "
+            "(username and password are only required for Airflow API v2)"
         )
 
     try:
@@ -56,10 +59,13 @@ def promote_to_production(payload):
     password = os.getenv("SM2A_ADMIN_PASSWORD")
     api_version_env = os.getenv("PRODUCTION_AIRFLOW_API_VERSION") or "2"
 
-    if not all([base_api_url, username, password]):
+    # Airflow 3 authenticates with a JWT, so only require basic auth credentials for v2
+    required = [base_api_url] + ([username, password] if api_version_env == "2" else [])
+    if not all(required):
         raise ValueError(
             "Missing required env vars SM2A_API_URL, "
-            "SM2A_ADMIN_USERNAME, SM2A_ADMIN_PASSWORD"
+            "SM2A_ADMIN_USERNAME, SM2A_ADMIN_PASSWORD "
+            "(username and password are only required for Airflow API v2)"
         )
 
     payload["conf"].setdefault("transfer", False)

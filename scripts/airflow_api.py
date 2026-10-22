@@ -63,8 +63,8 @@ def trigger_dag_run(
     base_api_url: str,
     dag_id: str,
     conf: Dict[str, Any],
-    username: str,
-    password: str,
+    username: str = None,
+    password: str = None,
     api_version: str = None,
 ) -> Dict[str, Any]:
     """

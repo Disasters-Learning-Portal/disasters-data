@@ -85,16 +85,26 @@ jobs:
             fi
 
             echo "Promoting $config_type ($collection_id) to production"
-            response=$(python3 "$script_to_run" "$file" "production")
+            exit_code=0
+            response=$(python3 "$script_to_run" "$file" "production" 2>&1) || exit_code=$?
+
+            echo "Script output:"
+            echo "$response"
+
+            if [ "$exit_code" -ne 0 ]; then
+              echo "[ERROR] $collection_id ($config_type) promotion script exited with code $exit_code"
+              failed=1
+              continue
+            fi
 
             echo "Processed file: $file"
-            status_code=$(echo "$response" | jq -r '.statusCode')
+            status_code=$(echo "$response" | tail -n 1 | jq -r '.statusCode' 2>/dev/null || echo "unknown")
             echo "Status Code: $status_code"
-             if [ "$status_code" -eq 200 ] || [ "$status_code" -eq 201 ]; then
-                echo "$collection_id ($config_type) successfully promoted to Production ✅"
-              else
-                echo "$collection_id ($config_type) failed to promote to Production ❌"
-                failed=1
-              fi
+            if [ "$status_code" = "200" ] || [ "$status_code" = "201" ]; then
+              echo "$collection_id ($config_type) successfully promoted to Production ✅"
+            else
+              echo "[ERROR] $collection_id ($config_type) failed to promote to Production ❌ (status: $status_code)"
+              failed=1
+            fi
           done
           [ "${failed:-0}" -eq 0 ] || exit 1
