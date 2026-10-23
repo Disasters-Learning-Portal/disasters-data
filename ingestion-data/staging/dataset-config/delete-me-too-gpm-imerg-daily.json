@@ -33,7 +33,6 @@
       "disasters:add_providers": true,
       "cogify": false,
       "dry_run": false,
-      "use_multithreading": false,
       "assets": {
         "precipitation": {
           "title": "GPM IMERG Precipitation",
@@ -41,6 +40,7 @@
           "regex": ".*gpm_3IMERGHH[EL]_07_precipitation_\\d{4}-\\d{2}-\\d{2}_day\\.tif$"
         }
       },
+      "use_multithreading": false,
       "collection": "gpm-imerg-daily"
     }
   ],
@@ -52,6 +52,17 @@
     "https://stac-extensions.github.io/render/v1.0.0/schema.json",
     "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
+  "item_assets": {
+    "precipitation": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "GPM IMERG Precipitation",
+      "description": "Daily total precipitation in millimetres, accumulated from half-hourly IMERG V07 estimates."
+    }
+  },
   "renders": {
     "dashboard": {
       "assets": [
@@ -106,16 +117,5 @@
       ],
       "url": "https://disasters.openveda.cloud"
     }
-  ],
-  "item_assets": {
-    "precipitation": {
-      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "roles": [
-        "data",
-        "layer"
-      ],
-      "title": "GPM IMERG Precipitation",
-      "description": "Daily total precipitation in millimetres, accumulated from half-hourly IMERG V07 estimates."
-    }
-  }
+  ]
 }
