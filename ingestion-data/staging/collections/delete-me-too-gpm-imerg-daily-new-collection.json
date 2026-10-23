@@ -1,0 +1,147 @@
+{
+  "id": "delete-me-too-gpm-imerg-daily-new-collection",
+  "type": "Collection",
+  "links": [
+    {
+      "href": "https://disasters.openveda.cloud/api/stac/collections/delete-me-too-gpm-imerg-daily/items",
+      "rel": "items",
+      "type": "application/geo+json"
+    },
+    {
+      "href": "https://disasters.openveda.cloud/api/stac/",
+      "rel": "parent",
+      "type": "application/json"
+    },
+    {
+      "href": "https://disasters.openveda.cloud/api/stac/",
+      "rel": "root",
+      "type": "application/json"
+    },
+    {
+      "href": "https://disasters.openveda.cloud/api/stac/collections/delete-me-too-gpm-imerg-daily",
+      "rel": "self",
+      "type": "application/json"
+    },
+    {
+      "href": "https://disasters.openveda.cloud/api/stac/collections/delete-me-too-gpm-imerg-daily/queryables",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/queryables",
+      "type": "application/schema+json",
+      "title": "Queryables"
+    },
+    {
+      "href": "https://disasters.openveda.cloud/api/stac/collections/delete-me-too-gpm-imerg-daily/queryables",
+      "rel": "http://www.opengis.net/def/rel/ogc/1.0/queryables",
+      "type": "application/schema+json",
+      "title": "Queryables"
+    }
+  ],
+  "title": "Delete this demo too GPM IMERG Precipitation Test create collection EDITED",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          130.09999388257057,
+          -3.400005359385251,
+          163.09999805475314,
+          26.899998471436913
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-04-11T00:00:00Z",
+          "2026-04-18T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "renders": {
+    "dashboard": {
+      "bidx": [
+        1
+      ],
+      "assets": [
+        "precipitation"
+      ],
+      "rescale": [
+        [
+          0,
+          200
+        ]
+      ],
+      "colormap_name": "ylgnbu"
+    },
+    "precipitation": {
+      "bidx": [
+        1
+      ],
+      "assets": [
+        "precipitation"
+      ],
+      "rescale": [
+        [
+          0,
+          200
+        ]
+      ],
+      "colormap_name": "ylgnbu"
+    }
+  },
+  "providers": [
+    {
+      "name": "NASA Goddard Earth Sciences Data and Information Services Center (GES DISC)",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://disc.gsfc.nasa.gov/"
+    },
+    {
+      "name": "NASA Giovanni",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://giovanni.gsfc.nasa.gov/giovanni/"
+    },
+    {
+      "name": "NASA Disasters Program",
+      "roles": [
+        "host"
+      ],
+      "url": "https://disasters.openveda.cloud"
+    }
+  ],
+  "summaries": {
+    "datetime": [
+      "2026-04-11T00:00:00Z",
+      "2026-04-12T00:00:00Z",
+      "2026-04-13T00:00:00Z",
+      "2026-04-14T00:00:00Z",
+      "2026-04-15T00:00:00Z",
+      "2026-04-16T00:00:00Z",
+      "2026-04-17T00:00:00Z",
+      "2026-04-18T00:00:00Z"
+    ]
+  },
+  "description": "Daily total precipitation (mm) from NASA's Integrated Multi-satellitE Retrievals for GPM (IMERG) Version 07, accumulated from the half-hourly Level 3 product using Giovanni. IMERG combines precipitation estimates from the GPM constellation's passive microwave sensors, the GPM Core Observatory's dual-frequency radar, and geostationary infrared observations into a 0.1 x 0.1 degree gridded field. Early-run (3IMERGHHE) files are available about 4 hours after observation and use forward morphing only; Late-run (3IMERGHHL) files arrive about 14 hours after observation, add backward morphing and a climatological gauge adjustment, and are the higher-quality near-real-time product. Data: Huffman et al. (2024), GPM IMERG Early/Late Precipitation L3 Half Hourly 0.1 degree x 0.1 degree V07, NASA GES DISC, DOI 10.5067/GPM/IMERG/3B-HH-E/07 and 10.5067/GPM/IMERG/3B-HH-L/07.",
+  "item_assets": {
+    "cog_default": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data",
+        "layer"
+      ],
+      "title": "Default COG Layer",
+      "description": "Cloud optimized default layer to display on map"
+    }
+  },
+  "stac_version": "1.0.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/render/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "dashboard:is_periodic": false,
+  "dashboard:time_density": "day",
+  "dashboard:time_interval": "P1D"
+}
